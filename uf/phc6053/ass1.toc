@@ -1,9 +1,0 @@
-\contentsline {subsection}{Note to Professor}{1}
-\contentsline {subsection}{Histograms, boxplots and qq-plots}{2}
-\contentsline {subsection}{SYSBP}{2}
-\contentsline {subsection}{LNSBP}{2}
-\contentsline {subsection}{BMI}{2}
-\contentsline {subsection}{AGE}{2}
-\contentsline {subsection}{Scatterplots and LOESS curves}{3}
-\contentsline {subsection}{Y = SYSBP, X = AGE}{3}
-\contentsline {subsection}{Y = SYSBP, X = BMI}{3}
