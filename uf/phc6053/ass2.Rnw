@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage{geometry}
+\usepackage{graphicx}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{helvet}
+\title{Assignment 2}
+\author{Joe Brew}
+\begin{document}
+\newgeometry{margin=1.5cm}
+\SweaveOpts{concordance=TRUE}
+\maketitle
+
+
+<<echo=FALSE, results=hide, eval=TRUE>>=
+library(foreign)
+setwd("E:/workingdirectory/phc6053")
+load("E:/workingdirectory/phc6053/ass2.RData")
+@
+
+\section*{Note to Professor}
+Dr. Cantrell,
+\\ 
+As with the first assignment, I completed assignment 2 entirely in R.  This is because I was not able to get SAS until Tuesday (the day before deadline).  Thank you for your understanding.
+
+\vspace{50mm}
+
+\tableofcontents
+\newgeometry{margin=1.5cm}
+
+\begin{center}
+\section*{Side-by-side boxplots}
+\end{center}
+\addcontentsline{toc}{section}{Side-by-side boxplots}
+
+\subsection*{SYSBP by SEX}
+\addcontentsline{toc}{subsection}{SYSBP by SEX}
+\begin{center}
+<<echo=FALSE, results=hide, fig=TRUE, height=4>>=
+par(mar=c(2,2,1,0))
+par(oma=c(0,0,0,0))
+boxplot(df$SYSBP~df$SEX)
+@
+\end{center}
+
+\subsection*{SYSBP by BMI}
+\addcontentsline{toc}{subsection}{SYSBP by BMI}
+\begin{center}
+<<echo=FALSE, results=hide, fig=TRUE, height=4>>=
+par(mar=c(2,2,1,0))
+par(oma=c(0,0,0,0))
+boxplot(df$SYSBP~df$BMIGROUPS)
+@
+\end{center}
+\end{document}
+
