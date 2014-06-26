@@ -1,0 +1,11 @@
+\contentsline {section}{Problem 1: Incidenve versus Prevalence}{2}
+\contentsline {section}{Problem 2: Survival analysis assumptions}{2}
+\contentsline {subsection}{Differences}{2}
+\contentsline {subsection}{Shared assumptions}{2}
+\contentsline {section}{Problem 3: Cumulative incidence}{3}
+\contentsline {section}{Problem 4: Incidence density - individual data}{4}
+\contentsline {subsection}{Total number of person-years}{4}
+\contentsline {subsection}{5-year incidence density}{4}
+\contentsline {section}{Problem 5: Incidence rate - group data}{4}
+\contentsline {section}{Details}{5}
+\contentsline {subsection}{Problem 3 (work shown)}{5}

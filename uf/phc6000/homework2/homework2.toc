@@ -1,0 +1,6 @@
+\contentsline {section}{Problem 1: Disability and Rurality}{2}
+\contentsline {section}{Problem 2: Air pollution and lung cancer}{2}
+\contentsline {section}{Problem 3: Aspirin and MI}{3}
+\contentsline {section}{Problem 4: Preterm delivery and SES}{3}
+\contentsline {section}{Problem 5: Alcohol consumption and esophageal cancer}{4}
+\contentsline {section}{Problem 6: Study designs}{5}
