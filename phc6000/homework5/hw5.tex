@@ -1,0 +1,268 @@
+\documentclass[12pt]{article}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{fixltx2e}
+
+\usepackage{color}
+\usepackage[margin=10pt, font=small,labelfont=bf,textfont=it]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{float}
+\setlength{\columnsep}{1.5cm}
+\setlength{\columnseprule}{0.4pt}
+\setlength{\footskip}{20pt}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[C]{Epidemiology Methods 1 $\bullet$ PHC 6000}
+\fancyfoot[C]{Joseph.Brew@FLHealth.gov $\bullet$ Joe Brew $\bullet$ joebrew@gmail.com}
+\renewcommand\headrulewidth{1pt}
+\renewcommand\footrulewidth{1pt}
+\pagestyle{fancy}
+
+\usepackage[font=small,skip=0pt]{caption}
+
+\usepackage{Sweave}
+\begin{document}
+\input{hw5-concordance}
+\newgeometry{margin=2cm}
+\fancyhfoffset[O,O]{0pt}
+
+
+\begin{center}
+\begin{huge}
+Homework 5 \\
+\end{huge}
+\begin{large}
+Joe Brew \\
+\end{large}
+\end{center}
+
+\vspace{20mm}
+
+\section*{Problem 1}
+
+You are presented with the results of two screening tests.  
+
+
+
+\setkeys{Gin}{width=0.50\textwidth}
+\begin{multicols}{2}
+
+\begin{table}[H]
+\caption*{Test A}
+% latex table generated in R 3.0.2 by xtable 1.7-1 package
+% Wed Apr 02 20:17:43 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrr}
+  \hline
+ &   & DiseasePlus & DiseaseMinus \\ 
+  \hline
+1 & Test + & 400.00 & 2850.00 \\ 
+  2 & Test - & 100.00 & 6650.00 \\ 
+   \hline
+\end{tabular}
+\end{table}\end{table}
+
+\begin{table}[H]
+\caption*{Test B}
+% latex table generated in R 3.0.2 by xtable 1.7-1 package
+% Wed Apr 02 20:17:43 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrr}
+  \hline
+ &   & DiseasePlus & DiseaseMinus \\ 
+  \hline
+1 & Test + & 425.00 & 75.00 \\ 
+  2 & Test - & 4750.00 & 4750.00 \\ 
+   \hline
+\end{tabular}
+\end{table}\end{table}
+
+\end{multicols}
+\setkeys{Gin}{width=1\textwidth}
+
+\noindent \textbf{1. Calculate sensitivity, specificity and positive and negative predictive values for each of the tests.}
+
+\begin{multicols}{2}
+\setkeys{Gin}{width=0.50\textwidth}
+
+\begin{Schunk}
+\begin{Sinput}
+> aSensitivity <- 400 / (400+100)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.8
+\end{Soutput}
+\begin{Sinput}
+> aSpecificity <- 6650 / (6650 + 2850)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.7
+\end{Soutput}
+\begin{Sinput}
+> aNPV <- 6650 / (6650 + 100)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.9851852
+\end{Soutput}
+\end{Schunk}
+
+
+
+\columbreak
+\begin{Schunk}
+\begin{Sinput}
+> bSensitivity <- 425 / (425 + 75)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.85
+\end{Soutput}
+\begin{Sinput}
+> bSpecificity <- 4750 / (4750 + 4750)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.5
+\end{Soutput}
+\begin{Sinput}
+> bNPV <- 4750 / (4750 + 75)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.984456
+\end{Soutput}
+\end{Schunk}
+\setkeys{Gin}{width=1\textwidth}
+\end{multicols}
+
+\noindent \textbf{2. Assume that the tests are implemented sequentially (two-stage screening).  Calculate net sensitivity and specificity. }
+
+\begin{Schunk}
+\begin{Sinput}
+> sequentialNetSensitivity <- aSensitivity * 
++     bSensitivity
+\end{Sinput}
+\begin{Soutput}
+[1] 0.68
+\end{Soutput}
+\begin{Sinput}
+> sequentialNetSpecificity <- aSpecificity + 
++     bSpecificity - (aSpecificity * 
++     bSpecificity)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.85
+\end{Soutput}
+\end{Schunk}
+
+
+\newpage
+\noindent \textbf{3. Assume that the two tests are implemented simultaneously.  Calculate net sensitivity and specificity.  }
+
+\begin{Schunk}
+\begin{Sinput}
+> simultaneousNetSensitivity <- aSensitivity + 
++     bSensitivity - (aSensitivity * 
++     bSensitivity)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.97
+\end{Soutput}
+\begin{Sinput}
+> simultaneousNetSpecificity <- aSpecificity^2
+\end{Sinput}
+\begin{Soutput}
+[1] 0.49
+\end{Soutput}
+\end{Schunk}
+
+
+\section*{Problem 2}
+Researchers are interested in characterizing sensitivity and specificity of computed tomographic virtual colonoscopy (CT colonography) for colon cancer screening.  In a study of 1,186 individuals referred for screening, 422 were ultimately found to have polyps.  Of these, 377 had a positive CT colonography result. \\
+
+There were a total of 500 positive results in the study. \\
+
+\noindent \textbf{1. Set up the 2x2 table for the screening results.}
+
+
+\begin{table}[H]
+\caption*{Problem 2 table}
+% latex table generated in R 3.0.2 by xtable 1.7-1 package
+% Wed Apr 02 20:17:43 2014
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrrr}
+  \hline
+ &  & Polyps & NoPolyps & Total \\ 
+  \hline
+1 & Colonoscopy+ & 377.00 & 123.00 & 500.00 \\ 
+  2 & Colonoscopy- & 45.00 & 641.00 & 686.00 \\ 
+  3 & Total & 422.00 & 764.00 & 1186.00 \\ 
+   \hline
+\end{tabular}
+\end{table}\end{table}
+
+\noindent \textbf{2. Calculate and interpret the sensitivity of this test.}
+
+\begin{Schunk}
+\begin{Sinput}
+> sensitivity <- 377/422
+\end{Sinput}
+\begin{Soutput}
+[1] 0.8933649
+\end{Soutput}
+\end{Schunk}
+
+\noindent This test has a sensitivity of 0.89.  This is the proportion of true positives which are correctly identified as being positive. In other words, someone who has really has polyps has an 89\% chance of being deteced as such by this test.  \\ 
+
+\noindent \textbf{3. Calculate and interpret the specificity of this test.}
+
+\begin{Schunk}
+\begin{Sinput}
+> specificity <- 641/764
+\end{Sinput}
+\begin{Soutput}
+[1] 0.8390052
+\end{Soutput}
+\end{Schunk}
+
+\noindent This test has a specificity of 0.84.  This is the proportion of true negatives which are correctly tested as such. In other words, someone without polyps has an 84\% as being correctly identified as not having polyps by this test.  \\
+
+\noindent \textbf{4. Calculate and interpret the positive predictive value of this test.}
+
+\begin{Schunk}
+\begin{Sinput}
+> PPV <- 377/500
+\end{Sinput}
+\begin{Soutput}
+[1] 0.754
+\end{Soutput}
+\end{Schunk}
+
+This test has a positive predictive value of 0.754.  This is the proportion of positive test results which are actually positive.  In other words, about 75\% of positives \emph{actually} have polyps. \\
+
+\noindent \textbf{5. Calculate and interpret the negative predictive value of this test.}
+
+\begin{Schunk}
+\begin{Sinput}
+> NPV <- 641/686
+\end{Sinput}
+\begin{Soutput}
+[1] 0.9344023
+\end{Soutput}
+\end{Schunk}
+
+This test has a negative predictive value of 0.93.  This is the proportion of negative test results which are actually negative.  In other words, about 93\% of negatives \emph{actually} don't have polyps.\\
+
+\noindent \textbf{6. Assuming that your findings are equivalent to sensitivity and specificity of FOBT (another test for colorectal cancer screening), list two considerations you would have prior to implementing the use of this test in the general population.} \\
+
+Before implementing the use of this test in the general population, a number of factors would need to be known.  First, and foremost, burden of this disease among the entire population should be know.  If it is a low-prevalence illness, a positive predictive value of only 75\% could have severe negative consequences for the many healthy people who may end up with a positive test result. \\
+
+Secondly, screening in the "general" population should always be targetted.  I would like to know who this general population is before recommending any screening. \\
+
+Additionally, it would be important to examine the cost (in both dollar and human time/suffering terms) of each test in order to determine which is more suitable for the purposes of screening.  
+
+
+
+
+\end{document}
