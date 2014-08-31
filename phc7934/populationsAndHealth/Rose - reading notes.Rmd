@@ -1,0 +1,9 @@
+---
+title: "PHC 7934 - Rose - reading notes"
+author: "Joe Brew"
+date: "Sunday, August 31, 2014"
+output: html_document
+---
+
+# bla
+bla bla bla
