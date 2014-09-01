@@ -40,11 +40,16 @@ shinyUI(fluidPage(
                     "NZL_NP" , "POL" ,    "PRT"  ,  
                     "RUS"  ,   "SVK" ,    "SVN" ,   
                     "SWE" ,    "TWN" ,    "UKR" ,   
-                    "USA" ))
-    ),
+                    "USA" )),
+      sliderInput("year", "Year", 
+                  min=1850, max=2013, value=2000, step=1,
+                  animate=animationOptions(interval = 30, loop = FALSE,
+                                           playButton = "Play", pauseButton = "Pause"))    ),
 
     # Show a plot of the generated distribution
     mainPanel(
+      plotOutput("plot3"),
+      plotOutput("plot4"),
       plotOutput("plot1"),
       plotOutput("plot2")
     )

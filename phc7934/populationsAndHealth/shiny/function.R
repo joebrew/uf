@@ -46,7 +46,12 @@ setwd(wd)
 #                "U.S.A.",
 #                "Ukraine")
 
-MortFun <- function(country, bar = TRUE, line = TRUE){
+MortFun <- function(country, 
+                    bar = TRUE, 
+                    line = FALSE,
+                    time = FALSE,
+                    year = 2000,
+                    scatter = FALSE){
   setwd(wd)
   
   
@@ -101,7 +106,9 @@ MortFun <- function(country, bar = TRUE, line = TRUE){
     barplot(x$b, border = FALSE,
             names.arg = x$y,
             #las = 3,
-            cex.names = 0.7)
+            cex.names = 0.7,
+            ylab = "count",
+            main = "Raw numbers")
     barplot(x$d, border = NA, col = adjustcolor("red", alpha.f=0.4), add = T)
     
     legend (x = "topright",
@@ -115,7 +122,8 @@ MortFun <- function(country, bar = TRUE, line = TRUE){
     plot(x$y, x$br, ylim = c(0,max(x$br[which(is.finite(x$br))], na.rm=T)), 
          type = "l", col = "grey",
          ylab = "Rate per 1,000", 
-         xlab = "Year")
+         xlab = "Year",
+         main = "Rates")
     lines(x$y, x$dr, col = "red")
     legend(x = "bottomleft",
            lty = 1,
@@ -125,18 +133,47 @@ MortFun <- function(country, bar = TRUE, line = TRUE){
            cex = 0.8)
     
 
-  }
+  } else if (time){
+    
+    if(sum(d$Total[which(d$Year == year)]) > 0){
+      
+      barplot(d$Total[which(d$Year == year)] / 
+                sum(d$Total[which(d$Year == year)], na.rm=T),
+              names.arg = d$Age[which(d$Year == year)],
+              xlab = "Age",
+              ylab = "Deaths a p of total",
+              main = year,
+              ylim=c(0,.2))  
+      
+
+    }else{return(NULL)}
+    }else if(scatter){
+      plot(x$d / x$p * 1000, x$b / x$p * 1000,
+           xlab = "Death rate (per 1,000)",
+           ylab = "Birth rate (per 1,000)",
+           main = year,
+           pch = 16,
+           col = adjustcolor("black", alpha.f = 0.6))
+      points(x$d[which(x$y == year)] / 
+               x$p[which(x$y == year)] * 1000,
+             x$b[which(x$y == year)]/ 
+               x$p[which(x$y == year)] * 1000,
+             col="red",
+             pch=16,
+             cex=2)
+    } 
+
 
 }
 
 
 # 
-# # MAKE A FUNCTION TO SHOW DEATH RATE BY AGE BY YEAR
+# MAKE A FUNCTION TO SHOW DEATH RATE BY AGE BY YEAR
 # AgeFun <- function(year){
-#   barplot(d$Total[which(d$Year == year)] / 
+#   barplot(d$Total[which(d$Year == input$year)] / 
 #             )
 # }
-# AgeFun(1935)
+#AgeFun(1935)
 # 
 # for (i in 1933:2000){
 #   AgeFun(i)

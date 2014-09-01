@@ -1,0 +1,16 @@
+{
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nsetwd(\"C:/Users/BrewJR/Documents/uf/phc7934/populationsAndHealth/shiny\")\nsource(\"function.R\")\n\nshinyServer(function(input, output) {\n\n  output$plot1 <- renderPlot({\n    MortFun(input$country, bar = FALSE, line = TRUE)\n    \n  })\n  \n  \n  output$plot2 <- renderPlot({\n    MortFun(input$country)\n    \n  })\n  \n  output$plot3 <- renderPlot({\n    MortFun(input$country, bar = FALSE, line = FALSE, time = TRUE,\n            year = input$year)\n    \n  })\n  \n  output$plot4 <- renderPlot({\n    MortFun(input$country, bar = FALSE, line = FALSE, time = FALSE,\n            year = input$year, scatter = TRUE)\n    \n  })\n\n})\n",
+    "created" : 1409546653183.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "65350939",
+    "id" : "B6E2BDA",
+    "lastKnownWriteTime" : 1409575724,
+    "path" : "~/uf/phc7934/populationsAndHealth/shiny/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

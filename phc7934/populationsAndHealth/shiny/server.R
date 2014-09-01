@@ -21,5 +21,17 @@ shinyServer(function(input, output) {
     MortFun(input$country)
     
   })
+  
+  output$plot3 <- renderPlot({
+    MortFun(input$country, bar = FALSE, line = FALSE, time = TRUE,
+            year = input$year)
+    
+  })
+  
+  output$plot4 <- renderPlot({
+    MortFun(input$country, bar = FALSE, line = FALSE, time = FALSE,
+            year = input$year, scatter = TRUE)
+    
+  })
 
 })
