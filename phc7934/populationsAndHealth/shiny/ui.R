@@ -32,6 +32,19 @@ shinyUI(fluidPage(
         ),
       
       conditionalPanel(
+        condition = "input.tabs == 'Rose example'",
+        helpText("Pick a population (or both)"),
+        checkboxInput("british", label = "British civil servant", value = FALSE),
+        checkboxInput("kenyan", label = "Kenyan nomad", value = FALSE),
+        br(), br(),
+        
+        p("joebrew@gmail.com"),
+        tags$div(
+          HTML("<a href='github.com/joebrew/phc7934/'>Code for this site</a>")
+        )
+      ),
+      
+      conditionalPanel(
         condition = "input.tabs == 'Omran'",
         p("joebrew@gmail.com"),
         tags$div(
@@ -39,7 +52,7 @@ shinyUI(fluidPage(
         )        ),
       
       conditionalPanel(
-        condition = "input.tabs == 'Explore'",
+        condition = "input.tabs == 'Omran example'",
         selectInput("country",
                     "Country:",
                     c("AUS",
@@ -95,13 +108,17 @@ shinyUI(fluidPage(
                  tags$div(
                    HTML('<iframe src="https://docs.google.com/document/d/1YoAmjr8zyJ8R-tMcfmjJC_K2Rhs8F5KiC212Kp1OMVw/pub?embedded=true" width="600" height="600" ></iframe>')
                  )),
+        
+        tabPanel("Rose example",
+                 plotOutput("plot5") 
+                 ),
         tabPanel("Omran",
                  h4("Reading notes:"),
                  tags$div(
                    HTML('<iframe src="https://docs.google.com/document/d/1_aho8TyRyNXp1bFd3qaZpPAR4zEPkrivfXT26xFhelQ/pub?embedded=true" width="600" height="600"></iframe>')
                  )
         ),
-        tabPanel("Explore",
+        tabPanel("Omran example",
                  p("These data come from the Human Mortality Database, but the visualizations are original."),
                  plotOutput("plot3"),
                  plotOutput("plot4"),

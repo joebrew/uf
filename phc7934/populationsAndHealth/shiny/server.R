@@ -9,6 +9,8 @@ library(shiny)
 #setwd("C:/Users/BrewJR/Documents/uf/phc7934/populationsAndHealth/shiny")
 source("function.R")
 source("wb.R")
+source("fakeData.R")
+
 
 shinyServer(function(input, output) {
 
@@ -32,6 +34,12 @@ shinyServer(function(input, output) {
   output$plot4 <- renderPlot({
     MortFun(input$country, bar = FALSE, line = FALSE, time = FALSE,
             year = input$year, scatter = TRUE)
+    
+  })
+  
+  output$plot5 <- renderPlot({
+    
+    RoseFun(british = input$british, kenyan = input$kenyan)
     
   })
   
