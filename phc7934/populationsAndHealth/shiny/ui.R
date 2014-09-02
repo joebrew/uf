@@ -15,13 +15,28 @@ shinyUI(fluidPage(
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
+      
+      conditionalPanel(
+        condition = "input.tabs == 'Welcome'",
+        p("joebrew@gmail.com"),
+        tags$div(
+          HTML("<a href='github.com/joebrew/phc7934/'>Code for this site</a>")
+          )),
+      
       conditionalPanel(
         condition = "input.tabs == 'Rose'",
-        textInput("bla", "Bla")),
+        p("joebrew@gmail.com"),
+        tags$div(
+          HTML("<a href='github.com/joebrew/phc7934/'>Code for this site</a>")
+        )
+        ),
       
       conditionalPanel(
         condition = "input.tabs == 'Omran'",
-        textInput("bla2", "Bla2")),
+        p("joebrew@gmail.com"),
+        tags$div(
+          HTML("<a href='github.com/joebrew/phc7934/'>Code for this site</a>")
+        )        ),
       
       conditionalPanel(
         condition = "input.tabs == 'Explore'",
@@ -54,7 +69,11 @@ shinyUI(fluidPage(
         sliderInput("year", "Year", 
                     min=1850, max=2013, value=2000, step=1,
                     animate=animationOptions(interval = 30, loop = FALSE,
-                                             playButton = "Play", pauseButton = "Pause"))
+                                             playButton = "Play", pauseButton = "Pause")),
+        p("joebrew@gmail.com"),
+        tags$div(
+          HTML("<a href='github.com/joebrew/phc7934/'>Code for this site</a>")
+        )
         
         )
           ),
@@ -62,12 +81,28 @@ shinyUI(fluidPage(
     # Show a plot of the generated distribution
     mainPanel(
       tabsetPanel(id="tabs",
+                  tabPanel("Welcome",
+                           tags$div(
+                             HTML('<iframe src="https://docs.google.com/presentation/d/1if_Dug2Q0M2lo7i_vP1C7VezfmxxTR2iiOlVxRr6w14/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="374" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>')
+                           ),
+                      
+                           p("The below is NOT an original chart.  Credit goes to GoogleVis:"),
+                           p("http://www.r-bloggers.com/googlevis-0-5-5-released/"),
+                           htmlOutput("motionchart1") ),
+                  
         tabPanel("Rose",
-                 p("test")),
+                 h4("Reading notes:"),
+                 tags$div(
+                   HTML('<iframe src="https://docs.google.com/document/d/1YoAmjr8zyJ8R-tMcfmjJC_K2Rhs8F5KiC212Kp1OMVw/pub?embedded=true" width="600" height="600" ></iframe>')
+                 )),
         tabPanel("Omran",
-                 htmlOutput("motionchart1") 
+                 h4("Reading notes:"),
+                 tags$div(
+                   HTML('<iframe src="https://docs.google.com/document/d/1_aho8TyRyNXp1bFd3qaZpPAR4zEPkrivfXT26xFhelQ/pub?embedded=true" width="600" height="600"></iframe>')
+                 )
         ),
         tabPanel("Explore",
+                 p("These data come from the Human Mortality Database, but the visualizations are original."),
                  plotOutput("plot3"),
                  plotOutput("plot4"),
                  plotOutput("plot1"),
