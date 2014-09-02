@@ -1,0 +1,16 @@
+{
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nshinyUI(fluidPage(\n\n  # Application title\n  titlePanel(\"Old Faithful Geyser Data\"),\n\n  # Sidebar with a slider input for number of bins\n  sidebarLayout(\n    sidebarPanel(\n      selectInput(\"country\",\n                  \"Country:\",\n                  c(\"AUS\",\n                    \"AUT\",\n                    #\"BEL\",\n                    \"BGR\",\n                    \"BLR\",\n                    \"CAN\",\n                    \"CHE\",\n                    \"CHL\",\n                    \"CZE\",\n                    \"DEUTE\",\n                    \"DEUTNP\",\n                    \"DEUTW\",  \n                    \"DNK\" ,    \"ESP\" ,    \"EST\",    \n                    \"FIN\",     \"FRACNP\" , \"FRATNP\", \n                    'GBR_NIR' ,\"GBR_NP\",  \"GBR_SCO\",\n                    \"GBRCENW\", \"GBRTENW\", \"HUN\" ,   \n                    \"IRL\"  ,   \"ISL\" ,    \"ISR\",    \n                    \"ITA\" ,    \"JPN\" ,    \"LTU\" ,   \n                    \"LUX\" ,    \"LVA\" ,   \"NLD\" ,   \n                    \"NOR\" ,    \"NZL_MA\" , \"NZL_NM\" ,\n                    \"NZL_NP\" , \"POL\" ,    \"PRT\"  ,  \n                    \"RUS\"  ,   \"SVK\" ,    \"SVN\" ,   \n                    \"SWE\" ,    \"TWN\" ,    \"UKR\" ,   \n                    \"USA\" )),\n      sliderInput(\"year\", \"Year\", \n                  min=1850, max=2013, value=2000, step=1,\n                  animate=animationOptions(interval = 30, loop = FALSE,\n                                           playButton = \"Play\", pauseButton = \"Pause\"))    ),\n\n    # Show a plot of the generated distribution\n    mainPanel(\n      plotOutput(\"plot3\"),\n      plotOutput(\"plot4\"),\n      plotOutput(\"plot1\"),\n      plotOutput(\"plot2\"),\n      tags$div(\n        HTML(\"<strong>Raw HTML!</strong>\")\n      )\n    )\n  )\n))\n",
+    "created" : 1409546652986.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2558552238",
+    "id" : "4181854C",
+    "lastKnownWriteTime" : 1409623506,
+    "path" : "~/uf/phc7934/populationsAndHealth/shiny/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

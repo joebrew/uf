@@ -6,8 +6,9 @@
 #
 
 library(shiny)
-setwd("C:/Users/BrewJR/Documents/uf/phc7934/populationsAndHealth/shiny")
+#setwd("C:/Users/BrewJR/Documents/uf/phc7934/populationsAndHealth/shiny")
 source("function.R")
+source("wb.R")
 
 shinyServer(function(input, output) {
 
@@ -31,6 +32,18 @@ shinyServer(function(input, output) {
   output$plot4 <- renderPlot({
     MortFun(input$country, bar = FALSE, line = FALSE, time = FALSE,
             year = input$year, scatter = TRUE)
+    
+  })
+  
+  output$motionchart1 <- renderGvis({
+    
+    gvisMotionChart(WorldBank,
+                    idvar="country", timevar="year",
+                    xvar="life.expectancy", 
+                    yvar="fertility.rate",
+                    colorvar="region", 
+                    sizevar="population",
+                    options=list(width=550, height=500))
     
   })
 

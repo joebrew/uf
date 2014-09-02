@@ -1,12 +1,14 @@
-wd <- "C:/Users/BrewJR/Documents/uf/phc7934/populationsAndHealth/allCountries"
-setwd(wd)
+#setwd("C:/Users/BrewJR/Documents/uf/phc7934/populationsAndHealth/shiny")
+
+#wd <- paste0(getwd(), "/allCountries")
+#setwd(wd)
 
 # GET COUNTRY ABBREVIATIONS
-setwd("./births")
-df <- data.frame(gsub(".Births.txt", "", dir()))
+#setwd("./births")
+df <- data.frame(gsub("births/.Births.txt", "", dir()))
 names(df) <- "ab"
 
-setwd(wd)
+#setwd(wd)
 # GET COUNTRY NAMES
 # df$countries <- c("Australia",
 #                "Austria",
@@ -52,21 +54,21 @@ MortFun <- function(country,
                     time = FALSE,
                     year = 2000,
                     scatter = FALSE){
-  setwd(wd)
+  #setwd(wd)
   
   
-  setwd("./births")
-  b <- read.table(paste0(country, ".Births.txt"),header=TRUE,skip=2)
+  #setwd("./births")
+  b <- read.table(paste0("allCountries/births/", country, ".Births.txt"),header=TRUE,skip=2)
   
-  setwd(wd)
-  setwd("./deaths")
-  d <- read.table(paste0(country, ".Deaths_1x1.txt"),header=TRUE,skip=2)
+  #setwd(wd)
+  #setwd("./deaths")
+  d <- read.table(paste0("allCountries/deaths/", country, ".Deaths_1x1.txt"),header=TRUE,skip=2)
   
-  setwd(wd)
-  setwd("./population")
-  p <- read.table(paste0(country, ".Population.txt"),header=TRUE,skip=2)
+  #setwd(wd)
+  #setwd("./population")
+  p <- read.table(paste0( "allCountries/population/", country, ".Population.txt"),header=TRUE,skip=2)
   
-  setwd(wd)
+  #setwd(wd)
   
   #######
   # SINCE B IS ON A NICE 1 YEAR = 1 ROW SYSTEM, ADD TO IT

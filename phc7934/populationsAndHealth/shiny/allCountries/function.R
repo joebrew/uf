@@ -1,6 +1,4 @@
-setwd("C:/Users/BrewJR/Documents/uf/phc7934/populationsAndHealth/shiny")
-
-wd <- paste0(getwd(), "/allCountries")
+wd <- "C:/Users/BrewJR/Documents/uf/phc7934/populationsAndHealth/allCountries"
 setwd(wd)
 
 # GET COUNTRY ABBREVIATIONS
