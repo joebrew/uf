@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage{hyperref}
+
+
+\begin{document}
+\SweaveOpts{concordance=TRUE, results=hide}
+
+<<echo=FALSE>>=
+####################
+# LOAD PACKAGES FOR MAPPING
+####################
+
+# IF NOT YET INSTALLED ON YOUR SYSTEM, RUN
+# install.packages("packagename") FIRST
+library(maptools)
+library(rgdal)
+
+
+####################
+# SET WD TO THE HW1 FOLDER
+####################
+setwd("C:/Users/BrewJR/Documents/uf/phc6194/hw1")
+
+####################
+# READ IN FLORIDA COUNTIES SHAPEFILE
+####################
+fcty2 <- readOGR("FCTY2", 
+                 layer="FCTY2")
+
+####################
+# READ IN TRAILS SHAPEFILE
+####################
+trails <- readOGR("existing_trails_apr09", 
+                 layer="existing_trails_apr09")
+
+
+############
+# EXAMINE PROJECTIONS
+############
+proj4string(trails)
+proj4string(fcty2)
+
+#############
+# GIVEN THAT THEY'RE ON DIFFERENT PROJECTION SYSTEMS,
+# PUT TRAILS INTO SAME PROJECTION SYSTEM AS fcty2
+# IN OTHER WORDS, MAKE EVERYTHING LAT LONG
+#############
+trails_latlon <- spTransform(trails, CRS("+init=epsg:4326"))
+@
+\begin{center}
+\huge{HW 1: R supplement}\\
+\large{Joe Brew}
+\end{center}
+
+\fbox{
+  \parbox{\textwidth}{
+    \noindent \textbf{Note to professor: } As someone who does most of my work in R, and as an advocate for open-source software, I'll be trying to replicate all assignments and activities from this course in R this semester.  I'm not requesting, nor do I expect, any "credit" for this.  But given that you are also an R user, I'm turning this in (along with the required assignment in ArcGIS) so that you may offer your thoughts or criticism, if you so choose.  }
+}\\
+
+\noindent  \\
+
+\noindent What follows is the output of the homework assignment (the two maps), followed by the code used to generate them.  Full code (including the code for this \LaTeX document) is available \href{https://github.com/joebrew/uf/phc6194/hw1}{HERE}.
+
+\newpage
+\section*{Question 1}
+\begin{center}
+<<eval=TRUE, fig=TRUE, echo=FALSE, height=5>>=
+par(mar = rep(0,4))
+par(oma = rep(0,4))
+
+# PLOT MAP
+plot(fcty2, 
+     border = adjustcolor("black", alpha.f=0.3), 
+     col = adjustcolor("black", alpha.f=0.1))
+
+# ADD LABELS
+text(coordinates(fcty2),
+     labels = as.character(fcty2$NAME),
+     cex = 0.4,
+     col = adjustcolor("black", alpha.f=0.6))
+
+
+@
+\end{center}
+
+\section*{Question 2}
+\begin{center}
+<<eval=TRUE, fig=TRUE, echo=FALSE, height=5>>=
+par(mar = rep(0,4))
+par(oma = rep(0,4))
+plot(fcty2, 
+     border = adjustcolor("black", alpha.f=0.3), 
+     col = adjustcolor("black", alpha.f=0.1))
+plot(trails_latlon, add = TRUE,
+     col = adjustcolor("darkred", alpha.f = 0.6))
+@
+\end{center}
+
+\newpage
+\section*{R Code}
+<<echo=TRUE, eval = FALSE>>=
+####################
+# LOAD PACKAGES FOR MAPPING
+####################
+
+# IF NOT YET INSTALLED ON YOUR SYSTEM, RUN
+# install.packages("packagename") FIRST
+library(maptools)
+library(rgdal)
+
+
+####################
+# SET WD TO THE HW1 FOLDER
+####################
+setwd("C:/Users/BrewJR/Documents/uf/phc6194/hw1")
+
+####################
+# READ IN FLORIDA COUNTIES SHAPEFILE
+####################
+fcty2 <- readOGR("FCTY2", 
+                 layer="FCTY2")
+
+####################
+# READ IN TRAILS SHAPEFILE
+####################
+trails <- readOGR("existing_trails_apr09", 
+                 layer="existing_trails_apr09")
+
+
+############
+# EXAMINE PROJECTIONS
+############
+proj4string(trails)
+proj4string(fcty2)
+
+#############
+# GIVEN THAT THEY'RE ON DIFFERENT PROJECTION SYSTEMS,
+# PUT TRAILS INTO SAME PROJECTION SYSTEM AS fcty2
+# IN OTHER WORDS, MAKE EVERYTHING LAT LONG
+#############
+trails_latlon <- spTransform(trails, CRS("+init=epsg:4326"))
+
+############
+# QUESTION 1 MAP
+############
+par(mar = rep(0,4))
+par(oma = rep(0,4))
+
+# PLOT MAP
+plot(fcty2, 
+     border = adjustcolor("black", alpha.f=0.3), 
+     col = adjustcolor("black", alpha.f=0.1))
+
+# ADD LABELS
+text(coordinates(fcty2),
+     labels = as.character(fcty2$NAME),
+     cex = 0.4,
+     col = adjustcolor("black", alpha.f=0.6))
+
+
+############
+# QUESTION 2 MAP
+############
+par(mar = rep(0,4))
+par(oma = rep(0,4))
+
+# PLOT MAP
+plot(fcty2, 
+     border = adjustcolor("black", alpha.f=0.3), 
+     col = adjustcolor("black", alpha.f=0.1))
+
+# ADD LABELS
+text(coordinates(fcty2),
+     labels = as.character(fcty2$NAME),
+     cex = 0.4,
+     col = adjustcolor("black", alpha.f=0.6))
+
+
+
+@
+
+\end{document}
