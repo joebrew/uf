@@ -1,0 +1,977 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0067)http://www.colorado.edu/geography/gcraft/notes/datacon/datacon.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  
+  <meta name="GENERATOR" content="Mozilla/4.72 [en] (Windows NT 5.0; U) [Netscape]">
+  <title>Database Concepts</title>
+</head>
+<body bgcolor="#ffffcc" link="#0000ff" text="#663300" vlink="#ff0000">
+<center><img src="title.gif"></center>
+<p><i>These materials were developed by Kenneth E. Foote and Donald J.
+Huebner, Department of Geography, University of Texas at Austin,
+1996.&nbsp;
+These materials may be used for study, research, and education in
+not-for-profit
+applications.&nbsp; If you link to or cite these materials, please
+credit
+the authors, Kenneth E. Foote and Donald J. Huebner, The Geographer's
+Craft
+Project, Department of Geography, The University of Colorado at
+Boulder.&nbsp;
+These materials may not be copied to or issued from another Web server
+without the authors' express permission.&nbsp; Copyright © 2000
+All
+commercial rights are reserved.&nbsp; If you have comments or
+suggestions,
+please contact the author or Kenneth E. Foote at <a href="mailto:%20k.foote@colorado.edu">k.foote@colorado.edu</a>.</i>
+</p>
+<p>This page is also available in a <a href="Database Concepts.htm" target="_top">framed
+version</a>.&nbsp; For convenience, a <a href="http://www.colorado.edu/geography/gcraft/notes/datacon/datacon_ftoc.html">Full
+Table of Contents</a> is provided.
+</p>
+<p></p>
+<hr>
+<h3>&nbsp;1.<a name="GIS"></a> GIS as Representations of Reality</h3>
+Perhaps we should use the acronym g<span style="font-weight: bold;">I</span>s,
+rather than GIS for geographic information
+systems. These are really geographic INFORMATION systems. It is the
+information
+they contain that makes them so valuable.
+<p>The database is also important because its creation will often
+account
+for up to three-quarters of the time and effort involved in developing
+a geographic information system. Once an organization compiles this
+information,
+the database may be maintained for ten to fifty years. For this reason,
+shortcuts are not recommended.
+</p>
+<p>&nbsp;It is important, however, to view these GIS databases as more
+than simple stores of information. The database is used to abstract
+very
+specific sorts of information about reality and organize it in a way
+that
+will prove useful. The database should be viewed as a representation or
+model of the world developed for a very specific application.
+</p>
+<p>&nbsp;One of the reasons that there are so many software and
+hardware
+systems employed for GIS is because each system allows users to
+represent
+and model certain types of phenomena.
+</p>
+<p></p>
+<hr>
+<h3>&nbsp;2.<a name="Basic"></a> Basic Types of Representation: Raster
+and
+Vector Reality</h3>
+One of the sharpest distinctions among GIS is the way that location is
+represented in a database, as either a raster or vector position.
+&nbsp;&nbsp;
+<br>
+<h4><span style="font-weight: bold;">2.1.</span><a style="font-weight: bold;" name="Raster"></a><span style="font-weight: bold;"> The Raster View of the World
+</span></h4>
+A raster based system displays, locates, and stores graphical data by
+using
+a matrix or grid of cells. A unique reference coordinate represents
+each
+pixel either at a corner or the centroid. In turn each cell or pixel
+has
+discrete attribute data assigned to it. Raster data resolution is
+dependent
+on the pixel or grid size and may vary from sub-meter to many
+kilometers.
+Because these data are two-dimensional, GISs store various information
+such as forest cover, soil type, land use, wetland habitat, or other
+data
+in different layers. Layers are functionally related map features.
+Generally,
+raster data requires less processing than vector data, but it consumes
+more computer storage space. Scanning remote sensors on satellites
+store
+data in raster format. Digital terrain models (DTM) and digital
+elevation
+models (DEM) are examples of raster data (Koeln <i>et al</i> 1994 and
+Huxhold
+1991).
+<br>
+<br>
+<center>
+<p><img src="raster.gif"></p>
+</center>
+<h4>
+2.2.<a name="Vector"></a> The Vector View of the World</h4>
+A vector based system displays graphical data as points, lines or
+curves,
+or areas with attributes. Cartesian coordinates (i.e.,<i> x</i> and <i>y</i>)
+and computational algorithms of the coordinates define points in a
+vector
+system. Lines or arcs are a series of ordered points. Areas or polygons
+are also stored as ordered lists of points, but by making the beginning
+and end points the same node the shape is closed and defined.
+Topological
+models define the connectivity of vector based systems. Vector systems
+are capable of very high resolution (less than or equal to .001 inch)
+and
+graphical output is similar to hand-drawn maps. This system works well
+with azimuths, distances, and points, but it requires complex data
+structures
+and is less compatible with remote sensing data. Vector data requires
+less
+computer storage space and maintaining topological relationships is
+easier
+in this system. Digital line graphs (DLG) and TIGER files are examples
+or vector data (Koeln et al 1994; and Huxhold 1991). <br>
+<center>
+<p><img src="vector.gif"></p>
+</center>
+<h4>
+2.3<a name="Graphical"></a> Graphical Comparison of Raster and Vector
+Systems</h4>
+It is important to stress that any given real world situation can be
+represented
+in <b><a href="http://www.colorado.edu/geography/gcraft/notes/datacon/gif/ras_vec.gif">both raster and vector modes</a></b>,
+the
+choice is up to the user.
+<p>Each of these systems of representation has its advantages and
+disadvantages:&nbsp;
+<br>
+&nbsp;
+<table border="6" width="100%">
+  <tbody>
+    <tr>
+      <th>Method</th>
+      <th>Advantages</th>
+      <th>Disadvantages&nbsp;</th>
+    </tr>
+    <tr>
+      <th>Raster</th>
+      <td>
+      <ul>
+        <li>
+Simple data structure</li>
+        <li>
+Compatible with remotely sensed or scanned data</li>
+        <li>
+Simple spatial analysis procedures</li>
+      </ul>
+      </td>
+      <td>
+      <li>Requires greater storage space on computer</li>
+      <li>
+Depending on pixel size, graphical output may be less pleasing</li>
+      <li>
+Projection transformations are more difficult</li>
+      <li>
+More difficult to represent topological relationships&nbsp;</li>
+      </td>
+    </tr>
+    <tr>
+      <th>Vector</th>
+      <td>
+      <li>Requires less disk storage space</li>
+      <li>
+Topological relationships are readily maintained</li>
+      <li>
+Graphical output more closely resembles hand-drawn maps</li>
+      </td>
+      <td>
+      <li>More complex data structure</li>
+      <li>
+Not as compatible with remotely sensed data</li>
+      <li>
+Software and hardware are often more expensive</li>
+      <li>
+Some spatial analysis procedures may be more difficult</li>
+      <li>
+Overlaying multiple vector maps is often time consuming&nbsp;</li>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+It should also be stressed that data modeled in one system can be
+converted
+into the other. That is, raster data can be vectorized and vice versa.
+Many systems even allow data modeled in raster form to be overlaid on
+vector
+data and vice versa. In this <b><a href="http://www.colorado.edu/geography/gcraft/notes/datacon/gif/brnsvill.gif">graphical
+example</a></b>,
+an aerial photo (raster) is overlaid with with supplemental vector
+information.
+</p>
+<p></p>
+<hr>
+<h3>&nbsp;3.<a name="Attribute"></a> Organizing Attribute Data</h3>
+GIS use raster and vector representations to model location, but how
+they
+must also record information about the real-world phenomena positioned
+at each location and the attributes of these phenomena. That is, the
+GIS
+must provide a linkage between spatial and non-spatial data. These
+linkages
+make the GIS "intelligent" insofar as the user can store and examine
+information
+about <b>where</b> things are and <b>what</b> they are like.<br>
+<br>
+The relationship can be diagrammed as a linkage between:
+<br>
+<ul>
+  <li>
+Location <font size="+1">&lt;&lt;&lt; &gt;&gt;&gt;</font> What Is There</li>
+  <li>
+Spatial Data <font size="+1">&lt;&lt;&lt; &gt;&gt;&gt;</font>
+Non-Spatial Data</li>
+  <li>
+Geographic Features <font size="+1">&lt;&lt;&lt; &gt;&gt;&gt;</font>
+Attributes</li>
+</ul>
+At the most abstract level, this is a relationship between:&nbsp;<br>
+<ul>
+  <li>A Locational Symbol <font size="+1">&lt;&lt;&lt; &gt;&gt;&gt;</font>
+Its Meaning</li>
+</ul>
+In a raster system, this symbol is a grid cell location in a matrix. In
+a vector system, the locational symbol may be a one-dimensional point;
+a two-dimensional line, curve, boundary, or vector; or a three-
+dimensional
+area, region, or polygon.
+<p>&nbsp;The linkage between symbol and meaning is established by
+giving
+every geographic feature at least one unique means of identification, a
+name or number usually just called its ID. Non-spatial attributes of
+the
+feature are then stored, usually in one or more separate files, under
+this
+ID number. In other words, <b><a href="http://www.colorado.edu/geography/gcraft/notes/datacon/gif/locinfo.gif">locational
+information
+is linked</a></b> to specific information in a database
+</p>
+<p>&nbsp;It is important to realize that this non-spatial data can be
+filed
+away in several different forms depending on how it needs to be used
+and
+accessed. Perhaps the simplist method is the flat file or spreadsheet,
+where each geographic feature is matched to one row of data.&nbsp;
+&nbsp;
+</p>
+<h4>3.1<a name="Flat"></a> Flat Files and Spreadsheets</h4>
+A <b><a href="http://www.colorado.edu/geography/gcraft/notes/datacon/gif/flatfile.gif">flat file or spreadsheet</a></b> is a
+simple
+method for storing data. All records in this data base have the same
+number
+of "fields". Individual records have different data in each field with
+one field serving as a key to locate a particular record. For example,
+your social security number may be the key field in a record of your
+name,
+address, phone number, sex, ethnicity, place of birth, date of birth,
+and
+so on. For an person, or a tract of land there could be hundreds of
+fields
+associated with the record. When the number of fields becomes lengthy a
+flat file is cumbersome to search. Also the key field is usually
+determined
+by the programmer and searching by other determinants may be difficult
+for the user. Although this type of database is simple in its
+structure,
+expanding the number of fields usually entails reprogramming.
+Additionally,
+adding new records is time consuming, particularly when there are
+numerous
+fields. Other methods offer more flexibility and responsiveness in GIS.
+<h4>3.2<a name="Hierarch"></a> Hierarchical Files</h4>
+<b><a href="http://www.colorado.edu/geography/gcraft/notes/datacon/gif/hierarch.gif">Hierarchical files</a></b> store data in
+more than one type of record. This method is usually described as a
+"parent-child,
+one-to-many" relationship. One field is key to all records, but data in
+one record does not have to be repeated in another. This system allows
+records with similar attributes to be associated together. The records
+are linked to each other by a key field in a hierarchy of files. Each
+record,
+except for the master record, has a higher level record file linked by
+a key field "pointer". In other words, one record may lead to another
+and
+so on in a relatively descending pattern. An advantage is that when the
+relationship is clearly defined, and queries follow a standard routine,
+a very efficient data structure results. The database is arranged
+according
+to its use and needs. Access to different records is readily available,
+or easy to deny to a user by not furnishing that particular file of the
+database. One of the disadvantages is one must access the master
+record,
+with the key field determinant, in order to link "downward" to other
+records.&nbsp;
+&nbsp;<br>
+<h4>
+3.3<a name="Relation"></a> Relational Files</h4>
+<b><a href="http://www.colorado.edu/geography/gcraft/notes/datacon/gif/relafile.gif">Relational files</a></b> connect
+different
+files or tables (relations) without using internal pointers or keys.
+Instead
+a common link of data is used to join or associate records. The link is
+not hierchical. A "matrices of tables" is used to store the
+information.
+As long as the tables have a common link they may be combined by the
+user
+to form new inquires and data output. This is the most flexible system
+and is particularly suited to SQL (structured query language). Queries
+are not limited by a hierarchy of files, but instead are based on
+relationships
+from one type of record to another that the user establishes. Because
+of
+its flexibility this system is the most popular database model for
+GIS.&nbsp;
+&nbsp;<br>
+<h4>
+3.4<a name="Compared"></a> Flat, Hierarchical, and Relational Files
+Compared</h4>
+<table border="6">
+  <tbody>
+    <tr>
+      <th>Structure</th>
+      <th>Advantages</th>
+      <th>Disadvantages&nbsp;</th>
+    </tr>
+    <tr>
+      <th><a href="http://www.colorado.edu/geography/gcraft/notes/datacon/gif/flatfile.gif">Flat Files</a></th>
+      <td>
+      <ul>
+        <li>
+Fast data retrieval</li>
+        <li>
+Simple structure and easy to program</li>
+      </ul>
+      </td>
+      <td>
+      <ul>
+        <li>
+Difficult to process multiple values of a data item</li>
+        <li>
+Adding new data categories requires reprogramming</li>
+        <li>
+Slow data retrieval without the key</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <th><a href="http://www.colorado.edu/geography/gcraft/notes/datacon/gif/hierarch.gif">Hierarchical Files</a></th>
+      <td>
+      <ul>
+        <li>
+Adding and deleting records is easy</li>
+        <li>
+Fast data retrieval through higher level records</li>
+        <li>
+Multiple associations with like records in different files</li>
+      </ul>
+      </td>
+      <td>
+      <ul>
+        <li>
+Pointer path restricts access</li>
+        <li>
+Each association requires repetitive data in other records</li>
+        <li>
+Pointers require large amount of computer storage</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <th><a href="http://www.colorado.edu/geography/gcraft/notes/datacon/gif/relafile.gif">Relational Files</a></th>
+      <td>
+      <ul>
+        <li>
+Easy access and minimal technical training for users</li>
+        <li>
+Flexibility for unforeseen inquiries</li>
+        <li>
+Easy modification and addition of new relationships, data, and records</li>
+        <li>
+Physical storage of data can change without affecting relationships
+between
+records</li>
+      </ul>
+      </td>
+      <td>
+      <ul>
+        <li>
+New relations can require considerable processing</li>
+        <li>
+Sequential access is slow</li>
+        <li>
+Method of storage an disks impacts processing time</li>
+        <li>
+Easy to make logical mistakes due to flexibility of relationships
+between
+records</li>
+      </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+Now, let us consider a couple of examples of matching applications to
+database
+structures.
+<ul>
+  <li>Exploratory research--flat files are easy to organize, space is
+not particular problem
+  </li>
+  <li>Government agencies--hierarchical systems are particularly
+attractive
+  </li>
+  <li>Planning and development--relational might be justified for
+flexibility
+  </li>
+</ul>
+<p></p>
+<hr>
+<h3>&nbsp;4.<a name="Represent"></a> Representing Relationships</h3>
+GIS have the power to record more than location and simple attribute
+information.
+In some situations, we will want to examine spatial relationships based
+upon location, as well as functional and logical relationships among
+geographic
+features.
+<p><b>Spatial Relationships</b>&nbsp;
+&nbsp;
+</p>
+<ul>
+  <li>
+Absolute and relative location</li>
+  <li>
+Distance between features</li>
+  <li>
+Proximity of features</li>
+  <li>
+Features in the "neigborhood" of other features</li>
+  <li>
+Direction and movement from place to place</li>
+  <li>
+Boolean relationships of "and," "or," "inside," "outside,"
+"intersecting,"
+"non-intersecting," etc.</li>
+</ul>
+<b>Functional Relationships among Geographic Features and Their
+Attributes</b>.
+This includes information about how features are connected and interact
+in real-life terms. A road network might be classified functionally
+from
+the largest superhighway down to the most isolated rural road or
+suburban
+cul-de-sac based upon their role in the overall transportation system.
+Minor roads and suburban streets "feed" major highways, but are not
+directly
+connected to them. As another example in assessing wildlife habitats,
+various
+environmental conditions function together to define the optimal living
+environments for certain species. Within cities, ownership is a
+functional
+classification of great importance as is landuse and zoning
+classification.
+<p><b>Logical Relationships among Geographic Features and Their
+Attributes</b>.
+Logical relationships involve "if-then" and "and-or" conditions that
+must
+exist among features stored in the dataset. For example, no land may be
+permitted to be zoned for residential use if it lies within a rivers
+five-year
+flood plain. Development may disallowed in the habitat of some
+endangered
+species.
+</p>
+<p>&nbsp;Databases can be designed to represent, model, and store
+information
+about these relationships as needed for particular applications.
+</p>
+<p></p>
+<hr>
+<h3>5.<a name="Topological"></a> The Example of Topological
+Relationships</h3>
+Topology is one of the most useful relationships maintained in many
+spatial
+databases. It is defined as the mathematics of connectivity or
+adjacency
+of points or lines that determines spatial relationships in a GIS. The
+topological data structure logically determines exactly how and where
+points
+and lines connect on a map by means of nodes (topological junctions).
+The
+order of connectivity defines the shape of an arc or polygon. The
+computer
+stores this information in various tables of the database structure. By
+storing information in a logical and ordered relationship missing
+information,
+e.g., a line segment of a polygon, is readily apparent. A GIS
+manipulates,
+analyzes, and uses topological data in determining data relationships.
+<p>&nbsp;Network analysis uses topological modeling for determining
+shortest
+paths and alternate routes. For example, a GIS for emergency service
+dispatch
+may use topological models to quickly ascertain optional routes for
+emergency
+vehicles. Automobile commuters perform a similar mental task by
+altering
+their route to avoid accidents and traffic congestion. Likewise an
+electrical
+utility GIS could rapidly determine different circuit paths to route
+electricity
+when service is interrupted by equipment damage. Similarly, political
+redistricting
+planners could use certain algorithms to determine logical
+relationships
+between population groups and areas for district boundaries.
+</p>
+<p><b><i>&nbsp;</i></b>To see how topology is represented or modeled,
+it
+is useful to consider an example to see how connections are coded into
+a database. This involves recording more than use the absolute location
+of points, lines, and regions.
+</p>
+<p>&nbsp;The first step is to record the location of all "<b>nodes</b>,"
+that is endpoints and intersections of lines and boundaries. <br>
+<br>
+</p>
+<center>
+<p><img src="nodes.gif"></p>
+</center>
+<p>Based upon these nodes, "<b>arcs</b>" are defined. These arcs have
+endpoints,
+but they are also assigned a direction indicated by the arrowheads. The
+starting point of the vector is referred to as the "from node" and the
+destination the "to node." The orientation of a given vector can be
+assigned
+in either direction, as long as this direction is recorded and stored
+in
+the database. <br>
+</p>
+<center>
+<p><img src="arc.gif"></p>
+</center>
+<p>By keeping track of the orientation of arcs, it is possible to use
+this
+information to establish routes from node to node or place to place.
+Thus,
+if one wants to move from node 3 to node 1, we can locate the necessary
+connections in the database.
+</p>
+<p>&nbsp;Now, "<b>polygons</b>" are defined by arcs. To define a given
+polygon, trace around its area in a clockwise direction recording the
+component
+arcs and their orientations. If an arc has to be followed in its
+reverse
+orientation to make the tracing, it is assigned a negative sign in the
+database.
+<br>
+&nbsp;
+<br>
+&nbsp;
+<br>
+<br>
+</p>
+<center>
+<p><img src="polygon.gif"></p>
+</center>
+<p>Finally, for each arc, one records which polygon lies to the left
+and
+right side of its direction of orientation. If an arc is on the edge of
+the study area, it is bounded by the "<b>universe</b>."&nbsp;&nbsp;
+<br>
+<br>
+</p>
+<center>
+<p><img src="contigui.gif"></p>
+</center>
+<p>Now that this information has been recorded in the database, it is
+possible
+to pose questions about connectivity and location. For example:&nbsp;
+&nbsp;
+</p>
+<ul>
+  <ul>
+    <li>
+What polygons adjoin polygon A? To find the solution, we first look to
+see what arcs define polygon A, then we check to see what other
+polygons
+are defined by these arcs in their negative orientation.</li>
+    <li>
+What is the shortest route from node 3 to node 2? Trace all arc paths
+that
+lead from node 3 to node 2, sum their lengths by calculating distances
+from node list. Choose path with shortest total length.</li>
+    <li>
+What polygon is directly across from polygon B along arc D? Search for
+the polygon that is defined by the inverse (negative) of arc D.</li>
+  </ul>
+</ul>
+Arc-node topology, as this is called, was developed several decades ago
+as a convenient way of store information of this sort. It is used to
+encode
+information used in the US Bureau of Census TIGER boundary files and is
+the basis of the spatial modeling system used by the Arc/Info software
+system.
+<p></p>
+<hr>
+<h3>&nbsp;6.<a name="Object"></a> Object-oriented Databases</h3>
+The methods of file organization discussed above depend upon the
+careful
+description of real-world phenomena in terms of their attributes, such
+as height, weight, or age. It is these attributes that are stored in
+the
+database and together they provide a sort of abstracted depiction of
+the
+real-world feature. Much recent attention has focused on how to
+organize
+this information in ways that more readily represent the way users
+gather
+and use information about the world around them. That is, humans
+recognize
+"objects" immediately in terms of their totality or "wholeness." Houses
+and skyscrapers are recognized immediately by form and function. The
+differences
+can be described in terms of the underlying attributes, but people
+recognize
+these from experience.
+<p>&nbsp;The idea of "object-oriented" database is to organize
+information
+(that is group attributes) into the sorts of "wholes" that people
+recognize.
+Instead of "decomposing" each feature a distinctive list of attributes,
+emphasis is placed on "grouping" the attributes of a given object into
+a unit or template that can be stored or retrieved by its natural name.
+</p>
+<p>&nbsp;Consider the following situation involving two ways of
+organizing
+information about buildings zoned for different uses.
+</p>
+<p>&nbsp;This information can be broken down into attributes, as
+follows:&nbsp;&nbsp;
+<br>
+<br>
+<table border="6" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><b>Parcel</b></td>
+      <td align="center"><b>Use</b></td>
+      <td align="center"><b>Height</b></td>
+      <td align="center"><b>Minimum Lot Size</b></td>
+      <td align="center"><b>Maximum Number of Dwelling Units</b></td>
+    </tr>
+    <tr>
+      <td align="center">01-4567</td>
+      <td align="center">Residential</td>
+      <td align="center">35 ft</td>
+      <td align="center">10,000 SF</td>
+      <td align="center">1</td>
+    </tr>
+    <tr>
+      <td align="center">01-5632</td>
+      <td align="center">Residential</td>
+      <td align="center">35 ft</td>
+      <td align="center">7,000 SF</td>
+      <td align="center">2</td>
+    </tr>
+    <tr>
+      <td align="center">04-6781</td>
+      <td align="center">Residential</td>
+      <td align="center">40 ft</td>
+      <td align="center">43,560 SF</td>
+      <td align="center">23</td>
+    </tr>
+    <tr>
+      <td align="center">05-3759</td>
+      <td align="center">Residential</td>
+      <td align="center">60 ft</td>
+      <td align="center">43,560 SF</td>
+      <td align="center">54</td>
+    </tr>
+    <tr>
+      <td align="center">06-3962</td>
+      <td align="center">Office</td>
+      <td align="center">40 ft</td>
+      <td align="center">5,750 SF</td>
+      <td align="center">0</td>
+    </tr>
+    <tr>
+      <td align="center">06-9977</td>
+      <td align="center">Office</td>
+      <td align="center">60 ft</td>
+      <td align="center">5,750 SF</td>
+      <td align="center">0</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+To organize this information differently, let us first define some
+"templates"
+that reflect the different "objects" we wish to include in the
+database.
+<br>
+&nbsp;
+<table border="6">
+  <tbody>
+    <tr>
+      <td align="center">SF Single Family&nbsp;</td>
+      <td align="center">Token 1=Large Lot&nbsp;</td>
+      <td align="center">Token 3=Duplex&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center">MF Multi-family&nbsp;</td>
+      <td align="center">Token 1=Low Density&nbsp;</td>
+      <td align="center">Token 5=High Density</td>
+    </tr>
+    <tr>
+      <td align="center">LO Limited Office&nbsp;</td>
+      <td align="center">Must Specify Predominate Use&nbsp;</td>
+      <td align="center">Maximum Height=40 ft Minimum Lot Size=5,750 SF</td>
+    </tr>
+    <tr>
+      <td align="center">GO General Office&nbsp;</td>
+      <td align="center">Must Specify Predominate Use&nbsp;</td>
+      <td align="center">Maximum Height=60 feet Minimum Lot Size=5,750
+SF&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+Once these are created, information can be added to our database by
+referring
+to the template. The template maintains in one place all attributes
+held
+in common by a certain class of object. It may be the case that slight
+differences exist between objects of a given category. These
+differences
+can be stored as "tokens" or additional attributes.&nbsp;
+<br>
+&nbsp;
+<table border="6" width="100%">
+  <tbody>
+    <tr>
+      <td align="center"><b>Feature Number</b></td>
+      <td align="center"><b>Token</b></td>
+      <td align="center"><b>Description</b></td>
+    </tr>
+    <tr>
+      <td align="center">SF-1</td>
+      <td align="center">1</td>
+      <td align="left">
+      <ul>
+        <li>
+Single Family</li>
+        <li>Height=35 ft</li>
+        <li>
+Large Lot</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">SF-1</td>
+      <td align="center">3</td>
+      <td align="left">
+      <ul>
+        <li>
+Family Residence</li>
+        <li>
+Height=35 ft</li>
+        <li>
+Duplex</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">MF-2</td>
+      <td align="center">2</td>
+      <td align="left">
+      <ul>
+        <li>
+Multi-family</li>
+        <li>
+&nbsp;Height=40ft</li>
+        <li>
+Low Density</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">MF-5</td>
+      <td align="center">5</td>
+      <td align="left">
+      <ul>
+        <li>
+Multi-family</li>
+        <li>
+Height=60 ft</li>
+        <li>
+High Density</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">LO</td>
+      <td align="center">40</td>
+      <td align="left">
+      <ul>
+        <li>
+Limited Office</li>
+        <li>
+Neighborhood Needs</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">GO</td>
+      <td align="center">50</td>
+      <td align="left">
+      <ul>
+        <li>
+Offices</li>
+        <li>
+City-wide Needs</li>
+      </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+Although templates and tokens may be stored in two different files, it
+is easy to see how this method of organization changes the database. It
+is not merely a process of simplication. By using templates, users can
+enter and retrieve data in terms of "real" items. A query might ask for
+all "Single Family Houses."
+</p>
+<p>Object-oriented databases thus have the advantage of organizing
+information in ways that users often find easier to use. The database
+has
+as an intuitive feel because it employs that categories that users
+employ
+naturally in day-to-day life. For this reason, object-oriented
+databases
+are gaining increased attention in GIS.
+</p>
+<p></p>
+<hr>
+<h3>&nbsp;7.<a name="Expert"></a> The Idea of the Expert Systems</h3>
+If a database has been designed to store information about spatial,
+functional,
+and logical relationships, the user can pose more complex questions of
+the data. That is, the user can program the system to consider a
+variety
+of spatial, functional, and logical conditions during query or
+analysis.
+Such efforts result in what are termed <b><i>expert systems</i></b>
+or,
+if carried further, <b><i>artificially intelligent systems</i></b>. At
+there simplest, expert systems allow the user to set "rules" that must
+be followed as data is analyzed. These rules are written to mirror the
+way an experienced user would compare or judge data. As more and more
+rules
+are written, the system becomes more adept or "expert" at finding
+solutions
+with less directed guidance by users.
+<p>&nbsp;The point of expert systems is to build sets of rules that
+reflect
+the sorts of comparisons and judgments that experienced users would
+make.
+By programming these rules into the system, more and more of the work
+of
+decision making can be passed on to the computer system--including
+complex
+comparisons that may be difficult or time consuming for even
+experienced
+users to undertake.
+</p>
+<p>Such systems are of interest to GIS practioners in many fields
+including
+urban planning and resource analysis. Complex issues involving zoning
+and
+land use can often be written in terms of rules that need to be
+followed.
+</p>
+<p>At the same time, following rules in only a step toward
+"intelligence."
+The difference between expert systems and artificial intelligence is
+much
+in debate. But to be truly "intelligent" a system must be able to
+"learn,"
+"think," or "reason," perhaps really to write its own rules from
+experience.
+The definition of artificial intelligence is, in fact, still a
+contentious
+issue. So far, it has been very difficult to program computer systems
+to
+provide a semblance of human thought processes. Yet, the potential of
+such
+systems makes the effort irresistible. The idea that computer systems
+might
+one day be able to reason about real- world environmental and
+geographical
+problems and issues is a reason why GIS theorists maintain an interest
+in developments in the area of artificial intelligence.
+</p>
+<p></p>
+<hr>
+<h3>8.<a name="References"></a> References and Supplemental Reading</h3>
+Chapter 2 in Bolstad, Paul.&nbsp; 2005.&nbsp; <span style="font-style: italic;">GIS Fundamentals: A First Text on
+Geographic Information Systems</span>, 2nd. ed.&nbsp; White Bear Lake,
+MN: Eider Press.<br>
+<br>
+Burrough, P.A. 1986. <i>Principles of Geographical Information
+Systems for Land Resource Assessment</i>. New York: Oxford University
+Press.<br>
+<br>
+Chapters 3-5 in Chang, Kang-tsung.&nbsp; 2006.&nbsp; <span style="font-style: italic;">Introduction to Geographic Information
+Systems</span>, 3rd. ed.&nbsp; Boston: McGraw Hill.<br>
+<br>
+Chapter 3 in Clarke, Keith C. 2003.&nbsp; <span style="font-style: italic;">Getting Started with Geographic
+Information Systems,</span> 4th ed.&nbsp; Upper Saddle River, NJ:
+Prentice Hall.<br>
+<br>
+DeMers, Michael N.&nbsp; 2005.&nbsp; <span style="font-style: italic;">Fundamentals
+of Geographic Information Systems</span>, 3rd ed.&nbsp; Wiley.<br>
+<br>
+Huxhold, W.E. 1991. <i>An Introduction of Urban Geographic Information
+Systems</i>. New York and Oxford: Oxford University Press.<br>
+<br>
+Koeln, G.T., Cowardin, L.M., Strong, L.L. 1994. Geographic information
+systems. <i>in</i> T.A. Bookhout, ed. <i>Research and Management
+Techniques
+for Wildlife and Habitats</i>. Fifth Edition. Bethesda: The Wildlife
+Society
+Pages. pp. 540-566.<br>
+<br>
+Chapters 3, 5 and 6 in Lo, C.P. and Albert K.W. Yeung.&nbsp;
+2002.&nbsp; <span style="font-style: italic;">Concepts and Techniques
+of Geographic
+Information Systems</span>.&nbsp; Upper Saddle River, NJ: Prentice Hall.<br>
+<br>
+Chapter 8 in Longley, Paul A., Michael F. Goodchild, David J. Maguire,
+and David W. Rhind.&nbsp; 2005.&nbsp; <span style="font-style: italic;">Geographic
+Informaiton Systems and Science</span>, 2nd ed.&nbsp; Hoboken, NJ:
+Wiley.Antennucci, J.C., Brown, K., Croswell, P.L., Kevany, M.J. 1991.
+<i>Geographic
+Information Systems</i>. New York and London: Chapman &amp; Hall.
+<p>Walker, J.D., Black, R.A., Linn, J.K., Thomas, A.J., Wiseman,
+R., and D'Attilio, M.G. 1996. Development of Geographic Information
+Systems-Oriented
+Database for Integrated Geological and Geophysical Applications. <i>GSA
+Today: A Publication of the Geological Society of America</i> 6(3):2-7.
+</p>
+<p></p>
+<hr>
+<h3>9. <a href="http://www.colorado.edu/geography/gcraft/exam/database/database.html">Sample Examination
+and Study Questions</a></h3>
+<hr>
+<p>Last revised on 2006.1.18. LNC
+<br>
+&nbsp;
+<br>
+&nbsp;
+<br>
+<br>
+</p>
+<center>
+<p><img src="cactus.gif"></p>
+</center>
+
+
+</body></html>
