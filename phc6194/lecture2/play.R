@@ -1,6 +1,34 @@
 par(mar=c(0,0,0,0))
 par(oma=c(0,0,0,0))
 
+library(RColorBrewer)
+mycols <- colorRampPalette(brewer.pal(9, "Spectral"))(3784)
+
+
+library(rgdal)
+setwd("C:/Users/BrewJR/Desktop/")
+world <- readOGR("world_borders",layer = "world_borders")
+
+x <- runif(1000000, min=-180, max=190)
+y <- runif(1000000, min = -86, max=84)
+
+myPoints <- data.frame(cbind(x,y))
+coordinates(myPoints) <- ~x+y
+proj4string(myPoints) <- proj4string(world)
+
+a <- over(myPoints, polygons(world))
+
+mycols2 <- mycols[a]
+
+plot(1,1, pch=16, cex=10000000, xlim=c(-180,190), ylim=c(-86,84))
+plot(myPoints,
+     pch = 1:20,
+     col = adjustcolor(mycols2, alpha.f = 0.2),
+     cex = 0.01,
+     add = TRUE)
+
+b <- ptransform(myPoints, src.proj = , dst.proj, silent=TRUE)
+
 library(rgl)
 spheres3d(x = 1, y = 1, z = 1, radius = 1, col = "green")
 
@@ -90,6 +118,15 @@ for (i in projlist){
 ########################################
 
 myMap <- map("world")
+
+range(myMap$y, na.rm=T)
+
+#### OVER
+library(rgdal)
+a <- over(myPoints, polygons(myMap))
+
+setwd("C:/Users/BrewJR/Documents/uf/phc6194/lecture2")
+World30 <- readOGR("MapProjection.mdb",layer = "World30_Shape_Index")
 
 myMap$country <- sub(":.*", "", myMap$names)
 
