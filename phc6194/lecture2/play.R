@@ -10,12 +10,20 @@ axes3d()
 
 library(RColorBrewer)
 mycols <- colorRampPalette(c("brown", "grey", "beige", "darkgrey"))(20)
+mycols <- colorRampPalette(c("brown", 
+                             "grey", 
+                             "beige", 
+                             "darkgrey", 
+                             "darkred",
+                             "darkorange",
+                             "yellow"))(20)
 
 library(maps)
 map("world",
     fill = TRUE,
     col = adjustcolor(mycols, alpha.f = 0.4),
-    border = adjustcolor("black", alpha.f = 0.6))
+    border = adjustcolor("black", alpha.f = 0.6),
+    bg = "grey")
 
 
 
