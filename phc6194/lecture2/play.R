@@ -27,7 +27,16 @@ plot(myPoints,
      cex = 0.01,
      add = TRUE)
 
-b <- ptransform(myPoints, src.proj = , dst.proj, silent=TRUE)
+library(mapproj)
+b <- mapproject(myPoints$x, myPoints$y, projection="fisheye", parameters=1, orientation=NULL)
+
+plot(b, 
+     cex=10000,
+     col="black")
+points(b,
+     pch = 1:20,
+     col = adjustcolor(mycols2, alpha.f = 0.2),
+     cex = 0.01)
 
 library(rgl)
 spheres3d(x = 1, y = 1, z = 1, radius = 1, col = "green")
