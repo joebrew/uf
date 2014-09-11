@@ -98,3 +98,67 @@ for (i in 30:11){
   dev.off()  
 }
 
+getwd()
+setwd("C:/Users/BrewJR/Documents/uf/phc6016/")
+
+cdc <- read.csv("pres1vaccinedata.csv")
+cdc$kp <- cdc$kp * -1
+
+FixFun <- function(x){ as.numeric(as.character(x))*-1}
+cdc$mmr <- FixFun(cdc$mmr)
+cdc$dtap <- FixFun(cdc$dtap)
+cdc$varicella <- FixFun(cdc$varicella)
+
+cdc$state <- gsub("[**]", "",cdc$state)
+cdc$state <- tolower(cdc$state)
+
+library(maps)
+library(RColorBrewer)
+library(classInt)
+mymap <- map("state")
+mymap$names <- sub("(.*?):.*", "\\1", mymap$names)
+
+mymapdf <- data.frame(mymap$names)
+names(mymapdf) <- "state"
+
+library(plyr)
+mymapdf <- join(x = mymapdf,
+                y = cdc,
+                by = "state",
+                type = "left",
+                match = "first")
+
+
+
+MapFun <- function(var, color, border="grey"){
+  plotvar <- var
+  nclr <- 5
+  plotclr <- rev(brewer.pal(nclr, color))
+  class <- classIntervals(plotvar, nclr, style = "quantile", dataPrecision=0) #use "equal" instead
+  #class <- classIntervals(0:100, nclr, style="equal")
+  colcode <- findColours(class, plotclr)
+  legcode <- paste0(gsub(",", " - ", gsub("[[]|[]]|[)]", "", names(attr(colcode, "table")))), "%")
+  map("state", fill = TRUE, border=border, col=colcode)
+  legend("bottomleft", # position
+         legend = legcode, #names(attr(colcode, "table")), 
+         fill = attr(colcode, "palette"), 
+         cex = 0.85, 
+         border=grey,
+         bty = "n")
+}
+
+par(mfrow=c(3,1))
+par(mar=c(5,2,1,1))
+MapFun(var =  100 - mymapdf$mmr,
+       color = "Spectral")
+title(main = "MMR")
+
+MapFun(var = 100 -  mymapdf$dtap,
+       color = "Spectral")
+title(main = "DTAP")
+
+MapFun(var = 100 - mymapdf$varicella,
+       color = "Spectral")
+title(main = "VARICELLA")
+
+
