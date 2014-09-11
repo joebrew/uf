@@ -56,23 +56,23 @@ myPolygons <- over(myPoints, polygons(world))
 ###########
 # SAMPLE POINTS FOR EACH POLYGON
 ###########
-
-# Pick a country 
-country <- "United States"
-
-# factor by which to reduce / increase point density
-redinc <- 0.000001
-
-nPoints <- ifelse(ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == country)],
-                                     na.rm = TRUE)) > 0,
-                  ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == country)],
-                                     na.rm = TRUE)),
-                  1)
-
-# Sample points from that country
-countryPoints <- sample(x = myPoints[which(myPolygons %in% which(world$CNTRY_NAME == country))],
-                        size = nPoints,
-                        replace = TRUE)
+# 
+# # Pick a country 
+# country <- "United States"
+# 
+# # factor by which to reduce / increase point density
+# redinc <- 0.000001
+# 
+# nPoints <- ifelse(ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == country)],
+#                                      na.rm = TRUE)) > 0,
+#                   ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == country)],
+#                                      na.rm = TRUE)),
+#                   1)
+# 
+# # Sample points from that country
+# countryPoints <- sample(x = myPoints[which(myPolygons %in% which(world$CNTRY_NAME == country))],
+#                         size = nPoints,
+#                         replace = TRUE)
 
 # Plot those points
 plot(countryPoints, pch=16, col=adjustcolor("black", alpha.f=0.6) )
@@ -87,9 +87,9 @@ for (i in unique(world$CNTRY_NAME)){
   # factor by which to reduce / increase point density
   redinc <- 0.000001
   
-  nPoints <- ifelse(ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == country)],
+  nPoints <- ifelse(ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == i)],
                                        na.rm = TRUE)) > 0,
-                    ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == country)],
+                    ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == i)],
                                        na.rm = TRUE)),
                     1)
   
@@ -98,7 +98,7 @@ for (i in unique(world$CNTRY_NAME)){
   if(length(countryPoints) > 0){
     points(countryPoints, pch=16, col=adjustcolor("white", alpha.f=0.6) )
   }else{return(NULL)}
-  Sys.sleep(0.25)
+  # Sys.sleep(0.25)
   
   
 }
