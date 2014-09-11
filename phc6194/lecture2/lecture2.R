@@ -98,7 +98,7 @@ for (i in unique(world$CNTRY_NAME)){
   if(length(countryPoints) > 0){
     points(countryPoints, pch=16, col=adjustcolor("white", alpha.f=0.6) )
     }else{return(NULL)}
-  Sys.sleep()
+  Sys.sleep(0.25)
   
   
 }
