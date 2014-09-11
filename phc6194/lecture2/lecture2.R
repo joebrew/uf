@@ -64,15 +64,15 @@ country <- "United States"
 redinc <- 0.000001
 
 nPoints <- ifelse(ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == country)],
-                              na.rm = TRUE)) > 0,
-              ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == country)],
-                                 na.rm = TRUE)),
-              1)
+                                     na.rm = TRUE)) > 0,
+                  ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == country)],
+                                     na.rm = TRUE)),
+                  1)
 
 # Sample points from that country
 countryPoints <- sample(x = myPoints[which(myPolygons %in% which(world$CNTRY_NAME == country))],
-            size = nPoints,
-            replace = TRUE)
+                        size = nPoints,
+                        replace = TRUE)
 
 # Plot those points
 plot(countryPoints, pch=16, col=adjustcolor("black", alpha.f=0.6) )
@@ -97,7 +97,7 @@ for (i in unique(world$CNTRY_NAME)){
   # Plot those points
   if(length(countryPoints) > 0){
     points(countryPoints, pch=16, col=adjustcolor("white", alpha.f=0.6) )
-    }else{return(NULL)}
+  }else{return(NULL)}
   Sys.sleep(0.25)
   
   
