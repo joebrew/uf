@@ -34,8 +34,8 @@ world <- readOGR("world_borders",layer = "world_borders")
 # CREATE SOME RANDOM X (LONG) AND Y (LAT) POINTS 
 # AND BIND INTO DF
 ##########
-x <- runif(1000000, min=-180, max=190)
-y <- runif(1000000, min = -86, max=84)
+x <- runif(100000, min=-180, max=190)
+y <- runif(100000, min = -86, max=84)
 myPoints <- data.frame(cbind(x,y))
 
 ###########
@@ -92,7 +92,17 @@ for (i in unique(world$CNTRY_NAME)){
                     ceiling(redinc*sum(world$POP_CNTRY[which(world$CNTRY_NAME == i)],
                                        na.rm = TRUE)),
                     1)
+  # # Sample points from that country
   
+  if(length(myPoints[which(myPolygons %in% which(world$CNTRY_NAME == country))])>0){
+    countryPoints <- sample(x = myPoints[which(myPolygons %in% which(world$CNTRY_NAME == country))],
+                            size = nPoints,
+                            replace = TRUE)
+  }else{
+    countryPoints <- NULL
+  }
+  
+
   
   # Plot those points
   if(length(countryPoints) > 0){
