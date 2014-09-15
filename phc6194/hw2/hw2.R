@@ -11,11 +11,28 @@ library(rgl)
 ####################
 # SET WD TO THE GIS FOLDER
 ####################
-setwd("C:/Users/BrewJR/Documents/uf/phc6194/hw2/")
+setwd("C:/Users/BrewJR/Documents/uf/phc6194/hw2")
 
-
-World30 <- readOGR("MapProjection.mdb",layer = "World30_Shape_Index")
-
+########
+# READ FROM MDB
+########
+FLCounties <- readOGR("MapProjection.mdb",layer = "FLCounties")
+County_Boundary <- readOGR("MapProjection.mdb",layer = "County_Boundary")
+Alachua_BlockGroup <- readOGR("MapProjection.mdb",layer = "Alachua_Blockgroup")
+Country08 <- readOGR("MapProjection.mdb",layer = "Country08")
+World30 <- readOGR("MapProjection.mdb",layer = "World30")
+States <- readOGR("MapProjection.mdb",layer = "States")
+Hospitals_WrongPrj <- readOGR("MapProjection.mdb",layer = "Hospitals_WrongPrj"))
+# can't get hospitals to work
+# or using createIntamapObject
+library(intamap)
+library(automap)
+obj = createIntamapObject(
+  observations = readOGR("MapProjection.mdb",layer = "Hospitals_WrongPrj"),
+  predictionLocations = readOGR("MapProjection.mdb",layer = "Hospitals_WrongPrj"),
+  targetCRS = CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"),
+  class = c("idw")
+)
 
 #########
 # REMOVE BORDERS
