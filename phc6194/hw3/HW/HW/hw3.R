@@ -290,14 +290,14 @@ GetPop(hosp6)
 task3 <- data.frame(hospitals2$NAME)
 names(task3) <- "Hospital"
 
-task3$Population <- c(
+task3$Population <- as.character(c(
   GetPop(hosp1),
   GetPop(hosp2),
   GetPop(hosp3),
   GetPop(hosp4),
   GetPop(hosp5),
   GetPop(hosp6)
-  )
+  ))
 
 #####
 # SAVE IMAGE
