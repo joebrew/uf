@@ -1,0 +1,175 @@
+\documentclass{article}
+\usepackage{hyperref}
+
+
+\begin{document}
+\SweaveOpts{concordance=TRUE, results=hide}
+
+<<echo=FALSE>>=
+#####
+# SET LOCAL WORKING DIRECTORY
+#####
+setwd("C:/Users/BrewJR/Documents/uf/phc6194/hw3/HW")
+
+#####
+# ATTACH PACKAGES
+#####
+library(maptools)
+library(rgdal)
+library(RColorBrewer)
+library(Hmisc)
+library(mapproj)
+library(rgl)
+library(raster)
+library(spatstat)
+library(classInt)
+
+#####
+# LOAD IMAGE
+#####
+load("HW/hw3.RData")
+@
+
+\begin{center}
+\huge{HW 3: R supplement}\\
+\large{Joe Brew}
+\end{center}
+
+\fbox{
+  \parbox{\textwidth}{
+    \noindent \textbf{Note to professor: } The following outlines the steps I've taken in R to replicate the tasks of HW 3.  Please note that I \emph{did not} follow all steps, since some are specific to ArcMap.  }
+}\\
+
+\noindent  \\
+
+\noindent What follows is the output of the homework assignment (the two maps), followed by the code used to generate them.  Full code (including the code for this \LaTeX document) is available \href{https://github.com/joebrew/uf/tree/master/phc6194/hw3}{HERE}.
+
+\newpage
+\section*{Question 1}
+
+Add the shapefile of "usa_county" into ArcMap; Open the attribute table and select all records in FL (Please refer to "selecting records in a table" in the handout); Then export the selected record to create a new feature (i.e. Shapefile) of "CTY FL". \\
+
+\textbf{NA}.  Since these data came in .dbf format (an ArcGIS proprietary format), I had to use Arc to export them to R. 
+
+\section*{Question 2}
+
+2.  The dataset of "cancer fl.dbf" have the crude and age adjusted mortality rate in all counties in FL. Please join the cancer mortality data with the new shapefile of "CTY FL" that you create at step 1. Then, use the joined information to create a new shapefile with the cancer mortality information attached. (Note: please zip the Shapefile and submit it together with this word document for evaluation)
+
+
+\begin{center}
+<<eval=TRUE, fig=TRUE, echo=FALSE, height=5>>=
+par(mar = rep(0,4))
+par(oma = rep(0,4))
+
+# PLOT MAP
+plot(fcty2, 
+     border = adjustcolor("black", alpha.f=0.3), 
+     col = adjustcolor("black", alpha.f=0.1))
+
+# ADD LABELS
+text(coordinates(fcty2),
+     labels = as.character(fcty2$NAME),
+     cex = 0.4,
+     col = adjustcolor("black", alpha.f=0.6))
+
+
+@
+\end{center}
+
+\section*{Question 2}
+\begin{center}
+<<eval=TRUE, fig=TRUE, echo=FALSE, height=5>>=
+par(mar = rep(0,4))
+par(oma = rep(0,4))
+plot(fcty2, 
+     border = adjustcolor("black", alpha.f=0.3), 
+     col = adjustcolor("black", alpha.f=0.1))
+plot(trails_latlon, add = TRUE,
+     col = adjustcolor("darkred", alpha.f = 0.6))
+@
+\end{center}
+
+\newpage
+\section*{R Code}
+<<echo=TRUE, eval = FALSE>>=
+####################
+# LOAD PACKAGES FOR MAPPING
+####################
+
+# IF NOT YET INSTALLED ON YOUR SYSTEM, RUN
+# install.packages("packagename") FIRST
+library(maptools)
+library(rgdal)
+
+
+####################
+# SET WD TO THE HW1 FOLDER
+####################
+setwd("C:/Users/BrewJR/Documents/uf/phc6194/hw1")
+
+####################
+# READ IN FLORIDA COUNTIES SHAPEFILE
+####################
+fcty2 <- readOGR("FCTY2", 
+                 layer="FCTY2")
+
+####################
+# READ IN TRAILS SHAPEFILE
+####################
+trails <- readOGR("existing_trails_apr09", 
+                 layer="existing_trails_apr09")
+
+
+############
+# EXAMINE PROJECTIONS
+############
+proj4string(trails)
+proj4string(fcty2)
+
+#############
+# GIVEN THAT THEY'RE ON DIFFERENT PROJECTION SYSTEMS,
+# PUT TRAILS INTO SAME PROJECTION SYSTEM AS fcty2
+# IN OTHER WORDS, MAKE EVERYTHING LAT LONG
+#############
+trails_latlon <- spTransform(trails, CRS("+init=epsg:4326"))
+
+############
+# QUESTION 1 MAP
+############
+par(mar = rep(0,4))
+par(oma = rep(0,4))
+
+# PLOT MAP
+plot(fcty2, 
+     border = adjustcolor("black", alpha.f=0.3), 
+     col = adjustcolor("black", alpha.f=0.1))
+
+# ADD LABELS
+text(coordinates(fcty2),
+     labels = as.character(fcty2$NAME),
+     cex = 0.4,
+     col = adjustcolor("black", alpha.f=0.6))
+
+
+############
+# QUESTION 2 MAP
+############
+par(mar = rep(0,4))
+par(oma = rep(0,4))
+
+# PLOT MAP
+plot(fcty2, 
+     border = adjustcolor("black", alpha.f=0.3), 
+     col = adjustcolor("black", alpha.f=0.1))
+
+# ADD LABELS
+text(coordinates(fcty2),
+     labels = as.character(fcty2$NAME),
+     cex = 0.4,
+     col = adjustcolor("black", alpha.f=0.6))
+
+
+
+@
+
+\end{document}

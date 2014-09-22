@@ -1,0 +1,412 @@
+\documentclass{article}
+\usepackage{hyperref}
+
+
+\begin{document}
+\SweaveOpts{concordance=TRUE, results=hide}
+
+<<echo=FALSE>>=
+#####
+# SET LOCAL WORKING DIRECTORY
+#####
+setwd("C:/Users/BrewJR/Documents/uf/phc6194/hw3/HW/HW/hw3_R_joe_brew")
+
+#####
+# ATTACH PACKAGES
+#####
+library(maptools)
+library(rgdal)
+library(RColorBrewer)
+library(Hmisc)
+library(mapproj)
+library(rgl)
+library(raster)
+library(spatstat)
+library(classInt)
+library(xtable)
+library(rgeos)
+
+#####
+# LOAD IMAGE
+#####
+load("C:/Users/BrewJR/Documents/uf/phc6194/hw3/HW/HW/hw3.RData")
+@
+
+\begin{center}
+\huge{HW 3: R supplement}\\
+\large{Joe Brew}
+\end{center}
+
+\fbox{
+  \parbox{\textwidth}{
+    \noindent \textbf{Note to professor: } The following outlines the steps I've taken in R to replicate the tasks of HW 3.  Please note that I \emph{did not} follow all steps, since some are specific to ArcMap.  }
+}\\
+
+\noindent  \\
+
+\noindent What follows is the output of the homework assignment (the two maps), followed by the code used to generate them.  Full code (including the code for this \LaTeX document) is available \href{https://github.com/joebrew/uf/tree/master/phc6194/hw3}{HERE}.
+
+\begin{center}
+<<fig = TRUE, eval = TRUE, echo = FALSE, height = 8>>= 
+mycols <- colorRampPalette(c("brown", "white"))(60)
+mycols <- adjustcolor(mycols, alpha.f=0.6)
+mycols2 <- c("darkblue", "darkorange", "grey", "red", "purple", "brown")
+
+
+par(mar=c(1,1,1,1))
+par(oma=c(0,0,0,0))
+# Elevation
+plot(ined,
+     col = mycols,
+     main = NULL,
+     ribbon = FALSE)
+# County border
+plot(boundary2,
+     add = TRUE)
+# Census tracts
+plot(pop2,
+     add = TRUE,
+     col = adjustcolor("black", alpha.f = 0.1),
+     border = adjustcolor("black", alpha.f=0.6))
+#Points
+points(hospitals2,
+       col = adjustcolor(mycols2, alpha.f=0.8),
+       pch = 16,
+       cex = 0.4)
+plot(hosp1, add = T, col = adjustcolor(mycols2[1], alpha.f=0.3), 
+     border = adjustcolor(mycols[1], alpha.f=0.2))
+plot(hosp2, add = T, col = adjustcolor(mycols2[2], alpha.f=0.3), 
+     border = adjustcolor(mycols2[2], alpha.f=0.2))
+plot(hosp3, add = T, col = adjustcolor(mycols2[3], alpha.f=0.3), 
+     border = adjustcolor(mycols2[3], alpha.f=0.2))
+plot(hosp4, add = T, col = adjustcolor(mycols2[4], alpha.f=0.3), 
+     border = adjustcolor(mycols2[4], alpha.f=0.2))
+plot(hosp5, add = T, col = adjustcolor(mycols2[5], alpha.f=0.3), 
+     border = adjustcolor(mycols2[5], alpha.f=0.2))
+plot(hosp6, add = T, col = adjustcolor(mycols2[6], alpha.f=0.3), 
+     border = adjustcolor(mycols[6], alpha.f=0.2))
+
+mycols <- colorRampPalette(c("blue", "darkgreen", "grey", "white"))(60)
+mycols <- adjustcolor(mycols, alpha.f=0.6)
+@
+\end{center}
+
+\newpage
+\section*{Part 1}
+
+
+\section*{Question 1}
+
+Add the shapefile of "usa county" into ArcMap; Open the attribute table and select all records in FL (Please refer to "selecting records in a table" in the handout); Then export the selected record to create a new feature (i.e. Shapefile) of "CTY FL". \\
+
+\noindent \textbf{NA}.  Since these data came in .dbf format (an ArcGIS proprietary format), I had to use Arc to export them to R. 
+
+\section*{Question 2}
+
+The dataset of "cancer fl.dbf" have the crude and age adjusted mortality rate in all counties in FL. Please join the cancer mortality data with the new shapefile of "CTY FL" that you create at step 1. Then, use the joined information to create a new shapefile with the cancer mortality information attached. (Note: please zip the Shapefile and submit it together with this word document for evaluation)
+
+
+Given that the names of the cancer data and the county shape file didn't match up perfectly, I wrote some code that would find the "closest match" in order to make the merge.  See below:
+
+\begin{center}
+<<eval=FALSE, echo=TRUE>>=
+#####
+# Fix names in the county shapefile and the cancer table
+# In order to make them compatible
+#####
+cancer$name <- as.character(toupper(gsub(" County, FL", "", cancer$County)))  
+county$name <- as.character(county$NAME2_)
+
+
+# Loop to find closest match
+cancer$newname <- NA
+for (i in 1:nrow(cancer)){
+  
+  #Create matrix of match scores
+  m <- adist(x = cancer$name[i],
+             y = county$name,
+             ignore.case = TRUE)
+  
+  #Select the index of the best (lowest) match
+  best <- which(m == min(m), arr.ind=TRUE)[1,]
+  best.ind <- as.numeric(best["col"])
+  #best.ind <- which.min(best)
+  
+  #Assign to best.num the actual score of the best match
+  best.num <- min(m)
+  
+  #Assign the best match to newad 
+  cancer$newname[i] <- as.character(county$name[best.ind])
+}
+
+# See where matches weren't identical
+x <- cancer$name[which(cancer$name != cancer$newname)]
+y <- cancer$newname[which(cancer$name != cancer$newname)]
+cbind(x,y) # perfect
+rm(x,y)
+
+# Since the match is good, let's replace name with newname
+cancer$name <- cancer$newname
+cancer$newname <- NULL
+@
+\end{center}
+
+%<<results = tex, print = TRUE>>=
+%print(xtable(head(county), size = "\\tiny"))
+%@
+
+Here's what the resulting merged dataframe looks like:
+
+<< eval = TRUE, echo = TRUE, print =TRUE , results=verbatim >>=
+head(county)
+@
+
+
+\section*{Question 3}
+Using the shapefile created in step 2, please answer the following questions (Hint: Selection by attribute):
+
+a.  Please find five top counties with the highest crude cancer mortality rate in Florida and list the information of county name and their rates below.
+
+<<echo = TRUE, eval = TRUE, results = verbatim>>=
+county <- county[rev(order(county$Crude_Rate)),]
+x <- county[,c("name", "Crude_Rate")]
+print(data.frame(x[1:5,]))
+@
+
+
+b.	Please find five top counties with the highest age-adjusted cancer mortality rates in Florida and also list the information of county name and their rates;
+
+<<echo = TRUE, eval = TRUE, results = verbatim>>=
+county <- county[rev(order(county$Age_Adjust)),]
+x <- county[,c("name", "Age_Adjust")]
+print(data.frame(x[1:5,]))
+@
+
+
+c.	Please check if the selected five counties with highest crude and age-adjusted rates are same or different. If they are different, please explain why it is. \\
+
+\noindent \textbf{NA}.  I answered this in the Arc assignment.
+
+\newpage
+\section*{Part 2}
+
+\section*{Task 1} From the feature class of "FL Hospitals", please select all hospitals within Alachua County. (Hint: Using Alachua_boundary and "Intersect" tool). 
+List the ID (FID FL Hospitals) and the names of the selected hospitals below for evaluation.
+
+<<echo = TRUE, eval = FALSE>>=
+
+#####
+# I FIRST EXPORTED THE LAYERS AS SHAPEFILES
+# FROM ARCGIS, NOW I READ THEM INTO R
+#####
+boundary <- readOGR("HW",
+                    layer = "Alachua_Boundary")
+hospitals <- readOGR("HW",
+                     layer = "FL_Hospitals")
+
+#####
+# Convert some objects to ned's projection
+#####
+hospitals2 <- spTransform(hospitals,
+                          CRS(proj4string(ned)))
+boundary2 <- spTransform(boundary,
+                         CRS(proj4string(ned)))
+
+#####
+# Create a rasterlayer version of ned
+#####
+rned <- raster(ned)
+
+#####
+# Create an image version of ned
+#####
+ined <- as.im(ned)
+
+#####
+# Use extract() to get the pixel values of the raster
+# version of ned at the locations of the hospitals
+#####
+hospitals2$elevation <- extract(rned, coordinates(hospitals2))
+
+#####
+# Keep only hospitals which are in Alachua's borders
+#####
+x <- over(hospitals2, polygons(boundary2))
+hospitals2 <- hospitals2[which(!is.na(x)),]
+rm(x)
+@
+
+<<echo = TRUE, eval = TRUE, results = verbatim >>=
+data.frame(hospitals2[,c("NAME", "ADDRESS", "CITY", "ZIPCODE")])
+@
+
+
+
+\section*{Task 2}
+
+Find the elevation information for the selected hospitals in Alachua County using the data of "NED01".  List the ID (FID FL Hospitals) of the hospitals and their elevations for evaluation.
+
+<< eval = FALSE, echo = TRUE>>= 
+#####
+# READ IN THE RASTER ELEVATION DATA
+#####
+ned <- readGDAL("HW/ned011.tif")
+
+#####
+# Create a rasterlayer version of ned
+#####
+rned <- raster(ned)
+
+#####
+# Use extract() to get the pixel values of the raster
+# version of ned at the locations of the hospitals
+#####
+hospitals2$elevation <- extract(rned, coordinates(hospitals2))
+@
+
+<<eval = TRUE, echo = TRUE, fig = TRUE>>=
+#####
+# Define a color vector and plot the image of ned
+#####
+mycols <- colorRampPalette(c("blue", "darkgreen", "grey", "white"))(60)
+mycols <- adjustcolor(mycols, alpha.f=0.6)
+plot(ined,
+     col = mycols,
+     main = "Alachua hospitals and elevation")
+#Points
+points(hospitals2,
+       col = adjustcolor("darkred", alpha.f=0.6),
+       pch = 16)
+# Text
+text(x = coordinates(hospitals2)[,1],
+     y = coordinates(hospitals2)[,2],
+     labels = hospitals2$elevation, cex = 0.6,
+     col = adjustcolor("black", alpha.f=0.7),
+     pos = c(1,3))
+
+# Text (names)
+text(x = coordinates(hospitals2)[,1],
+     y = jitter(coordinates(hospitals2)[,2], factor = 4),
+     labels = hospitals2$NAME, cex = 0.3,
+     col = adjustcolor("black", alpha.f=0.4),
+     pos = 4)
+@
+
+\section*{Task 3}
+
+
+Find the serving population within 5km distance of each hospital using census tract population in Alachua. List the ID (FID FL Hospitals) of the hospitals and the number of the serving population within 5 km distance for evaluation.
+ (Hint: Creating a buffer of 5 km for each hospital and then spatial join the census population using Spatial Join tool. Figure 1 shows how to assess the tool. In addition, in spatial join tool, right click the variables and you can select the statistics as shown in the second figure) \\
+ 
+ First, I'll show you the answer.
+
+<<eval = TRUE, print =TRUE, echo = FALSE, results = tex>>=
+print(xtable(task3))
+@
+
+Now, I'll show you how I got it: \\
+ 
+First, I created the buffer zones of 5 kilometers in all directions.
+<<eval = FALSE, echo = TRUE>>=
+#####
+# CREATE GEOGRAPHICAL BUFFER
+#####
+library(rgeos)
+
+# Check out the projection string of hospitals2 to confirm meters
+proj4string(hospitals2)
+
+# Create buffered shapefiles
+mylist <- list()
+for (i in 1:length(hospitals2$NAME)){
+  mylist[i] <- 
+    gBuffer(hospitals2[which(hospitals2$NAME == hospitals2$NAME[i]),], width = 5000)
+}
+
+# Unlist each hospital into its own object
+hosp1 <- unlist(mylist[[1]])
+hosp2 <- unlist(mylist[[2]])
+hosp3 <- unlist(mylist[[3]])
+hosp4 <- unlist(mylist[[4]])
+hosp5 <- unlist(mylist[[5]])
+hosp6 <- unlist(mylist[[6]])
+@
+
+Then, I overlaid these buffer zones with the census tracts to determine catchment population.  This involved fist defining a function for the calculation of this:
+
+<<eval = TRUE, echo = TRUE, results = verbatim >>=
+
+#####
+# GET POPULATION PER BUFFER ZONE
+#####
+
+# Define a function for calculating this
+GetPop <- function(hospital){
+ 
+  # Specify the object id's of the polygons of pop
+  # which overlap with the buffer zone
+  x <- over(pop2, polygons(hospital))
+  
+  # Sum up all those populations
+  sum(pop2$pop[which(x %in% pop2$OBJECTID)],
+      na.rm = TRUE)
+}
+
+# Calculate the total population for each buffer zone
+GetPop(hosp1)
+GetPop(hosp2)
+GetPop(hosp3)
+GetPop(hosp4)
+GetPop(hosp5)
+GetPop(hosp6)
+
+@
+
+Just for the heck of it, I plot the tracts, zones and elevation all together.
+
+\begin{center}
+<<fig = TRUE, eval = TRUE, echo = TRUE, height = 5>>=
+par(mar=c(1,1,1,1))
+par(oma = c(0,0,0,0))
+# PLOT EACH BUFFER ZONE
+mycols2 <- c("darkblue", "darkorange", "grey", "red", "purple", "brown")
+# plot(ined,
+#      col = mycols,
+#      main = "Alachua hospitals, elevation, and 5km radii")
+plot(boundary2)
+
+# Census tracts
+plot(pop2,
+     border = adjustcolor("black", alpha.f=0.2),
+     add = TRUE)
+
+#Points
+points(hospitals2,
+       col = adjustcolor(mycols2, alpha.f=0.8),
+       pch = 16,
+       cex = 0.4)
+plot(hosp1, add = T, col = adjustcolor(mycols2[1], alpha.f=0.3), 
+     border = adjustcolor(mycols[1], alpha.f=0.2))
+plot(hosp2, add = T, col = adjustcolor(mycols2[2], alpha.f=0.3), 
+     border = adjustcolor(mycols2[2], alpha.f=0.2))
+plot(hosp3, add = T, col = adjustcolor(mycols2[3], alpha.f=0.3), 
+     border = adjustcolor(mycols2[3], alpha.f=0.2))
+plot(hosp4, add = T, col = adjustcolor(mycols2[4], alpha.f=0.3), 
+     border = adjustcolor(mycols2[4], alpha.f=0.2))
+plot(hosp5, add = T, col = adjustcolor(mycols2[5], alpha.f=0.3), 
+     border = adjustcolor(mycols2[5], alpha.f=0.2))
+plot(hosp6, add = T, col = adjustcolor(mycols2[6], alpha.f=0.3), 
+     border = adjustcolor(mycols[6], alpha.f=0.2))
+
+legend(x="topright",
+       pch = 16,
+       col = adjustcolor(mycols2, alpha.f=0.4),
+       legend = hospitals2$NAME,
+       bty = "n",
+       cex = 0.7,
+       pt.cex = 1.5)
+
+@
+\end{center}
+
+\end{document}

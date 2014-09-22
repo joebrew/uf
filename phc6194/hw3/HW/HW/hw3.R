@@ -43,6 +43,8 @@ hospitals2 <- spTransform(hospitals,
                           CRS(proj4string(ned)))
 boundary2 <- spTransform(boundary,
                          CRS(proj4string(ned)))
+pop2 <- spTransform(pop,
+                    CRS(proj4string(ned)))
 
 
 #####
@@ -198,12 +200,110 @@ CountyFun <- function(var, color, percent = FALSE){
 
 CountyFun(county$Population / county$AREA_, "Blues")
 
+#####
+# CREATE GEOGRAPHICAL BUFFER
+#####
+library(rgeos)
 
+# Check out the projection string of hospitals2 to confirm meters
+proj4string(hospitals2)
+
+# Create buffered shapefiles
+mylist <- list()
+for (i in 1:length(hospitals2$NAME)){
+  mylist[i] <- 
+    gBuffer(hospitals2[which(hospitals2$NAME == hospitals2$NAME[i]),], width = 5000)
+}
+
+# Unlist each hospital into its own object
+hosp1 <- unlist(mylist[[1]])
+hosp2 <- unlist(mylist[[2]])
+hosp3 <- unlist(mylist[[3]])
+hosp4 <- unlist(mylist[[4]])
+hosp5 <- unlist(mylist[[5]])
+hosp6 <- unlist(mylist[[6]])
+
+# PLOT THE 5KM RADII
+mycols <- colorRampPalette(c("brown", "white"))(60)
+mycols <- adjustcolor(mycols, alpha.f=0.6)
+mycols2 <- c("darkblue", "darkorange", "grey", "red", "purple", "brown")
+
+# Elevation
+plot(ined,
+     col = mycols,
+     main = NULL,
+     ribbon = FALSE)
+# County border
+plot(boundary2,
+     add = TRUE)
+# Census tracts
+plot(pop2,
+     add = TRUE,
+     col = adjustcolor("black", alpha.f = 0.1),
+     border = adjustcolor("black", alpha.f=0.6))
+#Points
+points(hospitals2,
+       col = adjustcolor(mycols2, alpha.f=0.8),
+       pch = 16,
+       cex = 0.4)
+plot(hosp1, add = T, col = adjustcolor(mycols2[1], alpha.f=0.3), 
+     border = adjustcolor(mycols[1], alpha.f=0.2))
+plot(hosp2, add = T, col = adjustcolor(mycols2[2], alpha.f=0.3), 
+     border = adjustcolor(mycols2[2], alpha.f=0.2))
+plot(hosp3, add = T, col = adjustcolor(mycols2[3], alpha.f=0.3), 
+     border = adjustcolor(mycols2[3], alpha.f=0.2))
+plot(hosp4, add = T, col = adjustcolor(mycols2[4], alpha.f=0.3), 
+     border = adjustcolor(mycols2[4], alpha.f=0.2))
+plot(hosp5, add = T, col = adjustcolor(mycols2[5], alpha.f=0.3), 
+     border = adjustcolor(mycols2[5], alpha.f=0.2))
+plot(hosp6, add = T, col = adjustcolor(mycols2[6], alpha.f=0.3), 
+     border = adjustcolor(mycols[6], alpha.f=0.2))
+
+# Create a buffered shapefile
+"hospitals2buffer" <- gBuffer(hospitals2, width = 1000)
 
 #####
-#
+# GET POPULATION PER BUFFER ZONE
 #####
 
+# Define a function for calculating this
+GetPop <- function(hospital){
+ 
+  # Specify the object id's of the polygons of pop
+  # which overlap with the buffer zone
+  x <- over(pop2, polygons(hospital))
+  
+  # Sum up all those populations
+  sum(pop2$pop[which(x %in% pop2$OBJECTID)],
+      na.rm = TRUE)
+}
+
+# Calculate the total population for each buffer zone
+GetPop(hosp1)
+GetPop(hosp2)
+GetPop(hosp3)
+GetPop(hosp4)
+GetPop(hosp5)
+GetPop(hosp6)
+
+# Task 3 answer
+task3 <- data.frame(hospitals2$NAME)
+names(task3) <- "Hospital"
+
+task3$Population <- c(
+  GetPop(hosp1),
+  GetPop(hosp2),
+  GetPop(hosp3),
+  GetPop(hosp4),
+  GetPop(hosp5),
+  GetPop(hosp6)
+  )
+
+#####
+# SAVE IMAGE
+#####
+getwd()
+save.image("HW/hw3.RData")
 #####
 #
 #####
