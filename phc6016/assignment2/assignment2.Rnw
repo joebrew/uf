@@ -1,0 +1,236 @@
+% RUN THE NEXT FEW LINES *BEFORE* KNITTING
+% (MAKE SURE RNW OPTIONS ARE SET TO KNITR)
+
+% setwd('/home/joebrew/Documents/uf/phc6016/assignment2')
+% Sys.setenv(TEXINPUTS=getwd(),
+%           BIBINPUTS=getwd(),
+%           BSTINPUTS=getwd())
+
+% \begin{filecontents*}{test.bib}
+% 
+% @article{Ogden2014,
+%   doi= {10.1001/jama.2014.732},
+%   url= {http://dx.doi.org/10.1001/jama.2014.732},
+%   year = {2014},
+%   month= {feb},
+%   publisher= {American Medical Association ({AMA})},
+%   volume= {311},
+%   number= {8},
+%   pages= {806},
+%   author= {Cynthia L. Ogden and Margaret D. Carroll and Brian K. Kit and Katherine M. Flegal},
+%   title= {Prevalence of Childhood and Adult Obesity in the United States, 2011-2012},
+%   journal= {{JAMA}}
+% }
+% 
+% 
+% }
+% \end{filecontents*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Journal Article
+% LaTeX Template
+% Version 1.3 (9/9/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%  PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[twoside]{article}
+
+\usepackage{lipsum} % Package to generate dummy text throughout this template
+%\usepackage[style=apa,backend=biber]{biblatex}
+%\usepackage[style=authordate, backend=biber]{biblatex-chicago}
+%\usepackage[style=apa, backend=biber]{biblatex}
+%\usepackage[backend=bibtex]{biblatex}
+% \usepackage[
+% backend=biber,
+% style=alphabetic,
+% sorting=ynt
+% ]{biblatex}
+
+\usepackage[sort, numbers]{natbib}
+%\bibliographystyle{vancouver}
+%\bibliography{xampl}
+%\addbibresource{assignment2.bib}
+
+\usepackage[sc]{mathpazo} % Use the Palatino font
+%\usepackage{endnotes} % for placing notes at end of document
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+%\usepackage{subfig} % for multiple figures/captions in one area
+\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+\usepackage{multicol} % Used for the two-column layout of the document
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+\usepackage{hyperref} % For hyperlinks in the PDF
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+\usepackage{titlesec} % Allows customization of titles
+\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+\renewcommand\thesubsection{\Roman{subsection}} % Roman numerals for subsections
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+\fancyhead[C]{PHC 6016 $\bullet$ Social Epidemiology $\bullet$ Professor Catherine Striley} % Custom header text
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{Childhood obesity as a social phenomenon}} % Article title
+
+\author{
+\large
+\textsc{Joe Brew}\thanks{Dude / wannabe epidemiologist}\\[2mm] % Your name
+\normalsize University of Florida \\ % Your institution
+\normalsize \href{mailto:joebrew@gmail.com}{joebrew@gmail.com} % Your email address
+\vspace{-5mm}
+}
+\date{}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+
+\maketitle % Insert title
+
+\thispagestyle{fancy} % All pages have headers and footers
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+% \begin{abstract}
+% 
+% \noindent \lipsum[1] % Dummy abstract text
+% 
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\begin{multicols}{2} % Two-column layout throughout the main article text
+
+\section*{Introduction: }
+
+\lettrine[nindent=0em,lines=3]{O}{besity} is a social phenomenon with physical manifestations. \\
+
+It should come as no surprise that despite massive government efforts, the prevalence of childhood obesity in the United States shows no signs of decline \cite{Ogden2014} (see below chart).  American anti-obesity policies are largely \emph{personal} and/or \emph{medical}, with a focus on self-discipline, exercise, and confusing dietary guidelines.  \\
+
+<<fig-plot1, echo=FALSE, fig.height=3.5, fig.align='center' >>=
+par(mar=c(5,4,2,1))
+par(oma = c(0,0,0,0))
+yearNum <- 1:7
+yearNum2 <- c(1966, 1971, 1976, 1988, 1999, 2001, 2003)
+year <- c("1966-1970 ",
+          "1971-1974 ",
+          "1976-1980 ",
+          "1988-1994 ",
+          "1999-2000 ",
+          "2001-2002 ",
+          "2003-2004 ")
+boys <- c(4.5, 6.1, 4.8, 11.3, 14, 16.4, 18.2)
+girls <- c(4.7, 6.2, 5.3, 9.7, 13.8, 14.4, 16)
+
+#dataframe
+df <- data.frame(cbind(yearNum, yearNum2, year, boys, girls),
+                 stringsAsFactors = FALSE)
+plot(df$yearNum2, df$boys, type = "n",
+     xlab = NA,
+     ylab = "% obese",
+     xaxt = "n")
+axis(side = 1,
+     at = df$yearNum2,
+     labels = df$yearNum2, #gsub("-", "-\n", df$year),
+     cex.axis = 0.8,
+     las = 3)
+mycols <- c("darkred", "darkblue")
+mycols <- adjustcolor(mycols, alpha.f=0.5)
+lines(df$yearNum2, df$boys, col = mycols[1], lwd = 2)
+lines(df$yearNum2, df$girls, col = mycols[2], lwd = 2)
+
+legend("topleft",
+       col = mycols,
+       lwd = 2,
+       legend = c("Boys", "Girls"))
+title(main = "Obesity among American children", cex.main = 1.7,
+      sub = "(Original chart, data from NIH)", cex.sub = 1.5)
+@
+\cite{NIH}
+
+Though the AMA took a step in the right direction by classifying obesity as a "disease" in 2013, %\cite{AMA}
+the American public health and epidemiology community should take the next logical step by highlighting the nature of this disease as almost entirely \emph{social}.  If we begin to reframe the obesity epidemic in its the context of its social determinants, we can begin to understand why medical and behavioral interventions at the individual level have such a poor track record. Non-social solutions to a social disease can hardly be expected to be effective. \\
+
+What follows is an examination of recent literature on the social components of childhood obesity, followed by a brief description of the social components of the issue in Alachua County.
+
+\section*{Literature: }
+
+Obesity, at its core, is the result of simple thermodynamics: when the quantity of energy consumed is greater than energy expenditure, the body stores the excess in the form of fat.  But studies suggest that both energy consumption and expenditure are largely conditioned by social factors ranging from race to geography. \\
+
+\textbf{Poverty} In the United States, poverty is positvely correlated with childhood obesity, even after adjustment for race \cite{Pan2012}.  Though the mechanisms by which poverty causes obesity are complex, theories range from the simple and intuitive (obesity-combatting products, such as gym memberships, come with a cost) to the more complex (poverty's correlation with violence creates a culture hositle to outdoor activities) \cite{Levine2011}.  \\
+
+\textbf{Race} Conversely, even after adjustment for poverty, race is an independent risk factor for childhood obesity in the United States \cite{Ogden2014}.  This relationship is almost certainly not causal; rather, being black or hispanic is correlated with a number of other causal risk factors for obesity such as consumption of sugary bevarages, access to a television in the bedroom, and the introduction of solid foods (in lieu of breastfeeding) at an early age. \cite{Taveras2010}.  In some studies, statistically controlling for confounding factors yields no significant correlation between race and obesity \cite{Zilanawala2014}.   \\
+
+\textbf{Peers and social norms} As anyone who has ever attended a Thanksgiving meal can tell you, our eating habits are conditioned by those around us.  A (relatively small) Dutch study found that children modified caloric intake directly as a result of those sitting near them at meal time \cite{Bevelander2012}.  As far as caloric expenditure, a New York City public school intervention resulted in increased physical activity during recess, even after the interveion had ended (though this study used the subjective "visual scans" to quantify activity)  \cite{Chin2013}.
+
+\textbf{Mistreatment} More recent studies shine light on the importance of behavioral and psychological factors in the development of childhood obesity.  Maternal depression during pregnancy appears to be an independent risk factor for overweight \cite{Taveras2010}.  Teasing appears to have a significant impact on childhood obesity, but uniquely among girls \cite{Feeg2014}. The psychological effects of mistreatment may be inter-generational: one study found that women who were maltreated as girls were more likely to excessive gestational weight gain (which in turn is correlated with childhood obesity) \cite{Diesel2014}.
+
+\section*{Alachua County}
+Like other counties throughout the United States, social inequality in childhood health outcomes in Alachua are clear and persistent.  Last spring, using Alachua County Public Schools data for an internal FDOH report on childhood obesity in our county, I analyzed the correlation between race, poverty and obesity among area 6th graders. %\footnote{The reason for selecting sixth-graders was that all children go through a health screening which includes anthropometry upon entry into middle school.} \\
+
+Though the direction of the result was unsurprising (being black or multiracial or qualifying for free/reduced lunch were risk factors for obesity), the magnitude and consistency of the effect was striking.  With every year's new generation of sixth graders, the difference between black/white children (left) and wealthy/poor (right) children were almost identical:\\
+\includegraphics[height=70, width=100]{alachua2.png}
+\includegraphics[height=70, width=100]{alachua4.png}
+In other words, one could quite easily predict next year's prevalence by race and socioeconomic status.  Clearly these disparities were not the result of unpredictable human "choice," but rather underlying social currents to which we are all subject.
+
+\includegraphics[height=140, width=180]{alachua3.png}
+
+
+\section*{Conclusion}
+The above map shows the prevalence of 6th grade obesity by school zone.  Sadly, it looks nearly identical to maps of dental caries, poverty, or absenteeism.  Like obesity, these are social illnesses with social solutions. The fetishization of personal responsibility, and the illusion of personal choice (particularly in the context of pediatric health) stand between us (public health practicioners) and effective solutions to the childhood obesity problem.  
+%\includegraphics[height=140, width=200]{alachua.png}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	REFERENCE LIST
+%----------------------------------------------------------------------------------------
+\newpage
+\bibliographystyle{unsrtnat}
+\bibliography{test}
+
+%----------------------------------------------------------------------------------------
+
+\end{multicols}
+
+\clearpage
+\section{Appendix}
+\subsection{Information on the R session}
+Information on the R session, in the interests of reproducibility.
+<<sessionInfo, echo=FALSE>>=
+sessionInfo()
+@
+
+\end{document}
