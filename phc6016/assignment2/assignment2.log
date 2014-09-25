@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.17)  24 SEP 2014 18:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.17)  24 SEP 2014 22:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **assignment2.tex
-(/home/joebrew/Documents/uf/phc6016/assignment2/assignment2.tex
+(./assignment2.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -62,16 +62,14 @@ Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
-)
-(/home/joebrew/Documents/uf/phc6016/assignment2/framed.sty
+) (./framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip43
 \fb@frw=\dimen105
 \fb@frh=\dimen106
 \FrameRule=\dimen107
 \FrameSep=\dimen108
-)
-(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
 Package: alltt 1997/06/16 v2.0g defines alltt environment
 )
 (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
@@ -493,8 +491,7 @@ Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 337.
 Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
-))
-(/home/joebrew/Documents/uf/phc6016/assignment2/assignment2.aux)
+)) (./assignment2.aux)
 \openout1 = `assignment2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 161.
@@ -513,7 +510,6 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 161.
 LaTeX Font Info:    ... okay on input line 161.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 161.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 161.
-
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
@@ -621,8 +617,7 @@ LaTeX Info: Redefining \ref on input line 161.
 LaTeX Info: Redefining \pageref on input line 161.
 LaTeX Info: Redefining \nameref on input line 161.
 
-(/home/joebrew/Documents/uf/phc6016/assignment2/assignment2.out)
-(/home/joebrew/Documents/uf/phc6016/assignment2/assignment2.out)
+(./assignment2.out) (./assignment2.out)
 \@outlinefile=\write3
 \openout3 = `assignment2.out'.
 
@@ -679,7 +674,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 188--189
  []
 
 Package color Info: Redefining color shadecolor on input line 191.
-<figure/fig-plot1.pdf, id=14, 505.89pt x 252.945pt>
+<figure/fig-plot1.pdf, id=6, 505.89pt x 252.945pt>
 File: figure/fig-plot1.pdf Graphic file (type pdf)
  <use figure/fig-plot1.pdf>
 Package pdftex.def Info: figure/fig-plot1.pdf used on input line 193.
@@ -708,17 +703,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 213--214
 
 
 Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page 1 might be wrong on input line 214.
+(multicol)                Footnotes on page 1 might be wrong on input line 215.
 
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
- </home/joebrew/Documents/uf/phc6016/assignment2/figure/fig-plot1.pdf>]
-<alachua2.png, id=49, 766.865pt x 525.965pt>
+ <./figure/fig-plot1.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
+
+ []
+
+<alachua2.png, id=42, 766.865pt x 525.965pt>
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
-l.223 ...phics[height=70, width=100]{alachua2.png}
+l.225 ...phics[height=70, width=110]{alachua2.png}
                                                   
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -730,7 +734,7 @@ two letters. (See Chapter 27 of The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
-l.223 ...phics[height=70, width=100]{alachua2.png}
+l.225 ...phics[height=70, width=110]{alachua2.png}
                                                   
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -741,13 +745,13 @@ two letters. (See Chapter 27 of The TeXbook.)
 
 File: alachua2.png Graphic file (type png)
 <use alachua2.png>
-Package pdftex.def Info: alachua2.png used on input line 223.
-(pdftex.def)             Requested size: 100.00018pt x 69.99901pt.
- <alachua4.png, id=50, 1036.87375pt x 708.6475pt>
+Package pdftex.def Info: alachua2.png used on input line 225.
+(pdftex.def)             Requested size: 109.99318pt x 69.99901pt.
+ <alachua4.png, id=43, 1036.87375pt x 708.6475pt>
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
-l.224 ...phics[height=70, width=100]{alachua4.png}
+l.226 ...phics[height=70, width=110]{alachua4.png}
                                                   
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -759,7 +763,7 @@ two letters. (See Chapter 27 of The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
-l.224 ...phics[height=70, width=100]{alachua4.png}
+l.226 ...phics[height=70, width=110]{alachua4.png}
                                                   
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -770,13 +774,18 @@ two letters. (See Chapter 27 of The TeXbook.)
 
 File: alachua4.png Graphic file (type png)
 <use alachua4.png>
-Package pdftex.def Info: alachua4.png used on input line 224.
-(pdftex.def)             Requested size: 99.99124pt x 69.99304pt.
- <alachua3.png, id=51, 1068.99374pt x 847.165pt>
+Package pdftex.def Info: alachua4.png used on input line 226.
+(pdftex.def)             Requested size: 109.99036pt x 69.99304pt.
+
+Overfull \hbox (32.19124pt too wide) in paragraph at lines 225--228
+[][] []
+ []
+
+<alachua3.png, id=44, 1068.99374pt x 847.165pt>
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
-l.227 ...hics[height=140, width=180]{alachua3.png}
+l.232 ...hics[height=140, width=180]{alachua3.png}
                                                   
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -788,7 +797,7 @@ two letters. (See Chapter 27 of The TeXbook.)
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
-l.227 ...hics[height=140, width=180]{alachua3.png}
+l.232 ...hics[height=140, width=180]{alachua3.png}
                                                   
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
@@ -799,15 +808,12 @@ two letters. (See Chapter 27 of The TeXbook.)
 
 File: alachua3.png Graphic file (type png)
 <use alachua3.png>
-Package pdftex.def Info: alachua3.png used on input line 227.
+Package pdftex.def Info: alachua3.png used on input line 232.
 (pdftex.def)             Requested size: 179.99751pt x 139.99594pt.
- [2 </home/joebrew/Documents/uf/phc6016/assignment2/alachua2.png> </home/joebre
-w/Documents/uf/phc6016/assignment2/alachua4.png> </home/joebrew/Documents/uf/ph
-c6016/assignment2/alachua3.png>]
-(/home/joebrew/Documents/uf/phc6016/assignment2/assignment2.bbl
+ [2 <./alachua2.png> <./alachua4.png> <./alachua3.png>]
+(./assignment2.bbl
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 14.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 Package microtype Info: Loading generic settings for font family
@@ -830,27 +836,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--24
  []
 
 ) [3]
-Package color Info: Redefining color shadecolor on input line 253.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 278.
+Package color Info: Redefining color shadecolor on input line 258.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 283.
  [4
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 278.
- (/home/joebrew/Documents/uf/phc6016/assignment2/assignment2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 278.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 278.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 283.
+ (./assignment2.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 283.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 283.
 Package rerunfilecheck Info: File `assignment2.out' has not changed.
-(rerunfilecheck)             Checksum: 03800BF8442499488CDD56D065B54606;120.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 278.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 283.
  ) 
 Here is how much of TeX's memory you used:
- 10519 strings out of 493304
- 161187 string characters out of 6139871
+ 10522 strings out of 493304
+ 160477 string characters out of 6139871
  385563 words of memory out of 5000000
- 13581 multiletter control sequences out of 15000+600000
- 67171 words of font info for 227 fonts, out of 8000000 for 9000
+ 13571 multiletter control sequences out of 15000+600000
+ 68063 words of font info for 239 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 39i,14n,43p,686b,509s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,15n,43p,686b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texliv
 e/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
@@ -858,10 +864,10 @@ ublic/fpl/fplrc8a.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on assignment2.pdf (4 pages, 296926 bytes).
+Output written on assignment2.pdf (4 pages, 296813 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
- 17 named destinations out of 1000 (max. 500000)
- 55333 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 112 PDF objects out of 1000 (max. 8388607)
+ 94 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 500000)
+ 55317 words of extra memory for PDF output out of 61914 (max. 10000000)
 
