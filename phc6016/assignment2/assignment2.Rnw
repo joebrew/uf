@@ -209,11 +209,11 @@ Though the direction of the result was unsurprising (being black or multiracial 
 
 In other words, one could quite easily predict next year's prevalence of obesity by race and socioeconomic status.  Clearly these disparities were not the result of unpredictable human "choice" (true choice would have been far harder to predict) but rather underlying social currents to which we are all subject.
 
-\includegraphics[height=140, width=180]{alachua3.png}
+\includegraphics[height=120, width=165]{alachua3.png}
 
 
 \section*{Conclusion}
-The above map shows the prevalence of 6th grade obesity by school zone.  Sadly, it looks nearly identical to maps of dental caries, poverty, or absenteeism.  Like obesity, these are social illnesses with social solutions. The fetishization of personal responsibility, and the illusion of personal choice (particularly in the context of pediatric health) stand between us (public health practicioners) and effective solutions to the childhood obesity problem.  The evidence on obesity's social roots, some of which I have presented in the paper, is clear: our health hinges on the society we build together, not the choices we make alone.
+The above map shows the prevalence of 6th grade obesity by school zone.  Sadly, it looks nearly identical to maps of dental caries, poverty, or absenteeism.  Like obesity, these are social illnesses with social solutions. But a lack of research into the \emph{causal pathways} of obesity hinders are potential to find these solutions.  The fetishization of personal responsibility, and the illusion of personal choice (particularly in the context of pediatric health) stand between us (public health practicioners) and effective interventions in the childhood obesity problem.  The evidence on obesity's social roots, some of which I have presented in the paper, is clear: our health hinges on the society we build together, not the choices we make alone.
 %\includegraphics[height=140, width=200]{alachua.png}
 
 
