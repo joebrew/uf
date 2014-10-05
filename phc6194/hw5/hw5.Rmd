@@ -35,11 +35,13 @@ x <- mdb.get("Homwork5.mdb", tables = "GDB_Items")
 x <- mdb.get("Homwork5.mdb", tables = "road")
 
 library(rgdal)
-x <- readGDAL("Homwork5")
+road <- readOGR(".", "road")
+ems <- readOGR(".", "EMS_LOCATION")
+fam <- readOGR(".", "Family_address")
 
-x <- mdb.get("Homwork5.mdb")
-for (i in x){print(contents(x))}
-
+plot(road)
+points(ems, col = "red", pch = 16)
+points(fam, col = "blue", pch = 16)
 ```
 
 
