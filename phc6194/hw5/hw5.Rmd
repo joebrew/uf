@@ -1,0 +1,52 @@
+---
+title: "HW 5"
+author: "Joe Brew"
+date: "10/05/2014"
+output: pdf_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+Set working directory:
+```{r}
+if ( Sys.info()["sysname"] == "Linux" ){
+  setwd("/home/joebrew/")
+} else {
+  setwd("C:/Users/BrewJR/")
+}
+
+mywd <- paste0(getwd(), "/Documents/uf/phc6194/hw5")
+setwd(mywd)
+```
+
+Read in the mdb file using the Hmsic library and mdb-tools.
+```{r}
+# Attach the necessary package
+library(Hmisc)
+
+# View which tables are available
+mdb.get("Homwork5.mdb", tables = TRUE)
+
+# Read in the Family_address table
+x <- mdb.get("Homwork5.mdb", tables = "Family_address")
+x <- mdb.get("Homwork5.mdb", tables = "GDB_Items")
+x <- mdb.get("Homwork5.mdb", tables = "road")
+
+library(rgdal)
+x <- readGDAL("Homwork5")
+
+x <- mdb.get("Homwork5.mdb")
+for (i in x){print(contents(x))}
+
+```
+
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
