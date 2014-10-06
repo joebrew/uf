@@ -2,7 +2,7 @@
 title: "HW 5"
 author: "Joe Brew"
 date: "10/05/2014"
-output: html_document
+output: pdf_document
 ---
 
 The code for the production of this document is available at <https://github.com/joebrew/uf>.
@@ -286,8 +286,8 @@ legend("left", fill = my_colors, bty = "n",
 
 ```
 
-And finally, an interactive map!
-```{r, results = "asis"}
+Here's the code for an interactive map (if you run this on your own computer)
+```{r, eval = FALSE}
 
 library(rCharts)
 
