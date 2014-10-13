@@ -1,0 +1,362 @@
+<PAMDataset>
+  <Metadata />
+  <Metadata domain="Esri">
+    <MDI key="PyramidResamplingType">NEAREST</MDI>
+  </Metadata>
+  <PAMRasterBand band="1">
+    <Histograms>
+      <HistItem>
+        <HistMin>-0.5</HistMin>
+        <HistMax>67.5</HistMax>
+        <BucketCount>68</BucketCount>
+        <IncludeOutOfRange>1</IncludeOutOfRange>
+        <Approximate>0</Approximate>
+        <HistCounts>1021415|135165|0|0|10383|15400|30006|11477|0|0|0|0|0|0|1434|227763|558970|70617|61016|245399|0|0|0|0|22666|0|134379|33019|6467|19190|205294|0|0|0|0|0|0|38533|0|15|0|0|30123|16|0|0|14772|0|0|0|0|0|0|0|18114|0|17031|9616|0|12875|53497|0|32072|76894|0|589001|112060|1</HistCounts>
+      </HistItem>
+    </Histograms>
+    <GDALRasterAttributeTable>
+      <FieldDefn index="0">
+        <Name>OBJECTID</Name>
+        <Type>0</Type>
+        <Usage>0</Usage>
+      </FieldDefn>
+      <FieldDefn index="1">
+        <Name>VALUE</Name>
+        <Type>0</Type>
+        <Usage>0</Usage>
+      </FieldDefn>
+      <FieldDefn index="2">
+        <Name>COUNT</Name>
+        <Type>0</Type>
+        <Usage>0</Usage>
+      </FieldDefn>
+      <FieldDefn index="3">
+        <Name>RED</Name>
+        <Type>1</Type>
+        <Usage>6</Usage>
+      </FieldDefn>
+      <FieldDefn index="4">
+        <Name>GREEN</Name>
+        <Type>1</Type>
+        <Usage>7</Usage>
+      </FieldDefn>
+      <FieldDefn index="5">
+        <Name>BLUE</Name>
+        <Type>1</Type>
+        <Usage>8</Usage>
+      </FieldDefn>
+      <FieldDefn index="6">
+        <Name>CLASS_NAMES</Name>
+        <Type>2</Type>
+        <Usage>2</Usage>
+      </FieldDefn>
+      <Row index="0">
+        <F>1</F>
+        <F>0</F>
+        <F>1021415</F>
+        <F>0.9686274509803922</F>
+        <F>0.9686274509803922</F>
+        <F>0.9686274509803922</F>
+        <F>Background</F>
+      </Row>
+      <Row index="1">
+        <F>2</F>
+        <F>1</F>
+        <F>135165</F>
+        <F>0.2509803921568627</F>
+        <F>0.8784313725490196</F>
+        <F>0.8156862745098039</F>
+        <F>Open water</F>
+      </Row>
+      <Row index="2">
+        <F>3</F>
+        <F>4</F>
+        <F>10383</F>
+        <F>0.8980392156862745</F>
+        <F>0.792156862745098</F>
+        <F>0.7372549019607844</F>
+        <F>Xeric-Mesic Live Oak Ecological Complex</F>
+      </Row>
+      <Row index="3">
+        <F>4</F>
+        <F>5</F>
+        <F>15400</F>
+        <F>0.7686274509803922</F>
+        <F>0.8156862745098039</F>
+        <F>0.5411764705882353</F>
+        <F>Mesic-Hydric Live Oak/ Sabal Palm Ecological Complex</F>
+      </Row>
+      <Row index="4">
+        <F>5</F>
+        <F>6</F>
+        <F>30006</F>
+        <F>0</F>
+        <F>0</F>
+        <F>1</F>
+        <F>Bay/Gum/Cypress Ecological Complex</F>
+      </Row>
+      <Row index="5">
+        <F>6</F>
+        <F>7</F>
+        <F>11477</F>
+        <F>0.4627450980392157</F>
+        <F>0.396078431372549</F>
+        <F>0.9803921568627451</F>
+        <F>Loblolly Bay Forest</F>
+      </Row>
+      <Row index="6">
+        <F>7</F>
+        <F>14</F>
+        <F>1434</F>
+        <F>0.9568627450980393</F>
+        <F>0.8509803921568627</F>
+        <F>0.0392156862745098</F>
+        <F>Sand Pine Forest</F>
+      </Row>
+      <Row index="7">
+        <F>8</F>
+        <F>15</F>
+        <F>227763</F>
+        <F>1</F>
+        <F>1</F>
+        <F>0</F>
+        <F>Xeric-Mesic Mixed Pine/Oak Forest Ecological Complex</F>
+      </Row>
+      <Row index="8">
+        <F>9</F>
+        <F>16</F>
+        <F>558970</F>
+        <F>0</F>
+        <F>0.6588235294117647</F>
+        <F>0</F>
+        <F>Mesic-Hydric Pine Forest Compositional Group</F>
+      </Row>
+      <Row index="9">
+        <F>10</F>
+        <F>17</F>
+        <F>70617</F>
+        <F>0.9333333333333334</F>
+        <F>0.3882352941176471</F>
+        <F>0.06274509803921569</F>
+        <F>Swamp Forest Ecological Complex</F>
+      </Row>
+      <Row index="10">
+        <F>11</F>
+        <F>18</F>
+        <F>61016</F>
+        <F>0.807843137254902</F>
+        <F>0.5490196078431373</F>
+        <F>0.9686274509803922</F>
+        <F>Cypress Forest Compositional Group</F>
+      </Row>
+      <Row index="11">
+        <F>12</F>
+        <F>19</F>
+        <F>245399</F>
+        <F>0.8235294117647058</F>
+        <F>0.7058823529411765</F>
+        <F>0.5490196078431373</F>
+        <F>Mixed Evergreen.Cold-deciduous Hardwood Forest</F>
+      </Row>
+      <Row index="12">
+        <F>13</F>
+        <F>24</F>
+        <F>22666</F>
+        <F>0.6470588235294118</F>
+        <F>0.1647058823529412</F>
+        <F>0.1647058823529412</F>
+        <F>Live Oak Woodland</F>
+      </Row>
+      <Row index="13">
+        <F>14</F>
+        <F>26</F>
+        <F>134379</F>
+        <F>0.6862745098039216</F>
+        <F>0.8352941176470589</F>
+        <F>0</F>
+        <F>Sandhill Ecological Complex</F>
+      </Row>
+      <Row index="14">
+        <F>15</F>
+        <F>27</F>
+        <F>33019</F>
+        <F>0.6509803921568628</F>
+        <F>0.5725490196078431</F>
+        <F>0.1686274509803922</F>
+        <F>Broad-leaved Evergreen and Mixed Evergreen/Cold-deciduous Shrubland Compositional Group</F>
+      </Row>
+      <Row index="15">
+        <F>16</F>
+        <F>28</F>
+        <F>6467</F>
+        <F>0.2549019607843137</F>
+        <F>0.5607843137254902</F>
+        <F>0.6</F>
+        <F>Flooded Broad-leaved Evergreen Shrubland Compositional Group</F>
+      </Row>
+      <Row index="16">
+        <F>17</F>
+        <F>29</F>
+        <F>19190</F>
+        <F>0.9215686274509803</F>
+        <F>0.8705882352941177</F>
+        <F>0.592156862745098</F>
+        <F>Dry Prairie (Xeric-Mesic) Ecological Complex</F>
+      </Row>
+      <Row index="17">
+        <F>18</F>
+        <F>30</F>
+        <F>205294</F>
+        <F>0.4901960784313725</F>
+        <F>0.5764705882352941</F>
+        <F>0.8666666666666667</F>
+        <F>Gallberry/Saw Palmetto Shrubland Compositional Group</F>
+      </Row>
+      <Row index="18">
+        <F>19</F>
+        <F>37</F>
+        <F>38533</F>
+        <F>0.3058823529411765</F>
+        <F>0.5529411764705883</F>
+        <F>0.8509803921568627</F>
+        <F>Saturated-Flooded Cold-deciduous and Mixed Evergreen/Cold-deciduous Shrubland Ecological Complex</F>
+      </Row>
+      <Row index="19">
+        <F>20</F>
+        <F>39</F>
+        <F>15</F>
+        <F>0</F>
+        <F>0.392156862745098</F>
+        <F>0</F>
+        <F>Graminiod Dry Prairie Ecological Complex</F>
+      </Row>
+      <Row index="20">
+        <F>21</F>
+        <F>42</F>
+        <F>30123</F>
+        <F>0.6509803921568628</F>
+        <F>0.984313725490196</F>
+        <F>0.4509803921568628</F>
+        <F>Graminoid Emergent Marsh Compositional Group</F>
+      </Row>
+      <Row index="21">
+        <F>22</F>
+        <F>43</F>
+        <F>16</F>
+        <F>0.8156862745098039</F>
+        <F>0.9529411764705882</F>
+        <F>0.02352941176470588</F>
+        <F>Sawgrass Marsh</F>
+      </Row>
+      <Row index="22">
+        <F>23</F>
+        <F>46</F>
+        <F>14772</F>
+        <F>0.8274509803921568</F>
+        <F>0.5372549019607843</F>
+        <F>0.02745098039215686</F>
+        <F>Cattail Marsh Compositional Group</F>
+      </Row>
+      <Row index="23">
+        <F>24</F>
+        <F>54</F>
+        <F>18114</F>
+        <F>0.5450980392156862</F>
+        <F>0.8901960784313725</F>
+        <F>0.7568627450980392</F>
+        <F>Temperate Wet Prairie</F>
+      </Row>
+      <Row index="24">
+        <F>25</F>
+        <F>56</F>
+        <F>17031</F>
+        <F>0.3607843137254902</F>
+        <F>0.596078431372549</F>
+        <F>0.4549019607843137</F>
+        <F>Forb Emergent Marsh</F>
+      </Row>
+      <Row index="25">
+        <F>26</F>
+        <F>57</F>
+        <F>9616</F>
+        <F>0.4823529411764706</F>
+        <F>0.792156862745098</F>
+        <F>0.7411764705882353</F>
+        <F>Water Lily or Floating Leaved Vegetation</F>
+      </Row>
+      <Row index="26">
+        <F>27</F>
+        <F>59</F>
+        <F>12875</F>
+        <F>1</F>
+        <F>1</F>
+        <F>1</F>
+        <F>Sand, Beach</F>
+      </Row>
+      <Row index="27">
+        <F>28</F>
+        <F>60</F>
+        <F>53497</F>
+        <F>1</F>
+        <F>1</F>
+        <F>1</F>
+        <F>Bare soil/Clearcut</F>
+      </Row>
+      <Row index="28">
+        <F>29</F>
+        <F>62</F>
+        <F>32072</F>
+        <F>0.6</F>
+        <F>0.6</F>
+        <F>0.6</F>
+        <F>Urban</F>
+      </Row>
+      <Row index="29">
+        <F>30</F>
+        <F>63</F>
+        <F>76894</F>
+        <F>0.6784313725490196</F>
+        <F>0.6784313725490196</F>
+        <F>0.6784313725490196</F>
+        <F>Urban Residential</F>
+      </Row>
+      <Row index="30">
+        <F>31</F>
+        <F>65</F>
+        <F>589001</F>
+        <F>0.9568627450980393</F>
+        <F>0.9882352941176471</F>
+        <F>0.7254901960784314</F>
+        <F>Agriculture</F>
+      </Row>
+      <Row index="31">
+        <F>32</F>
+        <F>66</F>
+        <F>112060</F>
+        <F>0.8352941176470589</F>
+        <F>0.8745098039215686</F>
+        <F>0.7647058823529411</F>
+        <F>Pasture/Grassland/Agriculture</F>
+      </Row>
+      <Row index="32">
+        <F>33</F>
+        <F>67</F>
+        <F>1</F>
+        <F>0.8980392156862745</F>
+        <F>0.8352941176470589</F>
+        <F>0.8196078431372549</F>
+        <F>Agriculture/Groves/Ornamental</F>
+      </Row>
+    </GDALRasterAttributeTable>
+    <Metadata>
+      <MDI key="STATISTICS_MINIMUM">0</MDI>
+      <MDI key="STATISTICS_MAXIMUM">67</MDI>
+      <MDI key="STATISTICS_MEAN">24.645901360009</MDI>
+      <MDI key="STATISTICS_STDDEV">24.339004785932</MDI>
+      <MDI key="STATISTICS_SKIPFACTORX">1</MDI>
+      <MDI key="STATISTICS_SKIPFACTORY">1</MDI>
+      <MDI key="STATISTICS_EXCLUDEDVALUES"></MDI>
+      <MDI key="STATISTICS_COVARIANCES">592.387153969643</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>
