@@ -1,8 +1,8 @@
 # Load package
-library(rgdal)
 library(sp)
 library(raster)
 library(spatstat)
+library(rgdal)
 
 # Setwd
 setwd("/home/joebrew/Documents/uf/phc6194/hw6")
@@ -119,5 +119,51 @@ zmin <- extract(relevation,
 # Now add total diferential for area back to posibs
 posibs$slope <- zmax - zmin
 
+# Get distance from nearest hospital
+posibs$distance_from_nearest_hosp <- NA
+for (i in 1:nrow(posibs)){
+  hosp <- spDistsN1(coordinates(hospitals), pt = coordinates(posibs)[i,])
+  posibs$distance_from_nearest_hosp[i] <-  min(hosp, na.rm = TRUE)
+}
 
+spDistsN1(coordinates(posibs), pt = coordinates(hospitals)[1,])
+
+##################
 # NOW FOR THE FINAL CALCULATIONS
+
+# Let's scale both slope and distance from nearest hospital
+posibs$slope_rec <- scale(posibs$slope)
+posibs$distance_rec <- scale(posibs$distance_from_nearest_hosp)
+
+# We wan't LOW slope but HIGH distance, so let's invert slope 
+# so that both variables we want high
+posibs$slope_rec <- posibs$slope_rec * -1
+
+# I'm going to weight distance 3 times as much as slope,
+# since slope can be fixed through modern engineering
+posibs$distance_rec <- posibs$distance_rec *2
+
+# Assign a score (at this point, it's just a combo of slope_rec and distance_rec,
+# since I've already weighted)
+posibs$score <- posibs$distance_rec + posibs$slope_rec
+
+# Look at that score
+hist(posibs$score)
+
+# Make a color vector and plot
+library(RColorBrewer)
+myrange <- ceiling(max(posibs$score)) - ceiling(min(posibs$score))
+mycols <- colorRampPalette(c("darkred",  "darkgreen"))(myrange + 1)
+mycols <- adjustcolor(mycols, alpha.f = 0.4)
+plot(posibs,
+     pch = 16,
+     cex = 0.6,
+     col = mycols[ceiling(min(posibs$score)) + ceiling(posibs$score) + 1] )
+
+# Best place to build new hospital
+points(posibs[which(posibs$score == max(posibs$score)),],
+       col = "darkblue", pch = 16,
+       cex = 3)
+
+# Haha - well, it's flat and far away from other hospitals...
+# And I guess that's what I asked for.  :/
