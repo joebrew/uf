@@ -1,0 +1,116 @@
+\begin{thebibliography}{13}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[on~Future Research Directions~in Childhood Obesity~Prevention and
+  Treatment(2007)]{NIH}
+Working~Group on~Future Research Directions~in Childhood Obesity~Prevention and
+  Treatment.
+\newblock Future research: Childhood obesity prevention and treatment.
+\newblock \emph{NIH}, aug 2007.
+\newblock URL
+  \url{http://www.nhlbi.nih.gov/research/reports/2007-child-obesity/index.htm#postmodel}.
+
+\bibitem[Ogden et~al.(2014)Ogden, Carroll, and B~Kit]{Ogden2014}
+C~Ogden, M~Carroll, and K~Flegal B~Kit.
+\newblock Prevalence of childhood and adult obesity in the united states,
+  2011-2012.
+\newblock \emph{{JAMA}}, 311\penalty0 (8):\penalty0 806, feb 2014.
+\newblock \doi{10.1001/jama.2014.732}.
+\newblock URL \url{http://dx.doi.org/10.1001/jama.2014.732}.
+
+\bibitem[Bonnet et~al.(2014)Bonnet, Somm, and Rosen]{Bonnet2014}
+N~Bonnet, E~Somm, and C~Rosen.
+\newblock Diet and gene interactions influence the skeletal response to
+  polyunsaturated fatty acids.
+\newblock \emph{Bone}, 68:\penalty0 100--107, nov 2014.
+\newblock \doi{10.1016/j.bone.2014.07.024}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.bone.2014.07.024}.
+
+\bibitem[M{\o}ller et~al.(2014)M{\o}ller, Ajslev, Andersen, Dalg{\aa}rd, and
+  S{\o}rensen]{Mller2014}
+S~M{\o}ller, T~Ajslev, C~Andersen, C~Dalg{\aa}rd, and I~S{\o}rensen.
+\newblock Risk of childhood overweight after exposure to tobacco smoking in
+  prenatal and early postnatal life.
+\newblock \emph{{PLoS} {ONE}}, 9\penalty0 (10):\penalty0 e109184, oct 2014.
+\newblock \doi{10.1371/journal.pone.0109184}.
+\newblock URL \url{http://dx.doi.org/10.1371/journal.pone.0109184}.
+
+\bibitem[Walton et~al.(2014)Walton, Simpson, Darlington, and
+  Haines]{Walton2014}
+K~Walton, J~Simpson, G~Darlington, and J~Haines.
+\newblock Parenting stress: a cross-sectional analysis of associations with
+  childhood obesity, physical activity, and {TV} viewing.
+\newblock \emph{{BMC} Pediatrics}, 14\penalty0 (1):\penalty0 244, 2014.
+\newblock \doi{10.1186/1471-2431-14-244}.
+\newblock URL \url{http://dx.doi.org/10.1186/1471-2431-14-244}.
+
+\bibitem[Taveras et~al.(2010)Taveras, Gillman, Kleinman, Rich-Edwards, and
+  Rifas-Shiman]{Taveras2010}
+E~Taveras, M~Gillman, K~Kleinman, J~Rich-Edwards, and S~Rifas-Shiman.
+\newblock Racial/ethnic differences in early-life risk factors for childhood
+  obesity.
+\newblock \emph{{PEDIATRICS}}, 125\penalty0 (4):\penalty0 686--695, mar 2010.
+\newblock \doi{10.1542/peds.2009-2100}.
+\newblock URL \url{http://dx.doi.org/10.1542/peds.2009-2100}.
+
+\bibitem[Levine(2011)]{Levine2011}
+J~Levine.
+\newblock Poverty and obesity in the u.s.
+\newblock \emph{Diabetes}, 60\penalty0 (11):\penalty0 2667--2668, oct 2011.
+\newblock \doi{10.2337/db11-1118}.
+\newblock URL \url{http://dx.doi.org/10.2337/db11-1118}.
+
+\bibitem[Bevelander et~al.(2012)Bevelander, \"{u}tz, and
+  Engels]{Bevelander2012}
+K~Bevelander, J~Doeschka \"{u}tz, and Rutger~C.M.E. Engels.
+\newblock Social norms in food intake among normal weight and overweight x.
+\newblock \emph{Appetite}, 58\penalty0 (3):\penalty0 864--872, jun 2012.
+\newblock \doi{10.1016/j.appet.2012.02.003}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.appet.2012.02.003}.
+
+\bibitem[D~Cohen(2000)]{Cohen2000}
+R~Scribner P Kissinger K Mason J~Wildgen D~Cohen, S~Spear.
+\newblock Broekn windows and the risk of gonorrhea.
+\newblock \emph{Bone}, 90\penalty0 (2):\penalty0 230--236, feb 2000.
+
+\bibitem[PGustafsson et~al.(2014)PGustafsson, Sebastian, UJanlert, Theorell,
+  Westerlund, and Hammarstr\"{o}m]{Gustafsson2014}
+PGustafsson, MSan Sebastian, UJanlert, T~Theorell, H~Westerlund, and
+  A~Hammarstr\"{o}m.
+\newblock Life-course accumulation of neighborhood disadvantage and allostatic
+  load: Empirical integration of three social determinants of health
+  frameworks.
+\newblock \emph{Am J Public Health}, 104\penalty0 (5):\penalty0 904--910, may
+  2014.
+\newblock \doi{10.2105/ajph.2013.301707}.
+\newblock URL \url{http://dx.doi.org/10.2105/AJPH.2013.301707}.
+
+\bibitem[Boggess and Maskaly(2014)]{Boggess2014}
+N~Boggess and J~Maskaly.
+\newblock The spatial context of the disorder{\textendash}crime relationship in
+  a study of reno neighborhoods.
+\newblock \emph{Social Science Research}, 43:\penalty0 168--183, jan 2014.
+\newblock \doi{10.1016/j.ssresearch.2013.10.002}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.ssresearch.2013.10.002}.
+
+\bibitem[Kotabe(2014)]{Kotabe2014}
+H~Kotabe.
+\newblock The world is random: a cognitive perspective on perceived disorder.
+\newblock \emph{Frontiers in Psychology}, 5, jun 2014.
+\newblock \doi{10.3389/fpsyg.2014.00606}.
+\newblock URL \url{http://dx.doi.org/10.3389/fpsyg.2014.00606}.
+
+\bibitem[O'Brien and Kauffman(2012)]{OBrien2012}
+D~Tumminelli O'Brien and R~Kauffman.
+\newblock Broken windows and low adolescent prosociality: Not cause and
+  consequence, but co-symptoms of low collective efficacy.
+\newblock \emph{American Journal of Community Psychology}, 51\penalty0
+  (3-4):\penalty0 359--369, nov 2012.
+\newblock \doi{10.1007/s10464-012-9555-1}.
+\newblock URL \url{http://dx.doi.org/10.1007/s10464-012-9555-1}.
+
+\end{thebibliography}

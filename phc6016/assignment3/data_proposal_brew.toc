@@ -1,0 +1,6 @@
+\contentsline {section}{Assignment 3}{2}{Doc-Start}
+\contentsline {subsection}{Background}{2}{section*.1}
+\contentsline {subsection}{Proposed project}{2}{section*.1}
+\contentsline {subsection}{The data}{2}{section*.1}
+\contentsline {subsection}{Methods}{3}{section*.1}
+\contentsline {subsection}{Comments}{3}{section*.1}
