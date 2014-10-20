@@ -65,8 +65,7 @@ plot(tract2,
      border = FALSE)
 
 # Get 1 mile buffer for each polygon of tract2
-# x <- gBuffer(tract2[1:100,], width=1000) # need more ram to perform on all
-# y <- tract2[1:100,]
+#tract2buf <- gBuffer(tract2, width=1000) # need more ram to perform on all
 
 # Generate 100,000 random points into sp object
 x <- runif(n = 100000,
@@ -82,6 +81,7 @@ proj4string(rand) <- proj4string(tract2)
 
 # Of these 100,000, how many mistakenly fall into more than one?
 x <- over(rand, polygons(tract2))
+
 
 
 
