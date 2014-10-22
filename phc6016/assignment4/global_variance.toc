@@ -1,0 +1,11 @@
+\select@language {english}
+\contentsline {section}{Assignment 3}{2}{Doc-Start}
+\contentsline {subsection}{Background}{2}{section*.1}
+\contentsline {subsection}{Variance}{2}{section*.1}
+\contentsline {subsection}{Breakdown by region}{2}{section*.1}
+\contentsline {subsection}{Breakdown by country}{2}{section*.1}
+\contentsline {subsection}{Breakdown by geography}{3}{section*.1}
+\contentsline {subsection}{Correlations}{3}{section*.1}
+\contentsline {subsection}{Conclusion}{4}{section*.1}
+\contentsline {subsection}{Other figures (just for fun)}{4}{section*.1}
+\contentsline {subsection}{The data}{4}{section*.1}
