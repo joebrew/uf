@@ -2,7 +2,7 @@
 \usepackage{hyperref}
 \usepackage[english]{babel}
 \usepackage{blindtext}
-
+\usepackage{url}
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage[center]{titlesec}
@@ -80,7 +80,7 @@ Discuss the global variance in the public health problem you choose.  Are there 
 \addcontentsline{toc}{subsection}{Background}
 %------------------------------------------
 
-Pediatric adiposity is one of the public health measures with the most global variance.  Though the prevalence of childhood obesity and overweight (like adult obesity and overweight) is increasingly rapidly in most developing countries (and shows no signs of decline in developed countries), variations in both the rate of increase and the "take-off" time (ie, the moment at which the increase began) have lead to a massively unequal distribution of childhood obesity throughout the world.  \\
+Pediatric adiposity is one of the public health measures with the most global variance.  Though the prevalence of childhood obesity and overweight (like adult obesity and overweight) is increasing rapidly in most developing countries (and shows no signs of decline in developed countries), variations in both the rate of increase and the "take-off" time (ie, the moment at which the increase began) have lead to a massively unequal distribution of childhood obesity throughout the world.  \\
 
 The prevalence of childhood obesity varies by socioeconomic class, race, geography, time and numerous other factors.  For the purposes of this (short) paper, I examine the prevalence of childhood overweight (limited here to children 2-4 years of age only) at the \emph{country} level.  The raw data used for the following analysis come from the WHO, IMF and OECD, but all figures and calculations (and the errors therein) are entirely mine. \\
 
@@ -125,7 +125,7 @@ Breaking down the prevalence further (by country) sheds further light on the int
 \subsection*{Breakdown by geography}
 \addcontentsline{toc}{subsection}{Breakdown by geography}
 %------------------------------------------
-Mapping childhood obesity (ages 2-4) yields interesting findings, as it does not take the same pattern that later childhood obesity or adult obesity.  This could be anomalous; or, it could be a sign of rapid changes taking place.  In ohter words, the "hotspots" in Northern and Southern Africa may be in for an increasingly severe adult obesity epidemic in coming years.
+Mapping childhood obesity (ages 2-4) yields interesting findings, as it does not take the same pattern that later childhood obesity or adult obesity.  This could be anomalous; or, it could be a sign of rapid changes taking place.  In other words, the "hotspots" in Northern and Southern Africa may be in for an increasingly severe adult obesity epidemic in coming years.
 
 \begin{center}
 \includegraphics{global_variance-007}
@@ -144,13 +144,13 @@ Using IMF data, once can compare the prevalence of childhood obesity to a countr
 \end{center}
 What emerges is clearly a semi-linear relationship between a country's wealth and the prevalence of obesity (line of best fit using least squares method shown in red) (R-squared of approximately 0.11).  \\
 
-However, more careful examination suggests that analysis at such a macro scale masks region-level differences in the relationship between wealth and health.  In other words, the effect of GDP per capita on childhood obesity changes in both magnitude and direction when analyzed at the regional level.  The below plot shows the line of best fit for each WHO region.  What is striking is that Europe seems to have an inverse relationship between wealth and childhood obesity.      \\
+However, more careful examination suggests that analysis at such a macro scale masks region-level differences in the relationship between wealth and health.  In other words, the effect of GDP per capita on childhood obesity changes in both magnitude and direction when analyzed at the regional level.  The below plot shows the line of best fit for each WHO region.  What is striking is that (western) Europe seems to have an inverse relationship between wealth and childhood obesity, unlike all the other regions.      \\
 
 \begin{center}
 \includegraphics{global_variance-009}
 \end{center}
 
-When the interaction terms between region and GDP per capita / childhood obesity are introduced to a linear model, R-squared increases to 34\%.  In other words, the pathways to childhood obesity are likely different in different places.
+When the interaction terms between region and GDP per capita / childhood obesity are introduced into a linear model, R-squared increases to 34\%.  In other words, the pathways to childhood obesity are likely different in different places.
 
 %------------------------------------------
 \subsection*{Conclusion}
@@ -159,7 +159,22 @@ When the interaction terms between region and GDP per capita / childhood obesity
 
 \noindent \textbf{Summary:} The prevalence of childhood obesity varies by region and country, and the magnitude and direction of the relationships between obesity and covariates (like wealth) also vary by country.  This is an important finding in that it confirms obesity's \emph{multi-causality}, and suggests that from an intervention standpoint a one-size-fits-all approach will likely be met with varying degrees of success. \\
 
-\noindent \textbf{Limitations:} 
+\noindent \textbf{Limitations:} For this analysis, I only used the prevalence of overweight among 2 to 4 year-olds.  I also wrote a "fuzzy" matching algorithm to merge the data between OECD, WHO and IMF sources, which is prone to errors and mismatches.\footnote{Basically, if a country's name resembled a name in a different dataset, I considered it a match.   Full code is available at \url{https://github.com/joebrew/uf/tree/master/phc6016/assignment4}}  Finally, the estimates herein vary in both quality of data as well as time of collection.  \\
+
+\noindent \textbf{Sources:} I used only data which is publicly available online.  
+\begin{itemize}
+
+\item IMF: \url{http://www.imf.org/external/pubs/ft/weo/2014/02/weodata/weorept.aspx}
+\item OECD: \url{http://stats.oecd.org/index.aspx?DataSetCode=HEALTH_STAT}
+\item WHO: \url{http://apps.who.int/gho/data/view.main.2450?lang=en}
+
+\end{itemize} \\
+
+\vspace{3mm}
+\noindent \textbf{Technical details:} Figures are small, but will retain quality under zoom.  \\
+All analysis, charts and maps were carried out entirely inR.  Code available at \url{https://github.com/joebrew/uf/tree/master/phc6016/assignment4}.    
+
+
 
 \vfill
 \columnbreak
@@ -184,10 +199,6 @@ When the interaction terms between region and GDP per capita / childhood obesity
 \end{center}
 
 
-%------------------------------------------
-\subsection*{The data}
-\addcontentsline{toc}{subsection}{The data}
-%------------------------------------------
 
 
 \end{multicols}

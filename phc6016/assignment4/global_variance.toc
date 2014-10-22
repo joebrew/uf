@@ -8,4 +8,3 @@
 \contentsline {subsection}{Correlations}{3}{section*.1}
 \contentsline {subsection}{Conclusion}{4}{section*.1}
 \contentsline {subsection}{Other figures (just for fun)}{4}{section*.1}
-\contentsline {subsection}{The data}{4}{section*.1}
