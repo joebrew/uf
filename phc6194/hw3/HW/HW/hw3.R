@@ -308,6 +308,14 @@ save.image("HW/hw3.RData")
 #
 #####
 
+
+# RANDOM COUNTY PLOT
+mycols3 <- colorRampPalette(c("blue", "darkgreen", "orange", "red"))(nrow(pop))
+
+plot(pop, col = adjustcolor(rainbow(43), alpha.f = 0.7), border = "darkgrey")
+plot(pop, col = adjustcolor(mycols3, alpha.f = 0.7), border = "darkgrey")
+
+
 #####
 #
 #####

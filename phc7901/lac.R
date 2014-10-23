@@ -144,8 +144,59 @@ legend("center",
        bty = "n")
 
 # Get 1 mile buffer for each polygon of tract2
-tract2buf <- gBuffer(tract2, width=804.5) # need more ram to perform on all
+tract2buf <- gBuffer(tract2[1:100,], width=sample(1:5000, 1609)) # need more ram to perform on all
 
+par(mfrow = c(1,2))
+plot(tract2[1:100,], col = adjustcolor("black", alpha.f = 0.7),
+     border = NA)
+plot(tract2[1:100,], col = adjustcolor("black", alpha.f = 0.7),
+     border = NA)
+plot(tract2buf, add = T,
+     col = adjustcolor("red", alpha.f=0.5))
+
+# Do some travel distance stuff in time
+library(ggmap)
+TravelTime <- function(from, to){
+  mapdist(from, to, mode = "driving")
+}
+
+# Get centroids
+centroids <- coordinates(tract2)
+
+# Random place
+mycentroid <- c(620000, -640000)
+
+# Subset centroids to only include places nearby
+centroids <- data.frame(centroids)
+names(centroids) = c("x", "y")
+
+centroids$distance <- NA
+for (i in 1:nrow(centroids)){
+  xdist <- centroids$x[i] - mycentroid[1]
+  ydist <- centroids$y[i] - mycentroid[2]
+  
+  dist <- sqrt(((xdist)^2) + ((ydist)^2))
+  
+  centroids$distance[i] <- dist
+}
+
+centroids <- centroids[which(centroids$distance <= 3218),]
+
+# convert to lat lon
+coordinates(centroids) <- ~x+y
+proj4string(centroids) <- proj4string(tract)
+centroids <- spTransform(centroids, CRS(proj4string(tract)))
+
+for (i in 1:nrow(centroids)){
+  centroids$travel_time[i] <-
+    TravelTime(from = , to)
+}
+
+plot(tract2, border = "grey", col = adjustcolor("grey", alpha.f = 0.6))
+> points(centroids, pch = 16, cex = 0.1, col = "red")
+
+pbuf <- gBuffer(centroids, width = 3218)
+plot(pbuf, add = T)
 # # Read in California data
 # cal <- read.csv("california_census_data/ACS_10_5YR_DP05_with_ann.csv", skip = 0)
 # 
