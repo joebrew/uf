@@ -1,7 +1,21 @@
+setwd("C:/Users/BrewJR/Desktop")
 dat <- read.csv("obesity_flu_absences_merged.csv")
 dat <- dat[which(dat$age_months <= 160),]
 dat <- dat[which(dat$weight <= 300),]
 dat <- dat[which(dat$height <= 75),]
+
+
+
+
+library(scatterplot3d)
+library(rgl)
+library(car)
+scatter3d(dat$weight ~ dat$height + dat$age_months, 
+          fit="smooth", #linear, smooth, additive
+          ylab="Weight", xlab="Height", zlab="Age",
+          col = "red")
+
+
 # Height and weight
 plot(dat$height, dat$weight,
      col = adjustcolor("blue", alpha.f = 0.1),
