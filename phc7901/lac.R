@@ -1,7 +1,7 @@
 library(rgdal)
 
-#setwd("C:/Users/BrewJR/Documents/uf/phc7901/")
-setwd("/home/joebrew/Documents/uf/phc7901")
+setwd("C:/Users/BrewJR/Documents/uf/phc7901/")
+#setwd("/home/joebrew/Documents/uf/phc7901")
 # tract
 tract <- readOGR("lac_census_tracts", "tl_2010_06037_tract10")
 plot(tract, col = sample(rainbow(nrow(tract)), nrow(tract)), border = FALSE)
@@ -83,6 +83,29 @@ mean(block2$maxdist / 1609)
 # Max dist in miles
 tract2$maxdistmiles <- tract2$maxdist / 1609
 block2$maxdistmiles <- block2$maxdist / 1609
+
+# Get actual location of researchers
+library(ggmap)
+authors <- read.csv("authors.csv", stringsAsFactors = FALSE)
+#authors$place[c(1,3,5,7)] <- "UCLA"
+x <- geocode(authors$place)  
+
+par(mar = c(0,0,0,0))
+par(oma = c(0,0,0,0))
+plot(tract, border = NA, 
+     col = sample(adjustcolor(c("black", "darkgrey", "grey", "brown", "grey30"),
+                              alpha.f = 0.3), 
+                  nrow(tract), replace = TRUE),
+     lwd = 0.1,
+     ylim = c(33.6, 34.8))
+text(x$lon, x$lat, col = "red",
+     labels = authors$name,
+     pos = c(1,1,2,2,3,3,4,4),
+     cex = 0.6)
+points(x$lon, x$lat, col = "darkred", pch = 16)
+points(x$lon, x$lat, col = "black")
+
+
 
 # Plot by maximum allowable distance
 my_colors <- colorRampPalette(c("grey", "darkred"))(max(ceiling(tract2$maxdist)))
