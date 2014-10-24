@@ -1,19 +1,35 @@
 setwd("C:/Users/BrewJR/Desktop")
+
+# read in alachua data
 dat <- read.csv("obesity_flu_absences_merged.csv")
+
+# clean up the crazies
 dat <- dat[which(dat$age_months <= 160),]
 dat <- dat[which(dat$weight <= 300),]
 dat <- dat[which(dat$height <= 75),]
 
-
-
-
+# 3d scatterplot with smoothed plane
 library(scatterplot3d)
 library(rgl)
 library(car)
 scatter3d(dat$weight ~ dat$height + dat$age_months, 
           fit="smooth", #linear, smooth, additive
           ylab="Weight", xlab="Height", zlab="Age",
-          col = "red")
+          axis.col=c("darkmagenta", "black", "darkcyan"),
+          surface.col=c("blue", "green", "orange", "magenta", "cyan", "red", 
+                        "yellow", "gray"), surface.alpha=0.3,
+          neg.res.col="red", pos.res.col="darkgreen",
+          point.col = "darkblue")
+
+# scatter3d(dat$weight ~ dat$height + dat$age_months, 
+#           fit="smooth", #linear, smooth, additive
+#           ylab="Weight", xlab="Height", zlab="Age",
+#           axis.col=c("darkmagenta", "black", "darkcyan"),
+#           surface.col=c("blue", "green", "orange", "magenta", "cyan", "red", 
+#                         "yellow", "gray"), surface.alpha=0.3,
+#           neg.res.col="red", pos.res.col="darkgreen",
+#           point.col = "grey")
+
 
 
 # Height and weight
@@ -39,6 +55,40 @@ legend("topleft",
        lwd = 2,
        legend = c("Least squares", "Lowess"),
        bty = "n")
+
+# High density scatterplot
+library(hexbin)
+HexFun <- function(x, y, xlab = NA, ylab = NA, main = NA){
+  bin<-hexbin(x, y, xbins=50) 
+  plot(bin, main=main,
+       xlab = xlab,
+       ylab = ylab)
+}
+
+HexFun(x = dat$height,
+       y = dat$weight,
+       main = "Hexagonal binning of height and weight",
+       xlab = "Height",
+       ylab = "Weight")
+HexFun(x = dat$age_months / 12,
+       y = dat$weight,
+       main = "Hexagonal binning of age and weight",
+       xlab = "Age (years)",
+       ylab = "Weight")
+HexFun(x = dat$age_months / 12,
+       y = dat$height,
+       main = "Hexagonal binning of age and height",
+       xlab = "Age (years)",
+       ylab = "Height")
+
+
+
+x <- dat$height
+y <- dat$weight
+bin<-hexbin(x, y, xbins=50) 
+plot(bin, main="Hexagonal Binning of height and weight",
+     xlab = "Height",
+     ylab = "Weight")
 
 # Age and weight
 library(dplyr)
