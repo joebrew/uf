@@ -7,6 +7,7 @@ dat <- read.csv("obesity_flu_absences_merged.csv")
 dat <- dat[which(dat$age_months <= 160),]
 dat <- dat[which(dat$weight <= 300),]
 dat <- dat[which(dat$height <= 75),]
+dat <- dat[which(dat$height >= 40),]
 
 # 3d scatterplot with smoothed plane
 library(scatterplot3d)

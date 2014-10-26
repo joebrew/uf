@@ -1,0 +1,545 @@
+\documentclass[11pt]{article}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[center]{titlesec}
+\usepackage{geometry}
+%\usepackage{mathtools}
+
+\usepackage[sort, numbers]{natbib}
+
+
+%
+%\setlength{\columnseprule}{0.4pt}
+%\setlength{\footskip}{20pt}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[C]{PHC 6016 $\bullet$ Joe Brew $\bullet$ Social Epidemiology}
+\fancyfoot[C]{  $\bullet$ Assignment 3 \bullet$  }
+\renewcommand\headrulewidth{1pt}
+\renewcommand\footrulewidth{1pt}
+\pagestyle{fancy}
+
+%
+
+\setlength{\columnsep}{1.5cm}
+%\setlength{\columnseprule}{0.4pt}
+
+%\MakeOuterQuote{"}
+
+
+
+\graphicspath{ {/home/joebrew/Documents/uf/phc6016/assignment4} }
+
+%the next two lines adjust the third, centered section of the exec sum
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\begin{document}
+\SweaveOpts{concordance=TRUE, echo=FALSE}
+
+\title{\textbf{Global variance in childhood obesity}}
+\author{Joe Brew}
+
+
+\maketitle
+
+\emph{
+Discuss the global variance in the public health problem you choose.  Are there particular reasons to study the problem in particular places, for instance where exposure is earlier, or untreated prevalence is higher, or incidence is especially high? I am especially interested in you find out if  relationships differ in other places.  For instance, a region where gonorrhea is high and the quality of the neighborhood is low.  This would mean this is an interesting place to study "your" problem.
+}
+\tableofcontents
+
+\vspace{20mm}
+
+\begin{center}
+\includegraphics[width=2cm]{uf}
+\end{center}
+
+
+\newgeometry{margin=2.5cm}
+\fancyhfoffset[E,O]{0pt}
+
+
+<<echo = FALSE, eval = TRUE>>=
+who <- read.csv("/home/joebrew/Documents/uf/phc6016/assignment4/who_data/data-verbose.csv", stringsAsFactors = FALSE)
+
+# Create different dataframes for different indicators
+#   overweight
+overweight <- who[which(who$GHO..DISPLAY. ==
+                          "Children aged <5 years overweight (%)" &
+                          who$SEX..CODE. == "BTSX"),
+                  c("COUNTRY..DISPLAY.", "Numeric", "YEAR..CODE.",
+                    "REGION..DISPLAY.")]
+names(overweight) <- c("country", "overweight", "year", "region")
+#   underweight
+underweight <- who[which(who$GHO..DISPLAY. ==
+                          "Children aged <5 years underweight (%)" &
+                          who$SEX..CODE. == "BTSX"),
+                  c("COUNTRY..DISPLAY.", "Numeric", 
+                    "YEAR..CODE.", "REGION..DISPLAY.")]
+names(underweight) <- c("country", "underweight", "year", "region")
+
+# sort by year and then remove duplicates
+overweight <- overweight[order(rev(overweight$year)),]
+underweight <- underweight[order(rev(underweight$year)),]
+overweight <- overweight[which(!duplicated(overweight$country)),]
+underweight <- underweight[which(!duplicated(underweight$country)),]
+
+# merge
+who <- merge(overweight,
+             underweight,
+             by= "country",
+             all.x = TRUE,
+             all.y = TRUE)
+
+who$region <- factor(who$region.y)
+who <- who[,c("country", "overweight", "underweight", "region")]
+
+my_colors <- c("darkblue", "darkgreen", "darkred",
+               "darkorange", "grey", "purple")
+who$color <- adjustcolor(my_colors[as.numeric(who$region)],
+                         alpha.f = 0.6)
+
+who <- who[which(!is.na(who$overweight)),]
+
+@
+
+
+<<>>=
+# Read in IMF data and merge to who
+# http://www.imf.org/external/pubs/ft/weo/2014/02/weodata/weorept.aspx?sy=2013&ey=2013&ssd=1&sort=country&ds=.&br=1&pr1.x=16&pr1.y=7&c=512%2C668%2C914%2C672%2C612%2C946%2C614%2C137%2C311%2C962%2C213%2C674%2C911%2C676%2C193%2C548%2C122%2C556%2C912%2C678%2C313%2C181%2C419%2C867%2C513%2C682%2C316%2C684%2C913%2C273%2C124%2C868%2C339%2C921%2C638%2C948%2C514%2C943%2C218%2C686%2C963%2C688%2C616%2C518%2C223%2C728%2C516%2C558%2C918%2C138%2C748%2C196%2C618%2C278%2C522%2C692%2C622%2C694%2C156%2C142%2C624%2C449%2C626%2C564%2C628%2C565%2C228%2C283%2C924%2C853%2C233%2C288%2C632%2C293%2C636%2C566%2C634%2C964%2C238%2C182%2C662%2C453%2C960%2C968%2C423%2C922%2C935%2C714%2C128%2C862%2C611%2C135%2C321%2C716%2C243%2C456%2C248%2C722%2C469%2C942%2C253%2C718%2C642%2C724%2C643%2C576%2C939%2C936%2C644%2C961%2C819%2C813%2C172%2C199%2C132%2C733%2C646%2C184%2C648%2C524%2C915%2C361%2C134%2C362%2C652%2C364%2C174%2C732%2C328%2C366%2C258%2C734%2C656%2C144%2C654%2C146%2C336%2C463%2C263%2C528%2C268%2C923%2C532%2C738%2C944%2C578%2C176%2C537%2C534%2C742%2C536%2C866%2C429%2C369%2C433%2C744%2C178%2C186%2C436%2C925%2C136%2C869%2C343%2C746%2C158%2C926%2C439%2C466%2C916%2C112%2C664%2C111%2C826%2C298%2C542%2C927%2C967%2C846%2C443%2C299%2C917%2C582%2C544%2C474%2C941%2C754%2C446%2C698%2C666&s=PPPPC&grp=0&a=
+
+imf <- read.csv("imf_data/gdppc.csv", stringsAsFactors = FALSE)
+imf$country1 <- imf$country
+imf$country <- NA
+
+# Get closest matching country name from who for each name in imf
+for (i in 1:nrow(imf)){
+  
+  #Create matrix of match scores
+      m <- adist(x = imf$country1[i], 
+                 y = who$country,
+                 ignore.case = TRUE)
+      
+      #what is index of best match in build.sub
+      best.ind <- which.min( m )[1]
+      
+      #return the building ID of that best match
+      best <- who$country[best.ind] 
+
+      # assign name to country
+      imf$country[i] <- best
+      
+      # assign NA if min(m) > 7
+      if( min(m) > 4 ){
+              imf$country[i] <- NA
+
+      }
+}
+
+# delete duplicates
+imf <- imf[which(!duplicated(imf$country)),]
+imf <- imf[which(!is.na(imf$country)),]
+
+# Merge imf to who
+who <- merge(x = who,
+             y = imf,
+             by = "country",
+             all.x = TRUE,
+             all.y = FALSE)
+
+who$dollars <- as.numeric(who$dollars)
+
+# WORLD MAP
+
+# Change name of US
+who$country[which(who$country == "United States of America")] <- "USA"
+
+library(maps)
+
+world <- map("world")
+world$names <- sub("(.*?):.*", "\\1", world$names)
+
+# get values into world
+world$country <- NA
+# Get closest matching country name from who for each name in who
+for (i in 1:length(world$names)){
+  
+  #Create matrix of match scores
+      m <- adist(x = world$names[i], 
+                 y = who$country,
+                 ignore.case = TRUE)
+      
+      #what is index of best match in build.sub
+      best.ind <- which.min( m )[1]
+      
+      #return the building ID of that best match
+      best <- who$country[best.ind] 
+
+      # assign name to country
+      world$country[i] <- best
+      
+      if(min(m) > 5){
+      world$country[i] <- NA
+      }
+
+}
+
+# bring overweight
+world$overweight <- NA
+for (i in unique(world$country)){
+  world$overweight[which(world$country == i)] <-
+    who$overweight[which(who$country == i)]
+}
+
+
+@
+%------------------------------------------
+\section*{Assignment 3}
+\addcontentsline{toc}{section}{Assignment 3}
+%------------------------------------------
+\hrulefill
+
+\begin{multicols}{2} 
+\setkeys{Gin}{width=0.45\textwidth}
+
+%------------------------------------------
+\subsection*{Background}
+\addcontentsline{toc}{subsection}{Background}
+%------------------------------------------
+
+Pediatric adiposity is one of the public health measures with the most global variance.  Though the prevalence of childhood obesity and overweight (like adult obesity and overweight) is increasing rapidly in most developing countries (and shows no signs of decline in developed countries), variations in both the rate of increase and the "take-off" time (ie, the moment at which the increase began) have lead to a massively unequal distribution of childhood obesity throughout the world.  \\
+
+The prevalence of childhood obesity varies by socioeconomic class, race, geography, time and numerous other factors.  For the purposes of this (short) paper, I examine the prevalence of childhood overweight (limited here to children 2-4 years of age only) at the \emph{country} level.  The raw data used for the following analysis come from the WHO, IMF and OECD, but all figures and calculations (and the errors therein) are entirely mine. \\
+
+%------------------------------------------
+\subsection*{Variance}
+\addcontentsline{toc}{subsection}{Variance}
+%------------------------------------------
+At the country level, the mean prevalence of childhood overweight is 7.51\%, with a standard deviation of 4.78\%.  The distribution ranges from approximately 0\% (North Korea, according to the WHO) to 23.4\% (Albania), and can be visualized below.\\
+
+\begin{center}
+<<fig= TRUE, height = 3>>=
+par(mar=c(3,3,3,0))
+myhist <- hist(who$overweight, 
+               breaks = 20,
+               prob = TRUE,
+     xlab = "Prevalence",
+     main = "Distribution of childhood overweight prevalence",
+     col = adjustcolor("darkred", alpha.f = 0.3),
+     border = "darkgrey")
+lines(density(who$overweight, adjust = 0.6),
+      col = adjustcolor("black", alpha.f = 0.5), lwd = 2)
+# boxplot(who$overweight, horizontal = TRUE,
+#         xlab = "Prevalence",
+#         outline = TRUE,
+#         col = adjustcolor("darkred", alpha.f = 0.3),
+#      border = "darkgrey")
+box("outer")
+@
+\end{center}
+
+Though slightly right-skewed, the global distribution is remarkably normal (gaussian), a fact which differentiates it from the global distribution of the prevalence of childhood underweight (below).\\
+
+\begin{center}
+<<fig= TRUE, height = 3>>=
+par(mar=c(3,3,3,0))
+myhist <- hist(who$underweight, 
+               breaks = 20,
+               prob = TRUE,
+     xlab = "Prevalence",
+     main = "Distribution of childhood underweight prevalence",
+     col = adjustcolor("darkblue", alpha.f = 0.3),
+     border = "darkgrey")
+lines(density(who$underweight, adjust = 0.6),
+      col = adjustcolor("black", alpha.f = 0.5), lwd = 2)
+# boxplot(who$underweight, horizontal = TRUE,
+#         xlab = "Prevalence",
+#         outline = TRUE,
+#         col = adjustcolor("darkblue", alpha.f = 0.3),
+#      border = "darkblue")
+box("outer")
+@
+\end{center}
+
+%------------------------------------------
+\subsection*{Breakdown by region}
+\addcontentsline{toc}{subsection}{Breakdown by region}
+%------------------------------------------
+
+When country-level data are aggregated at the WHO administrative region level, two important characteristics stand out: variance between regions and variance within regions (see below).
+
+\begin{center}
+<<fig= TRUE, height = 4.5>>=
+par(mfrow = c(1,1))
+boxplot(who$overweight ~ who$region,
+        col = my_colors,
+        ylab = "Prevalence",
+        main = "Prevalence of childhood overweight by region",
+        cex.axis = 0.55,
+        names = gsub(" ", "\n", levels(factor(who$region))))
+abline(h=seq(0,100,5),
+       col = adjustcolor("black", alpha.f = 0.2))
+
+
+@
+\end{center}
+%------------------------------------------
+\subsection*{Breakdown by country}
+\addcontentsline{toc}{subsection}{Breakdown by country}
+%------------------------------------------
+
+Breaking down the prevalence further (by country) sheds further light on the inter-region variance.  The below chart reveals some obvious trends (dark blue African countries are clustered to the left, whereas orange and red European countries are mostly to the right), but the take-away message is clear: variation is the norm. \\
+
+\begin{center}
+<<fig= TRUE, height = 4.5>>=
+who <- who[order(who$overweight),]
+barplot(who$overweight, col = who$col,
+        names.arg = who$country,
+        cex.names = 0.2,
+        las = 3,
+        border = NA,
+        space = 0,
+        line = -0.7)
+title(main = "Prevalence of childhood overweight by country")
+box("figure")
+
+abline(h=seq(0,100,5),
+       col = adjustcolor("black", alpha.f = 0.2))
+
+legend(x = "top",
+       fill = my_colors,
+       legend = levels(who$region),
+       cex = 0.75,
+       border = NA,
+       bg = "white")
+
+@
+\end{center}
+
+%------------------------------------------
+\subsection*{Breakdown by geography}
+\addcontentsline{toc}{subsection}{Breakdown by geography}
+%------------------------------------------
+Mapping childhood obesity (ages 2-4) yields interesting findings, as it does not take the same pattern that later childhood obesity or adult obesity.  This could be anomalous; or, it could be a sign of rapid changes taking place.  In other words, the "hotspots" in Northern and Southern Africa may be in for an increasingly severe adult obesity epidemic in coming years.
+
+\begin{center}
+<<fig= TRUE, height = 4.5>>=
+# Prepare colors
+library(RColorBrewer)
+par(mar = c(1,1,1,1))
+par(oma = c(0,0,0,0))
+my_colors <- colorRampPalette(c("yellow", "darkred"))(length(1:max(ceiling(world$overweight),
+                                                             na.rm = TRUE)))
+world$color <- my_colors[ceiling(world$overweight)]
+world$color[which(is.na(world$overweight))] <- "grey"
+
+map("world", fill = TRUE, col = world$color)
+legend(x= "bottomleft",
+       fill = c("grey", my_colors[c(1,12,24)]),
+       legend = c("No data", paste0(c(1,12,24), "%")),
+       bg = "white", cex = 0.6)
+title(main = "Prevalence of childhood obesity by geogrpahy")
+box("plot")
+box("outer")
+my_colors <- c("darkblue", "darkgreen", "darkred",
+               "darkorange", "grey", "purple")
+@
+\end{center}
+
+
+%------------------------------------------
+\subsection*{Correlations}
+\addcontentsline{toc}{subsection}{Correlations}
+%------------------------------------------
+
+Using IMF data, once can compare the prevalence of childhood obesity to a country's GDP (gross domestic product) per capita (next chart).\\
+
+\begin{center}
+<<fig= TRUE, height = 4.5>>=
+plot(log(who$dollars),
+     who$overweight,
+     xaxt = "n",
+     xlab = "GDP per capita (log scale)",
+     ylab = "Prevalence of childhood overweight",
+     col = who$color,
+     pch = 16)
+axis(side = 1,
+     at = 1:15,
+     labels = round(exp(1:15), digits = -1))
+legend(x = "topleft",
+       fill = my_colors,
+       legend = levels(who$region),
+       cex = 0.5,
+       border = NA,
+       bg = "white")
+mylm <- lm(overweight ~ log(dollars) ,
+           data = who)
+abline(mylm, col = adjustcolor("darkred", alpha.f = 0.5),
+       lwd = 2)
+title(main = "Wealth and health - all countries")
+box("outer")
+
+@
+\end{center}
+What emerges is clearly a semi-linear relationship between a country's wealth and the prevalence of obesity (line of best fit using least squares method shown in red) (R-squared of approximately 0.11).  \\
+
+However, more careful examination suggests that analysis at such a macro scale masks region-level differences in the relationship between wealth and health.  In other words, the effect of GDP per capita on childhood obesity changes in both magnitude and direction when analyzed at the regional level.  The below plot shows the line of best fit for each WHO region.  What is striking is that (western) Europe seems to have an inverse relationship between wealth and childhood obesity, unlike all the other regions.      \\
+
+\begin{center}
+<<fig= TRUE, height = 4.5>>=
+plot(log(who$dollars),
+     who$overweight,
+     xaxt = "n",
+     xlab = "GDP per capita (log scale)",
+     ylab = "Prevalence of childhood overweight",
+     col = who$color,
+     pch = 16)
+axis(side = 1,
+     at = 1:15,
+     labels = round(exp(1:15), digits = -1))
+
+mylm <- lm(overweight ~ log(dollars) ,
+           data = who)
+
+for (i in 1:length(levels(who$region))){
+  mydata <- who[which(who$region == levels(who$region)[i]),]
+  
+  mylm <- lm(overweight ~ log(dollars) ,
+           data = mydata)
+abline(mylm, col = adjustcolor(my_colors[i], alpha.f = 0.5),
+       lwd = 2)
+}
+
+legend(x = "topleft",
+       fill = my_colors,
+       legend = levels(who$region),
+       cex = 0.5,
+       border = NA,
+       bg = "white")
+title(main = "Wealth and health - by region")
+box("outer")
+@
+\end{center}
+
+When the interaction terms between region and GDP per capita / childhood obesity are introduced into a linear model, R-squared increases to 34\%.  In other words, the pathways to childhood obesity are likely different in different places.
+
+%------------------------------------------
+\subsection*{Conclusion}
+\addcontentsline{toc}{subsection}{Conclusion}
+%------------------------------------------
+
+\noindent \textbf{Summary:} The prevalence of childhood obesity varies by region and country, and the magnitude and direction of the relationships between obesity and covariates (like wealth) also vary by country.  This is an important finding in that it confirms obesity's \emph{multi-causality}, and suggests that from an intervention standpoint a one-size-fits-all approach will likely be met with varying degrees of success. \\
+
+\noindent \textbf{Limitations:} For this analysis, I only used the prevalence of overweight among 2 to 4 year-olds.  I also wrote a "fuzzy" matching algorithm to merge the data between OECD, WHO and IMF sources, which is prone to errors and mismatches.\footnote{Basically, if a country's name resembled a name in a different dataset, I considered it a match.   Full code is available at \url{https://github.com/joebrew/uf/tree/master/phc6016/assignment4}}  Finally, the estimates herein vary in both quality of data as well as time of collection.  \\
+
+\noindent \textbf{Sources:} I used only data which is publicly available online.  
+\begin{itemize}
+
+\item IMF: \url{http://www.imf.org/external/pubs/ft/weo/2014/02/weodata/weorept.aspx}
+\item OECD: \url{http://stats.oecd.org/index.aspx?DataSetCode=HEALTH_STAT}
+\item WHO: \url{http://apps.who.int/gho/data/view.main.2450?lang=en}
+
+\end{itemize} \\
+
+\vspace{3mm}
+\noindent \textbf{Technical details:} Figures are small, but will retain quality under zoom.  \\
+All analysis, charts and maps were carried out entirely inR.  Code available at \url{https://github.com/joebrew/uf/tree/master/phc6016/assignment4}.    
+
+
+
+\vfill
+\columnbreak
+
+
+%------------------------------------------
+\subsection*{Other figures (just for fun)}
+\addcontentsline{toc}{subsection}{Other figures (just for fun)}
+%------------------------------------------
+
+
+\begin{center}
+<<fig= TRUE, height = 4.5>>=
+plot(log(who$dollars),
+     who$underweight,
+     xaxt = "n",
+     xlab = "GDP per capita (log scale)",
+     ylab = "Prevalence of childhood underweight",
+     col = who$color,
+     pch = 16,
+     main = "GDP per capita and underweight")
+axis(side = 1,
+     at = 1:15,
+     labels = round(exp(1:15), digits = -1))
+
+mylm <- lm(underweight ~ log(dollars) ,
+           data = who)
+abline(mylm, col = adjustcolor("darkred", alpha.f = 0.5),
+       lwd = 2)
+
+legend(x = "topleft",
+       fill = my_colors,
+       legend = levels(who$region),
+       cex = 0.5,
+       border = NA,
+       bg = "white")
+box("outer")
+
+@
+\end{center}
+\vspace{2mm}
+
+
+
+
+\begin{center}
+<<fig= TRUE, height = 4.5>>=
+plot(who$overweight,
+     who$underweight, 
+     type = "n",
+     xlab = "Overweight",
+     ylab = "Underweight")
+
+title(main = "Adiposity correlations (childhood)")
+
+points(who$overweight,
+     who$underweight, 
+     col = who$color,
+     pch = 16,
+     cex = 1)
+text(who$overweight,
+     who$underweight, 
+     labels = who$country,
+     col = adjustcolor("black", alpha.f = 0.6), cex = 0.3)
+legend(x = "topright",
+       pch = 16,
+       col = my_colors,
+       legend = levels(who$region),
+       cex = 0.75)
+
+# points(who$overweight[which(who$country == "United States of America")],
+#        who$underweight[which(who$country == "United States of America")],
+#        pch = 15)
+
+box("outer")
+
+@
+\end{center}
+
+
+
+
+\end{multicols}
+\setkeys{Gin}{width=1\textwidth}
+%----------------------------------------------------------------------------------------
+%  REFERENCE LIST
+%----------------------------------------------------------------------------------------
+\newpage
+\bibliographystyle{unsrtnat}
+\bibliography{test}
+
+
+\end{document}
