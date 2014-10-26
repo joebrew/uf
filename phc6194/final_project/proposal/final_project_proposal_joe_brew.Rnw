@@ -17,7 +17,7 @@
 %\setlength{\footskip}{20pt}
 \usepackage{fancyhdr}
 \fancyhf{}
-\fancyhead[C]{PHC 6016 $\bullet$ Joe Brew $\bullet$ Social Epidemiology}
+\fancyhead[C]{PHC 6194 $\bullet$ Joe Brew $\bullet$ Spatial Epidemiology}
 \fancyfoot[C]{  $\bullet$ Assignment 3 \bullet$  }
 \renewcommand\headrulewidth{1pt}
 \renewcommand\footrulewidth{1pt}
@@ -32,7 +32,7 @@
 
 
 
-\graphicspath{ {/home/joebrew/Documents/uf/phc6016/assignment4} }
+\graphicspath{ {/home/joebrew/Documents/uf/phc6194/final_project/proposal} }
 
 %the next two lines adjust the third, centered section of the exec sum
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
