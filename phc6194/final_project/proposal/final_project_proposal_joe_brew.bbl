@@ -1,0 +1,39 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[de~Melo~Lima et~al.(2013)de~Melo~Lima, de~Oliveira, de~Oliveira~Lyra,
+  Roncalli, and Ferreira]{Lima2013}
+Marina Clarissa~Barros de~Melo~Lima, Genyklea~Silva de~Oliveira, Cl{\'{e}}lia
+  de~Oliveira~Lyra, Angelo~Giuseppe Roncalli, and Maria Angela~Fernandes
+  Ferreira.
+\newblock A desigualdade espacial do baixo peso ao nascer no brasil.
+\newblock \emph{Ci{\^{e}}ncia {\&} Sa{\'{u}}de Coletiva}, 18\penalty0
+  (8):\penalty0 2443--2452, 2013.
+\newblock \doi{10.1590/s1413-81232013000800029}.
+\newblock URL \url{http://dx.doi.org/10.1590/S1413-81232013000800029}.
+
+\bibitem[Vaag et~al.(2014)Vaag, Br{\o}ns, Gillberg, Hansen, Hjort, Arora,
+  Thomas, Broholm, Ribel-Madsen, and Grunnet]{Vaag2014}
+Allan Vaag, Charlotte Br{\o}ns, Linn Gillberg, Ninna~S. Hansen, Line Hjort,
+  Geeti~P. Arora, Nihal Thomas, Christa Broholm, Rasmus Ribel-Madsen, and
+  Louise~G. Grunnet.
+\newblock Genetic, nongenetic and epigenetic risk determinants in developmental
+  programming of type 2 diabetes.
+\newblock \emph{Acta Obstetricia et Gynecologica Scandinavica}, 93\penalty0
+  (11):\penalty0 1099--1108, sep 2014.
+\newblock \doi{10.1111/aogs.12494}.
+\newblock URL \url{http://dx.doi.org/10.1111/aogs.12494}.
+
+\bibitem[Clay and Andrade(2014)]{LogginsClay2014}
+Shondra~Loggins Clay and Flavia Cristina~Drumond Andrade.
+\newblock Role of stress in low birthweight disparities between black and white
+  women: A population-based study.
+\newblock \emph{J Paediatr Child Health}, pages n/a--n/a, oct 2014.
+\newblock \doi{10.1111/jpc.12735}.
+\newblock URL \url{http://dx.doi.org/10.1111/jpc.12735}.
+
+\end{thebibliography}
