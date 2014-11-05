@@ -1,0 +1,67 @@
+\begin{thebibliography}{7}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Cohen(2008{\natexlab{a}})]{Cohen2008}
+DA~Cohen.
+\newblock Obesity and the built environment: changes in environmental cues
+  cause energy imbalances.
+\newblock \emph{Int J Obes Relat Metab Disord}, 32:\penalty0 S137--S142, dec
+  2008{\natexlab{a}}.
+\newblock \doi{10.1038/ijo.2008.250}.
+\newblock URL \url{http://dx.doi.org/10.1038/ijo.2008.250}.
+
+\bibitem[Cohen(2008{\natexlab{b}})]{Cohen2008b}
+DA~Cohen.
+\newblock Neurophysiological pathways to obesity: Below awareness and beyond
+  individual control.
+\newblock \emph{Diabetes}, 57\penalty0 (7):\penalty0 1768--1773, jul
+  2008{\natexlab{b}}.
+\newblock \doi{10.2337/db08-0163}.
+\newblock URL \url{http://dx.doi.org/10.2337/db08-0163}.
+
+\bibitem[KP~Derose(2014)]{Derose2014}
+M~Mariscal S Pina-Cortez DA~Cohen KP~Derose, T~Marsh.
+\newblock Involving community stakeholders to increase park use and physical
+  activity.
+\newblock \emph{Preventive Medicine}, 64:\penalty0 14--19, jul 2014.
+\newblock \doi{10.1016/j.ypmed.2014.03.019}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.ypmed.2014.03.019}.
+
+\bibitem[J~Pearce(2010)]{Pearce2010}
+K~Witten J~Pearce, editor.
+\newblock \emph{Geograpies of Obesity: Environmental Understandings of the
+  Obesity Epidemicl}.
+\newblock Ashgate Publishing Ltd., 2010.
+\newblock \doi{10.2337/db08-0163}.
+\newblock URL
+  \url{http://books.google.com/books?id=odX_G6mzK1YC&dq=broken+windows+obesity}.
+
+\bibitem[Sallis et~al.(2012)Sallis, Floyd, Rodriguez, and Saelens]{Sallis2012}
+JF~Sallis, MF~Floyd, DA~Rodriguez, and BE~Saelens.
+\newblock Role of built environments in physical activity, obesity, and
+  cardiovascular disease.
+\newblock \emph{Circulation}, 125\penalty0 (5):\penalty0 729--737, feb 2012.
+\newblock \doi{10.1161/circulationaha.110.969022}.
+\newblock URL \url{http://dx.doi.org/10.1161/CIRCULATIONAHA.110.969022}.
+
+\bibitem[Sallis(2009)]{Sallis2009}
+JF~Sallis.
+\newblock Measuring physical activity environments.
+\newblock \emph{American Journal of Preventive Medicine}, 36\penalty0
+  (4):\penalty0 S86--S92, apr 2009.
+\newblock \doi{10.1016/j.amepre.2009.01.002}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.amepre.2009.01.002}.
+
+\bibitem[Sallis(2010)]{Sallis2010}
+JF~Sallis.
+\newblock Measuring physical activity.
+\newblock \emph{Journal of Public Health Management and Practice}, 16\penalty0
+  (5):\penalty0 404--410, 2010.
+\newblock \doi{10.1097/phh.0b013e3181d52804}.
+\newblock URL \url{http://dx.doi.org/10.1097/PHH.0b013e3181d52804}.
+
+\end{thebibliography}

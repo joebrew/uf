@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[center]{titlesec}
+\usepackage{geometry}
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+
+%\usepackage{mathtools}
+
+\usepackage[sort, numbers]{natbib}
+
+
+%
+%\setlength{\columnseprule}{0.4pt}
+%\setlength{\footskip}{20pt}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[C]{Social Epidemiology $\bullet$ Joe Brew $\bullet$ Dr. Striley}
+\fancyfoot[C]{  $\bullet$ Assignment 5 \bullet$  }
+\renewcommand\headrulewidth{1pt}
+\renewcommand\footrulewidth{1pt}
+\pagestyle{fancy}
+
+%
+
+\setlength{\columnsep}{1.5cm}
+%\setlength{\columnseprule}{0.4pt}
+
+%\MakeOuterQuote{"}
+
+
+
+\graphicspath{ {/home/joebrew/Documents/uf/template} }
+
+%the next two lines adjust the third, centered section of the exec sum
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\usepackage{Sweave}
+\begin{document}
+\input{template-concordance}
+
+\title{\textbf{Assignment 5: Potential Collaborators}}
+\author{Joe Brew}
+
+
+\maketitle
+
+\emph{
+ For my project, I hope to investigate the social dimensions of childhood obesity, with a focus on its spatial components.  This is a study I hope to actually carry out, in collaboration with Steven Stark (of Alachua County Public Schools), the 41 public school nurses (who are integral to the data collection and health screenings), and a more senior researcher from our department.  What follows, however, is not "real"; rather, it's a list of people with whom I would like to collaborate were money and time infinite.
+}
+\tableofcontents
+
+\vspace{20mm}
+
+\begin{center}
+\includegraphics[width=2cm]{uf}
+\end{center}
+
+
+\newgeometry{margin=3.5cm}
+%\fancyhfoffset[E,O]{0pt}
+
+\hrulefill
+
+% \begin{multicols}{2} 
+% \setkeys{Gin}{width=0.45\textwidth}
+
+%------------------------------------------
+\section*{Collaborator 1: DA Cohen}
+\addcontentsline{toc}{section}{DA Cohen}
+%------------------------------------------
+
+Dr. Cohen is a RAND Corporation researcher whose primary contributions to this project would be the following:
+\begin{itemize}
+\item A thorough grounding in the history of obesity in the United States\cite{Cohen2008}
+\item A familiarity with the physiological mechanisms by which the social becomes the medical (that is, the neurophysiology of obesity)\cite{Cohen2008b}
+\item A solid grounding in the "translational" side of obesity research (she is experienced with community-level initiatives)\cite{Derose2014}
+\end{itemize}
+
+%------------------------------------------
+\section*{Collaborator 2: Jamie Pearce}
+\addcontentsline{toc}{section}{Jamie Pearce}
+%------------------------------------------
+Dr. Pearce\footnote{http://www.geos.ed.ac.uk/homes/jpearce} professor of health geography at the University of Canterbury (New Zealand), and his specialty is the relationship between place and health inequalities.  He has both written and edited\cite{Pearce2010} many works on obesity insofar as it is affected by geography, and he would bring a useful technical eye to the project.
+
+%------------------------------------------
+\section*{Collaborator 3: James Sallis}
+\addcontentsline{toc}{section}{James Sallis}
+%------------------------------------------
+Dr. Sallis would contribute to this project in an area in which I need a great deal of help: measurement.  He is very strong on the methodological side of things, and has developed surveys, protocols and neighborhood health indices which could greatly contribute to how best to assess neighborhood traits in Alachua County.\footnote{http://www.drjamessallis.sdsu.edu/measures.html}  His work focuses exclusively on neighborhood health\cite{Sallis2012}, and he has carried out studies both at the macro\cite{Sallis2009} and micro\cite{Sallis2010} scales.  Additionally, his research expands beyond the "neighborhood as environment" paradigm, as he also has looked into school, worksite, policy and food contexts on nutrition outcomes. \cite{Sallis2009}  
+
+\hrulefill
+
+
+% \end{multicols}
+% \setkeys{Gin}{width=1\textwidth}
+%----------------------------------------------------------------------------------------
+%  REFERENCE LIST
+%----------------------------------------------------------------------------------------
+\newpage
+\bibliographystyle{unsrtnat}
+\bibliography{bibliography}
+
+
+\end{document}

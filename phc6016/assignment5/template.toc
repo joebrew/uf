@@ -1,0 +1,4 @@
+\select@language {english}
+\contentsline {section}{DA Cohen}{2}{Doc-Start}
+\contentsline {section}{Jamie Pearce}{2}{Doc-Start}
+\contentsline {section}{James Sallis}{2}{Doc-Start}
