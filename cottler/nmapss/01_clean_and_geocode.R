@@ -3,6 +3,7 @@ library(car)
 library(dplyr)
 library(ggmap)
 library(geocodeHERE)
+library(plyr)
 
 ########
 # ESTABLISH WD FOR PRIVATE DATA
@@ -22,8 +23,22 @@ setwd(public)
 ########
 # READ IN DATA
 ########
-nmapss <- read.sas7bdat(paste0(private,
-                          "/nmapssw4.sas7bdat"))
+# nmapss <- read.sas7bdat(paste0(private,
+#                           "/nmapssw4.sas7bdat"))
+
+nmapss1 <- read.sas7bdat(paste0(private,
+                          "/nmapssw1.sas7bdat"))
+nmapss2 <- read.sas7bdat(paste0(private,
+                                "/nmapssw2.sas7bdat"))
+nmapss3 <- read.sas7bdat(paste0(private,
+                                "/nmapssw3.sas7bdat"))
+nmapss4 <- read.sas7bdat(paste0(private,
+                                "/nmapssw4.sas7bdat"))
+
+nmapss <- rbind.fill(nmapss1, 
+                     nmapss2,
+                     nmapss3,
+                     nmapss4)
 
 ########
 # FILL IN ALL MISSINGS WITH NA'S
@@ -38,6 +53,13 @@ Missing <- function(var){
 for (j in 1:ncol(nmapss) ){
   x <- nmapss[,j]
   x[which(Missing(x))] <- NA
+  nmapss[,j] <- x
+}
+
+# Set to NA anything that is NaN
+for (j in 1:ncol(nmapss) ){
+  x <- nmapss[,j]
+  x[which(is.nan(x))] <- NA
   nmapss[,j] <- x
 }
 
@@ -199,7 +221,8 @@ nmapss$alcohol_ever <- as.logical(Recode(nmapss$Ques124,
                                          "1 = 'FALSE';
                               5 = 'TRUE'"))
 
-nmapss$alcohol_age_first <- nmapss$Ques125
+nmapss$alcohol_age_first <- Recode(nmapss$Ques125,
+                                  " 99 = NA")
 
 nmapss$alcohol_drinks_last_week <- nmapss$Ques126
 
@@ -240,22 +263,6 @@ nmapss$close_friends <- nmapss$Ques134
 # Skpping questions on truthfulness
 
 ########
-# Geocode zips
-########
-zip_df <- data.frame("zip" = unique(sort(nmapss$zip)))
-zip_df$zip_long <- as.character(paste0("zip code ", zip_df$zip))
-locations <- geocode(zip_df$zip_long)
-
-zip_df$lon<- locations$lon
-zip_df$lat <- locations$lat
-
-# Merge zip_df to nmapss
-nmapss <- merge(x = nmapss,
-           y = zip_df,
-           by = "zip",
-           all.x = TRUE,
-           all.y = FALSE)
-########
 # KEEP ONLY RECODED VARIABLES
 ########
 rm(locations, x, zip_df, j, Missing)
@@ -263,10 +270,40 @@ rm(locations, x, zip_df, j, Missing)
 nmapss <- nmapss[,!grepl("Ques", colnames(nmapss))]
 
 ########
-# Save
+# Save pre-geocode
 ########
+rm(nmapss1, nmapss2, nmapss3, nmapss4, zip_df, j, x, Missing)
 save.image(paste0(private,
-                  "/nmapssw4_geocoded.RData"))
+                  "/nmapss.RData"))
+
+# ########
+# # Geocode zips
+# ########
+# zip_df <- data.frame("zip" = unique(sort(nmapss$zip)))
+# zip_df$zip_long <- as.character(paste0("zip code ", zip_df$zip))
+# locations <- geocode(zip_df$zip_long)
+# 
+# zip_df$lon<- locations$lon
+# zip_df$lat <- locations$lat
+# 
+# # Merge zip_df to nmapss
+# nmapss <- merge(x = nmapss,
+#            y = zip_df,
+#            by = "zip",
+#            all.x = TRUE,
+#            all.y = FALSE)
+# ########
+# # KEEP ONLY RECODED VARIABLES
+# ########
+# rm(locations, x, zip_df, j, Missing)
+# 
+# nmapss <- nmapss[,!grepl("Ques", colnames(nmapss))]
+# 
+# ########
+# # Save
+# ########
+# save.image(paste0(private,
+#                   "/nmapss_geocoded.RData"))
 
 ########
 # MAP
