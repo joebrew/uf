@@ -1,0 +1,10 @@
+\select@language {english}
+\contentsline {section}{Syndemicity, place and childhood obesity: an overview}{2}{Item.4}
+\contentsline {subsection}{Background}{2}{section*.1}
+\contentsline {subsection}{Place}{2}{section*.1}
+\contentsline {subsection}{Race}{2}{section*.1}
+\contentsline {subsection}{SES}{2}{section*.1}
+\contentsline {subsection}{Sress}{2}{section*.1}
+\contentsline {subsection}{Culture}{3}{section*.1}
+\contentsline {subsection}{Syndemicity}{3}{section*.1}
+\contentsline {subsection}{Conclusion}{3}{section*.1}

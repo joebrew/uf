@@ -1,0 +1,130 @@
+\begin{thebibliography}{14}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Lee et~al.(2014)Lee, Lee, Bischof, Lambert, Clarke, and
+  Henry]{Lee2014}
+T.~Kevin Lee, Caroline Lee, Robert Bischof, Gavin~W. Lambert, Iain~J. Clarke,
+  and Belinda~A. Henry.
+\newblock Stress-induced behavioral and metabolic adaptations lead to an
+  obesity-prone phenotype in ewes with elevated cortisol responses.
+\newblock \emph{Psychoneuroendocrinology}, 47:\penalty0 166--177, sep 2014.
+\newblock \doi{10.1016/j.psyneuen.2014.05.015}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.psyneuen.2014.05.015}.
+
+\bibitem[Myslobodsky and Eldan(2010)]{Myslobodsky2010}
+M.~Myslobodsky and A.~Eldan.
+\newblock Winning a won game: Caffeine panacea for obesity syndemic.
+\newblock \emph{{CN}}, 8\penalty0 (2):\penalty0 149--160, jun 2010.
+\newblock \doi{10.2174/157015910791233213}.
+\newblock URL \url{http://dx.doi.org/10.2174/157015910791233213}.
+
+\bibitem[von Hippel and Benson(2014)]{vonHippel2014}
+Paul von Hippel and Rebecca Benson.
+\newblock Obesity and the natural environment across {US} counties.
+\newblock \emph{Am J Public Health}, 104\penalty0 (7):\penalty0 1287--1293, jul
+  2014.
+\newblock \doi{10.2105/ajph.2013.301838}.
+\newblock URL \url{http://dx.doi.org/10.2105/AJPH.2013.301838}.
+
+\bibitem[Baker et~al.(2014)Baker, Brew, and White]{Brew2014}
+Jennifer Baker, Joe Brew, and Keri White.
+\newblock Quantifying overweight and obesity among alachua county adults and
+  children.
+\newblock \emph{CHIP Program Evaluation Team Reports}, page~1, 2014.
+\newblock URL
+  \url{https://github.com/joebrew/fdoh/blob/master/public/obesity/obesityKeri.pdf?raw=true}.
+
+\bibitem[Li et~al.(2014)Li, Robinson, Carter, and Gupta]{Li2014}
+Y.~Li, L.~E. Robinson, W.~M. Carter, and R.~Gupta.
+\newblock Childhood obesity and community food environments in
+  alabama{\textquotesingle}s black belt region.
+\newblock \emph{Child: Care, Health and Development}, pages n/a--n/a, oct 2014.
+\newblock \doi{10.1111/cch.12204}.
+\newblock URL \url{http://dx.doi.org/10.1111/cch.12204}.
+
+\bibitem[Lawman et~al.(2014)Lawman, Mallya, Veur, McCoy, Colby, Sanders,
+  Wylie-Rosett, and Foster]{Lawman2014}
+Hannah~G. Lawman, Giridhar Mallya, Stephanie~Vander Veur, Tara McCoy, Lisa
+  Colby, Tim Sanders, Judith Wylie-Rosett, and Gary~D. Foster.
+\newblock Trends in relative weight over 1 year in low-income urban youth.
+\newblock \emph{Obesity}, pages n/a--n/a, oct 2014.
+\newblock \doi{10.1002/oby.20928}.
+\newblock URL \url{http://dx.doi.org/10.1002/oby.20928}.
+
+\bibitem[Buchtal(2014)]{Buchtal2014}
+Vanessa Buchtal.
+\newblock Is the gap growing? patterns in poverty-related disparities in
+  nutrition and physical activity in hawai‘i.
+\newblock \emph{Hawaii J Med Public Health}, oct 2014.
+\newblock URL \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4203455/}.
+
+\bibitem[Graef et~al.(2014)Graef, Janicke, and McCrae]{Graef2014}
+Danielle~M. Graef, David~M. Janicke, and Christina~S. McCrae.
+\newblock Sleep patterns of a primarily obese sample of treatment-seeking
+  children.
+\newblock \emph{Journal of Clinical Sleep Medicine}, oct 2014.
+\newblock \doi{10.5664/jcsm.4112}.
+\newblock URL \url{http://dx.doi.org/10.5664/jcsm.4112}.
+
+\bibitem[Tamashiro et~al.(2007)Tamashiro, Hegeman, Nguyen, Melhorn, Ma, Woods,
+  and Sakai]{Tamashiro2007}
+Kellie L.~K. Tamashiro, Maria~A. Hegeman, Mary M.~N. Nguyen, Susan~J. Melhorn,
+  Li~Yun Ma, Stephen~C. Woods, and Randall~R. Sakai.
+\newblock Dynamic body weight and body composition changes in response to
+  subordination stressi.
+\newblock \emph{Physiological Behavior}, jul 2007.
+\newblock URL
+  \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1986729/pdf/nihms-27475.pdf}.
+
+\bibitem[Tovar et~al.(2012)Tovar, Chasan-Taber, Bermudez, Hyatt, and
+  Must]{Tovar2012}
+Alison Tovar, Lisa Chasan-Taber, Odilia~I Bermudez, Raymond~R Hyatt, and Aviva
+  Must.
+\newblock Acculturation and gestational weight gain in a predominantly puerto
+  rican population.
+\newblock \emph{{BMC} Pregnancy and Childbirth}, 12\penalty0 (1):\penalty0 133,
+  2012.
+\newblock \doi{10.1186/1471-2393-12-133}.
+\newblock URL \url{http://dx.doi.org/10.1186/1471-2393-12-133}.
+
+\bibitem[Young et~al.(2012)Young, Johnson, and Krebs]{Young2012}
+B.~E. Young, S.~L. Johnson, and N.~F. Krebs.
+\newblock Biological determinants linking infant weight gain and child obesity:
+  Current knowledge and future directions.
+\newblock \emph{Advances in Nutrition: An International Review Journal},
+  3\penalty0 (5):\penalty0 675--686, sep 2012.
+\newblock \doi{10.3945/an.112.002238}.
+\newblock URL \url{http://dx.doi.org/10.3945/an.112.002238}.
+
+\bibitem[Spraggins(2011)]{Spraggins2011}
+Tiffany Spraggins.
+\newblock Creating an atmosphere of opportunity.
+\newblock \emph{Childhood Obesity (Formerly Obesity and Weight Management)},
+  7\penalty0 (1):\penalty0 36--37, feb 2011.
+\newblock \doi{10.1089/chi.2011.0109}.
+\newblock URL \url{http://dx.doi.org/10.1089/chi.2011.0109}.
+
+\bibitem[Chang et~al.(2014)Chang, Liu, Hwang, Hsieh, Bao, Chen, Wang, and
+  Lai]{Chang2014}
+Ta-Yuan Chang, Chiu-Shong Liu, Bing-Fang Hwang, Hsiu-Hui Hsieh, Bo-Ying Bao,
+  Chiou-Jong Chen, Ven-Shing Wang, and Jim-Shoung Lai.
+\newblock Acute effects of noise exposure on 24-h ambulatory blood pressure in
+  hypertensive adults.
+\newblock \emph{Journal of Hypertension}, page~1, 2014.
+\newblock \doi{10.1097/hjh.0000000000000418}.
+\newblock URL \url{http://dx.doi.org/10.1097/HJH.0000000000000418}.
+
+\bibitem[Fardet and Rock(2014)]{Fardet2014}
+A.~Fardet and E.~Rock.
+\newblock Toward a new philosophy of preventive nutrition: From a reductionist
+  to a holistic paradigm to improve nutritional recommendations.
+\newblock \emph{Advances in Nutrition: An International Review Journal},
+  5\penalty0 (4):\penalty0 430--446, jul 2014.
+\newblock \doi{10.3945/an.114.006122}.
+\newblock URL \url{http://dx.doi.org/10.3945/an.114.006122}.
+
+\end{thebibliography}
