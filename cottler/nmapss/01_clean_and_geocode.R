@@ -28,12 +28,17 @@ setwd(public)
 
 nmapss1 <- read.sas7bdat(paste0(private,
                           "/nmapssw1.sas7bdat"))
+nmapss1$wave <- 1
 nmapss2 <- read.sas7bdat(paste0(private,
                                 "/nmapssw2.sas7bdat"))
+nmapss2$wave <- 2
 nmapss3 <- read.sas7bdat(paste0(private,
                                 "/nmapssw3.sas7bdat"))
+nmapss3$wave <- 3
 nmapss4 <- read.sas7bdat(paste0(private,
                                 "/nmapssw4.sas7bdat"))
+nmapss4$wave <- 4
+
 
 nmapss <- rbind.fill(nmapss1, 
                      nmapss2,
@@ -267,7 +272,7 @@ nmapss$close_friends <- nmapss$Ques134
 ########
 rm(locations, x, zip_df, j, Missing)
 
-nmapss <- nmapss[,!grepl("Ques", colnames(nmapss))]
+nmapss <- nmapss[,!grepl("Ques|ques", colnames(nmapss))]
 
 ########
 # Save pre-geocode
@@ -275,6 +280,54 @@ nmapss <- nmapss[,!grepl("Ques", colnames(nmapss))]
 rm(nmapss1, nmapss2, nmapss3, nmapss4, zip_df, j, x, Missing)
 save.image(paste0(private,
                   "/nmapss.RData"))
+
+
+########
+# GEOCODE HERE (turned up too many NAś)
+########
+# Create a matching zip_df
+library(geocodeHERE)
+zip_df <- data.frame("id" = 1:length(unique(sort(nmapss$zip))),
+                     "zip" = paste0("Zip code ", unique(sort(nmapss$zip)), ", United States of America"))
+address_str <- df_to_string(zip_df)
+
+# Use the geocodeHERE
+request_id <- geocodeHERE_batch_upload(address_string = address_str,
+                                       email_address = "joebrew@gmail.com")
+
+# Check status
+while(geocodeHERE_batch_status(request_id) != "completed"){
+  print(geocodeHERE_batch_status(request_id))
+  Sys.sleep(1)
+}
+geocodeHERE_batch_status(request_id)
+
+# download the data
+geocode_data <- geocodeHERE_batch_get_data(request_id)
+# match it back to your original addresses dataframe
+zip_df <- merge(zip_df, geocode_data, by.x="id", by.y="recId", all.x=T)
+zip_df$zip_code <- unique(sort(nmapss$zip))
+zip_df$zip <- NULL
+# match zip_df and nmapss
+nmapss <- merge(x = nmapss,
+                y = zip_df,
+                by.x = "zip",
+                by.y = "zip_code",
+                all.x = TRUE,
+                all.y = FALSE)
+
+nmapss$lat <- nmapss$displayLatitude
+nmapss$lon <- nmapss$displayLongitude
+
+nmapss$displayLatitude <- NULL
+nmapss$displayLongitude <- NULL
+# ########
+# # Save post-geocoding
+# ########
+rm(geocode_data, zip_df, address_str, request_id)
+save.image(paste0(private,
+                  "/nmapss_geocoded.RData"))
+
 
 # ########
 # # Geocode zips
@@ -297,22 +350,13 @@ save.image(paste0(private,
 # ########
 # rm(locations, x, zip_df, j, Missing)
 # 
-# nmapss <- nmapss[,!grepl("Ques", colnames(nmapss))]
-# 
+ 
 # ########
 # # Save
 # ########
 # save.image(paste0(private,
 #                   "/nmapss_geocoded.RData"))
 
-########
-# MAP
-########
-library(maps)
-map("usa")
-points(nmapss$lon, nmapss$lat,
-       pch = 16,
-       col = adjustcolor("blue", alpha.f = 0.2))
 
 ########
 # READ IN ZIP CODE MAP
@@ -356,29 +400,3 @@ points(nmapss$lon, nmapss$lat,
 my_table <- table(nmapss$city)
 my_colors <- colorRampPalette(c("red", "darkblue"))(length(my_table))
 barplot(my_table, col = my_colors)
-
-########
-# GEOCODE HERE (turned up too many NAś)
-########
-# # Create a matching zip_df
-# zip_df <- data.frame("id" = 1:length(unique(sort(nmapss$zip))),
-#   "zip" = paste0("Zip code ", unique(sort(nmapss$zip))))
-# address_str <- df_to_string(zip_df)
-# 
-# # Use the geocodeHERE
-# request_id <- geocodeHERE_batch_upload(address_string = address_str,
-#                                        email_address = "joebrew@gmail.com")
-# 
-# # Check status
-# while(geocodeHERE_batch_status(request_id) != "completed"){
-#   print(geocodeHERE_batch_status(request_id))
-#   Sys.sleep(1)
-# }
-# geocodeHERE_batch_status(request_id)
-# 
-# # download the data
-# geocode_data <- geocodeHERE_batch_get_data(request_id)
-# # match it back to your original addresses dataframe
-# zip_df <- merge(zip_df, geocode_data, by.x="id", by.y="recId", all.x=T)
-# str(zip_df)
-

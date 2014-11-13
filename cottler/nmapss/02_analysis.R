@@ -21,7 +21,7 @@ setwd(public)
 ########
 # Read in cleaned data
 ########
-load(paste0(private, "/nmapss.RData"))
+load(paste0(private, "/nmapss_geocoded.RData"))
 
 ########
 # EXPLORE RELATIONSHIP BETWEEN ALCOHOL AND GAMBLING
@@ -109,6 +109,35 @@ exp(coef(fit))
 
 ## odds ratios and 95% CI
 exp(cbind(OR = coef(fit), confint(fit)))
+
+########
+# BUT ISN'T GENDER AN ISSUE?
+########
+x <- nmapss$gender
+y <- ifelse(nmapss$gamble_internet, "ever gamble", "never gamble")
+my_table <- table(x,y)
+my_table
+chisq.test(my_table)
+my_barplot <- barplot(my_table, 
+                      col = my_colors,
+                      beside = TRUE,
+                      ylim = c(0,max(my_table) *1.1))
+legend(x = "topleft",
+       bty = "n",
+       fill = my_colors,
+       legend = c("female", "male"))
+text(x = my_barplot,
+     y = my_table,
+     labels = my_table,
+     pos = 3)
+my_prop_table <- prop.table(my_table, 2) * 100
+text(x = my_barplot,
+     y = my_table,
+     labels = paste0(round(my_prop_table, digits = 2), "%"),
+     pos = 1,
+     cex = 0.6)
+
+
 
 ########
 # 2. View relationship after adjustment
@@ -233,7 +262,7 @@ abline(girls_line,
 over7 <- nmapss[which(nmapss$alcohol_age_first >= 8),]
 
 fit <- glm(gamble_internet ~ 
-             alcohol_age_first + gender,
+             alcohol_age_first + gender + age,
            data = over7,
            family = binomial("logit"))
 summary(fit)
@@ -247,12 +276,55 @@ exp(cbind(OR = coef(fit), confint(fit)))
 ########
 # GAM
 ########
+
+# SIMPLE ##########
 library(mgcv)
 my_gam <- gam(gamble_internet ~  gender + s(alcohol_age_first), 
               data = nmapss,
               family=binomial("logit"))
-plot(my_gam)
+plot(my_gam,
+     xlab = "Age at first drink",
+     ylab = "OR of gambling")
 vis.gam(my_gam,
+        color="terrain",
+        plot.type="contour",
+        main = "Risk of online gambling",
+        xaxt = "n",
+        xlab = "Gender",
+        ylab = "Alcohol initiation age",
+        type = "response",
+        n.grid=100,
+        #color = "gray",
+        #too.far = 0.02,
+        contour.col = adjustcolor("black", alpha.f=0.7))
+axis(side = 1, at = 1:2,
+     labels = c("Female", "Male"))
+
+vis.gam(my_gam)
+
+# WITH GEOGRAPHY ##########
+library(mgcv)
+my_gam <- bam(gamble_internet ~  
+                s(lon, lat, bs="ad"), 
+              data = nmapss,
+              family=binomial("logit"))
+plot(my_gam)
+
+vis.gam(my_gam,
+        color="terrain",
+        plot.type="contour",
+        main = "Risk of online gambling by place",
+        xlab = "Longitude",
+        ylab = "Latitude",
+        type = "response",
+        n.grid=100,
+        #color = "gray",
+        #too.far = 0.02,
+        contour.col = adjustcolor("black", alpha.f=0.4))
+library(maps)
+map("usa", add = T)
+vis.gam(my_gam)
+vis.gam(my_gam, view=c("lon", "lat"),
         color="terrain",
         plot.type="contour",
         main = "Risk of online gambling",
@@ -264,10 +336,6 @@ vis.gam(my_gam,
         #color = "gray",
         #too.far = 0.02,
         contour.col = adjustcolor("black", alpha.f=0.4))
-axis(side = 1, at = 1:2,
-     labels = c("Female", "Male"))
-
-vis.gam(my_gam)
 
 
 ########
@@ -295,15 +363,46 @@ scatter3d(y ~ x + z,
 
 
 ########
-#
+# SUBSET FOR FLORIDA
 ########
+fl <- nmapss[which(nmapss$state == "FL" &
+                     nmapss$lat > 27 &
+                     nmapss$lon < -81.5),]
 
+my_gam <- bam(gamble_internet ~  
+                s(lon, lat, bs="ad"), 
+              data = fl,
+              family=binomial("logit"))
+plot(my_gam)
 
-
+vis.gam(my_gam,
+        color="terrain",
+        plot.type="contour",
+        main = "Risk of online gambling by place",
+        xlab = "Longitude",
+        ylab = "Latitude",
+        type = "response",
+        n.grid=100,
+        #color = "gray",
+        #too.far = 0.02,
+        contour.col = adjustcolor("black", alpha.f=0.4),
+        add = T)
+map("county","fl")
 
 ########
-#
+# MAP WHOLE COUNTRY
 ########
+map("usa")
+nmapss$col <-ifelse(nmapss$gamble_internet, "red", "blue")
 
+x <- jitter(nmapss$lon)
+y <- jitter(nmapss$lat)
+points(x,
+       y,
+       col = adjustcolor(nmapss$col, alpha.f = 0.3),
+       pch = 16,
+       cex = 0.7 )
+x2 <- jitter(x[which(nmapss$gamble_internet)])
+y2 <- jitter(y[which(nmapss$gamble_internet)])
 
-
+points(x2, y2, pch = 3, col = "red")
