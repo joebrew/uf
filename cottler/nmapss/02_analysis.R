@@ -43,7 +43,7 @@ my_barplot <-barplot(my_table,
                      main = "Ever drink alcohol",
                      col = my_colors,
                      names.arg = c("Nope", "Yep"),
-                     ylim = c(0, max(my_table) * 1.1))
+                     ylim = c(0, max(my_table) * 1.2))
 text(x = my_barplot[,1],
      y = my_table,
      pos = 1,
@@ -60,12 +60,13 @@ my_barplot <-barplot(my_table,
                      main = "Ever gamble online",
                      col = my_colors,
                      names.arg = c("Nope", "Yep"),
-                     ylim = c(0, max(my_table) * 1.1))
+                     ylim = c(0, max(my_table) * 1.2))
 
 text(x = my_barplot[,1],
      y = my_table,
      pos = 1,
-     labels = my_table)
+     labels = my_table,
+     cex = 0.6)
 text(x = my_barplot[,1],
      y = my_table,
      pos = 3,
@@ -75,6 +76,8 @@ text(x = my_barplot[,1],
 x <- ifelse(nmapss$alcohol_ever, "ever drink", "never drink")
 y <- ifelse(nmapss$gamble_internet, "ever gamble", "never gamble")
 my_table <- table(x,y)
+my_table
+chisq.test(my_table)
 my_barplot <- barplot(my_table, 
                       col = my_colors,
                       beside = TRUE,
@@ -113,7 +116,7 @@ exp(cbind(OR = coef(fit), confint(fit)))
 
 # Is this significant?
 fit <- glm(gamble_internet ~ 
-             alcohol_ever + gender + factor(age),
+             alcohol_ever + gender + age, #factor(age),
            data = nmapss,
            family = binomial("logit"))
 summary(fit)
@@ -125,8 +128,21 @@ exp(coef(fit))
 x <- exp(cbind(OR = coef(fit), confint(fit)))
 x
 x <- data.frame(x[-1,])
-barplot(x$OR)
-
+my_barplot <- barplot(x$OR,
+        names.arg = row.names(x),
+        col = "darkorange",
+        ylim = c(0,max(x$OR)*1.2),
+        border = NA)
+box("plot")
+abline(h = 1, col = adjustcolor("black", alpha.f = 0.7))
+library(Hmisc)
+errbar(x = my_barplot[,1],
+       y = x$OR,
+       yminus = x$X2.5..,
+       yplus = x$X97.5..,
+       pch = NA,
+       add = TRUE,
+       errbar.col = adjustcolor("darkblue", alpha.f = 0.8))
 
 ########
 # AGE OF ALCOHOL INITIATION AND GAMBLING LIKELIHOOD
@@ -211,9 +227,6 @@ girls_line <- lm(age_df$prob_gamble_girls[which(age_df$age >7)] ~
 abline(girls_line,
        col = adjustcolor("darkorange", alpha.f = 0.8))
 
-
-
-
 ########
 # Affect of age at first drink - multivariate model
 ########
@@ -231,19 +244,52 @@ exp(coef(fit))
 ## odds ratios and 95% CI
 exp(cbind(OR = coef(fit), confint(fit)))
 
+########
+# GAM
+########
+library(mgcv)
+my_gam <- gam(gamble_internet ~  gender + s(alcohol_age_first), 
+              data = nmapss,
+              family=binomial("logit"))
+plot(my_gam)
+vis.gam(my_gam,
+        color="terrain",
+        plot.type="contour",
+        main = "Risk of online gambling",
+        xaxt = "n",
+        xlab = "Gender",
+        ylab = "Alcohol initiation age",
+        type = "response",
+        n.grid=500,
+        #color = "gray",
+        #too.far = 0.02,
+        contour.col = adjustcolor("black", alpha.f=0.4))
+axis(side = 1, at = 1:2,
+     labels = c("Female", "Male"))
 
+vis.gam(my_gam)
 
 
 ########
-#
+# 3d scatterplot
 ########
+library(scatterplot3d)
+library(rgl)
+library(car)
 
+x <- jitter(nmapss$age, factor = 3)
+z <- jitter(nmapss$alcohol_age_first, factor = 3)
+y <- jitter(nmapss$alcohol_drinks_last_week, factor = 3)
 
+scatter3d(y ~ x + z, 
+          fit="smooth", #linear, smooth, additive
+          xlab = "Age", ylab = "Drinks last week", zlab = "Age at first drink",
+          axis.col=c("darkmagenta", "black", "darkcyan"),
+          surface.col=c("blue", "green", "orange", "magenta", "cyan", "red", 
+                        "yellow", "gray"), surface.alpha=0.3,
+          neg.res.col="red", pos.res.col="darkgreen",
+          point.col = "darkblue")
 
-
-########
-#
-########
 
 
 
