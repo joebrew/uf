@@ -23,28 +23,39 @@ setwd(public)
 ########
 # READ IN DATA
 ########
-# nmapss <- read.sas7bdat(paste0(private,
-#                           "/nmapssw4.sas7bdat"))
 
+### THE OLD WAY - BEFORE SONAM POINTED OUT CLEAN DATA TO ME
+# nmapss1 <- read.sas7bdat(paste0(private,
+#                           "/nmapssw1.sas7bdat"))
+# nmapss2 <- read.sas7bdat(paste0(private,
+#                                 "/nmapssw2.sas7bdat"))
+# nmapss3 <- read.sas7bdat(paste0(private,
+#                                 "/nmapssw3.sas7bdat"))
+# nmapss4 <- read.sas7bdat(paste0(private,
+#                                 "/nmapssw4.sas7bdat"))
+
+# THE NEW WAY, USING CLEAN DATA
 nmapss1 <- read.sas7bdat(paste0(private,
-                          "/nmapssw1.sas7bdat"))
-nmapss1$wave <- 1
+                                "/nmapss_clean/w1analysis.sas7bdat"))
 nmapss2 <- read.sas7bdat(paste0(private,
-                                "/nmapssw2.sas7bdat"))
-nmapss2$wave <- 2
+                                "/nmapss_clean/w2analysis.sas7bdat"))
 nmapss3 <- read.sas7bdat(paste0(private,
-                                "/nmapssw3.sas7bdat"))
-nmapss3$wave <- 3
+                                "/nmapss_clean/w3analysis.sas7bdat"))
 nmapss4 <- read.sas7bdat(paste0(private,
-                                "/nmapssw4.sas7bdat"))
+                                "/nmapss_clean/w4analysis.sas7bdat"))
+nmapss1$wave <- 1
+nmapss2$wave <- 2
+nmapss3$wave <- 3
 nmapss4$wave <- 4
 
-
+# Combine
 nmapss <- rbind.fill(nmapss1, 
                      nmapss2,
                      nmapss3,
                      nmapss4)
 
+# Remove
+rm(nmapss1, nmapss2, nmapss3, nmapss4)
 ########
 # FILL IN ALL MISSINGS WITH NA'S
 ########
@@ -267,12 +278,11 @@ nmapss$close_friends <- nmapss$Ques134
 # Skipping questions on close friends
 # Skpping questions on truthfulness
 
+
 ########
 # KEEP ONLY RECODED VARIABLES
 ########
-rm(locations, x, zip_df, j, Missing)
-
-nmapss <- nmapss[,!grepl("Ques|ques", colnames(nmapss))]
+#nmapss <- nmapss[,!grepl("Ques|ques", colnames(nmapss))]
 
 ########
 # Save pre-geocode
@@ -321,12 +331,29 @@ nmapss$lon <- nmapss$displayLongitude
 
 nmapss$displayLatitude <- NULL
 nmapss$displayLongitude <- NULL
+
+#####
+# CODE FOR RURAL / URBAN (Thanks to Sonam)
+#####
+nmapss$location <- ifelse(nmapss$place %in% c(10,13,16,19,22,25,28,31,34,37), "urban",
+                          ifelse(nmapss$place %in% c(11,14,17,20,23,26,29,32,35,38), "suburban",
+                                 ifelse(nmapss$place %in% c(12,15,18,21,24,27,30,33,36,39) , "rural",
+                                        NA)))
+
+#####
+# MAKE AGE GROUPS
+#####
+nmapss$age_group <- ifelse(nmapss$age <=13, "10-13",
+                            ifelse(nmapss$age <= 16, "14-16",
+                                   "17-18"))
+
 # ########
 # # Save post-geocoding
 # ########
 rm(geocode_data, zip_df, address_str, request_id)
 save.image(paste0(private,
                   "/nmapss_geocoded.RData"))
+
 
 
 # ########
@@ -361,42 +388,42 @@ save.image(paste0(private,
 ########
 # READ IN ZIP CODE MAP
 ########
-library(rgdal)
-zip <- readOGR("/home/joebrew/Desktop/zip_code",
-               "tl_2013_us_zcta510")
-
-fl <- zip[which(coordinates(zip)[,1] < -81 &
-                  coordinates(zip)[,1] > -83 &
-                  coordinates(zip)[,2] > 26 &
-                  coordinates(zip)[,2] < 28),]
-
-# get n per zip
-library(dplyr)
-zip_df <- nmapss %>%
-  group_by(as.character(zip)) %>%
-  summarise(n = n())
-names(zip_df)[1] <- "ZCTA5CE10"
-
-# loop into fl
-fl@data <- merge(fl@data,
-                 zip_df,
-                 by = "ZCTA5CE10",
-                 all.x = T,
-                 all.y = F)
-
-my_colors <- colorRampPalette(c("red", "white", "green"))(max(fl$n, na.rm =T))
-
-plot(fl,
-     col = my_colors[fl$n])
-
-points(nmapss$lon, nmapss$lat,
-       pch = 16,
-       col = adjustcolor("blue", alpha.f = 0.2))
-
-
-########
-#
-########
-my_table <- table(nmapss$city)
-my_colors <- colorRampPalette(c("red", "darkblue"))(length(my_table))
-barplot(my_table, col = my_colors)
+# library(rgdal)
+# zip <- readOGR("/home/joebrew/Desktop/zip_code",
+#                "tl_2013_us_zcta510")
+# 
+# fl <- zip[which(coordinates(zip)[,1] < -81 &
+#                   coordinates(zip)[,1] > -83 &
+#                   coordinates(zip)[,2] > 26 &
+#                   coordinates(zip)[,2] < 28),]
+# 
+# # get n per zip
+# library(dplyr)
+# zip_df <- nmapss %>%
+#   group_by(as.character(zip)) %>%
+#   summarise(n = n())
+# names(zip_df)[1] <- "ZCTA5CE10"
+# 
+# # loop into fl
+# fl@data <- merge(fl@data,
+#                  zip_df,
+#                  by = "ZCTA5CE10",
+#                  all.x = T,
+#                  all.y = F)
+# 
+# my_colors <- colorRampPalette(c("red", "white", "green"))(max(fl$n, na.rm =T))
+# 
+# plot(fl,
+#      col = my_colors[fl$n])
+# 
+# points(nmapss$lon, nmapss$lat,
+#        pch = 16,
+#        col = adjustcolor("blue", alpha.f = 0.2))
+# 
+# 
+# ########
+# #
+# ########
+# my_table <- table(nmapss$city)
+# my_colors <- colorRampPalette(c("red", "darkblue"))(length(my_table))
+# barplot(my_table, col = my_colors)
