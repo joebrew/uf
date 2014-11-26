@@ -1,0 +1,119 @@
+\documentclass[11pt]{article}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage[sort, numbers]{natbib}
+
+\usepackage{fancyhdr}
+
+
+\graphicspath{ {/home/joebrew/Documents/uf/phc6016/loi} }
+
+
+\begin{document}
+\SweaveOpts{concordance=TRUE, echo=FALSE}
+
+\newgeometry{margin=1.5cm}
+\fancyhfoffset[E,O]{0pt}
+
+%------------------------------------------
+\section*{Childhood obesity: social import of place}
+%------------------------------------------
+Joe Brew 
+
+\noindent \hrulefill
+
+
+%------------------------------------------
+\subsection*{Introduction}
+%------------------------------------------
+The prevalence of obesity among American school-aged children has grown in recent decades at an alarming rate (figure 1)\cite{Ogden2014}. Obesity has a steep social gradient, and areas that are poor or socially marginalized have above average rates in the USA.\cite{Budd2014} Because obesity is closely correlated with socieconomic status, which is in turn associated with residential location, studying geography's independent association with childhood obesity is extremely challenging. 
+
+Alachua County, Florida, offers the ideal location for the study of childhood adiposity and geography.  The Alachua County Public Schools system collect
+
+%------------------------------------------
+\subsection*{Aims}
+%------------------------------------------
+
+
+%------------------------------------------
+\subsection*{Statement of need}
+%------------------------------------------
+
+
+%------------------------------------------
+\subsection*{Methodology}
+%------------------------------------------
+
+
+%------------------------------------------
+\subsection*{Conclusion}
+%------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+\subsection*{Figures}
+%----------------------------------------------------------------------------------------
+\begin{center}
+Figure 1: Obesity among American children\cite{NIH}
+<<fig= TRUE, height = 4.5>>=
+
+par(mar=c(5,4,2,1))
+par(oma = c(1,1,1,1))
+yearNum <- 1:7
+yearNum2 <- c(1966, 1971, 1976, 1988, 1999, 2001, 2003)
+year <- c("1966-1970 ",
+          "1971-1974 ",
+          "1976-1980 ",
+          "1988-1994 ",
+          "1999-2000 ",
+          "2001-2002 ",
+          "2003-2004 ")
+boys <- c(4.5, 6.1, 4.8, 11.3, 14, 16.4, 18.2)
+girls <- c(4.7, 6.2, 5.3, 9.7, 13.8, 14.4, 16)
+
+#dataframe
+df <- data.frame(cbind(yearNum, yearNum2, year, boys, girls),
+                 stringsAsFactors = FALSE)
+plot(df$yearNum2, df$boys, type = "n",
+     xlab = NA,
+     ylab = "% Obese",
+     xaxt = "n")
+axis(side = 1,
+     at = df$yearNum2,
+     labels = df$yearNum2, #gsub("-", "-\n", df$year),
+     cex.axis = 0.8,
+     las = 3)
+mycols <- c("darkred", "darkblue")
+mycols <- adjustcolor(mycols, alpha.f=0.5)
+lines(df$yearNum2, df$boys, col = mycols[1], lwd = 2)
+lines(df$yearNum2, df$girls, col = mycols[2], lwd = 2, lty = 6)
+points(df$yearNum2, df$boys, col = mycols[1], pch = 15)
+points(df$yearNum2, df$girls, col = mycols[2], pch = 16)
+
+legend("topleft",
+       col = mycols,
+       lwd = 2,
+       pch = c(15,16),
+       lty = c(1,6),
+       legend = c("Boys", "Girls"))
+title(#main = "Obesity among American children", cex.main = 1.2,
+      sub = "(Original chart, data from NIH)", cex.sub = 0.8)
+@
+\end{center}
+
+%----------------------------------------------------------------------------------------
+%  REFERENCE LIST
+%----------------------------------------------------------------------------------------
+\newpage
+\bibliographystyle{unsrtnat}
+\bibliography{test}
+
+
+
+
+\end{document}

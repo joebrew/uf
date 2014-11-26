@@ -1,0 +1,4 @@
+\select@language {english}
+\contentsline {section}{Assignment 3}{2}{section*.2}
+\contentsline {subsection}{Background}{2}{section*.3}
+\contentsline {subsection}{Variance}{2}{section*.4}

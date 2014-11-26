@@ -144,9 +144,25 @@ text(x = my_barplot,
 ########
 
 # Is this significant?
+my_data <- nmapss[,c("gamble_internet",
+                     "alcohol_ever",
+                     "gender",
+                     "age",
+                     #"race",
+                     "lived_with_mom_and_dad",
+                     "close_friends",
+                     "marijuana_ever",
+                     "grades")]
 fit <- glm(gamble_internet ~ 
-             alcohol_ever + gender + age, #factor(age),
-           data = nmapss,
+             alcohol_ever + 
+             gender + 
+             age + 
+             #race + 
+             lived_with_mom_and_dad + 
+             close_friends +
+             grades +
+             marijuana_ever, 
+           data = na.omit(my_data),
            family = binomial("logit"))
 summary(fit)
 
@@ -154,7 +170,22 @@ summary(fit)
 exp(coef(fit))
 
 ## odds ratios and 95% CI
-x <- exp(cbind(OR = coef(fit), confint(fit)))
+exp(cbind(OR = coef(fit), confint(fit)))
+
+
+# Variable selection
+library(MASS)
+step <- stepAIC(fit, direction = "both")
+step$anova
+
+# Fit final
+fit_final <- glm(gamble_internet ~ alcohol_ever + gender + age + close_friends + 
+                   grades,
+                 data = na.omit(my_data),
+                 family = binomial("logit"))
+
+## odds ratios and 95% CI
+x <- exp(cbind(OR = coef(fit_final), confint(fit_final)))
 x
 x <- data.frame(x[-1,])
 my_barplot <- barplot(x$OR,
