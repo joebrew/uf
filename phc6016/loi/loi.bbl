@@ -1,4 +1,4 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{12}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -14,11 +14,61 @@ C~Ogden, M~Carroll, and K~Flegal B~Kit.
 \newblock URL \url{http://dx.doi.org/10.1001/jama.2014.732}.
 
 \bibitem[Budd and Peterson(2014)]{Budd2014}
-Geraldine~M. Budd and Jane~Anthony Peterson.
+GM~Budd and JA~Peterson.
 \newblock {CE}.
 \newblock \emph{{AJN}, American Journal of Nursing}, page~1, 2014.
 \newblock \doi{10.1097/01.naj.0000457410.83963.4b}.
 \newblock URL \url{http://dx.doi.org/10.1097/01.NAJ.0000457410.83963.4b}.
+
+\bibitem[acp()]{acps}
+\emph{Alachua County Public Schools}.
+\newblock URL \url{http://www.sbac.edu/pages/ACPS}.
+
+\bibitem[gnv()]{gnv}
+\emph{City of Gainesville Open Data Portal}.
+\newblock URL \url{https://data.cityofgainesville.org/}.
+
+\bibitem[Brew et~al.(2014)Brew, Baker, and White]{Brew2014}
+J~Brew, J~Baker, and K~White.
+\newblock Quantifying overweight and obesity among alachua county adults and
+  children.
+\newblock \emph{Community Health Improvement Plan - Internal Documents}, jan
+  2014.
+
+\bibitem[Bishop et~al.(2005)Bishop, Middendorf, Babin, and Tilson]{Bishop2005}
+J~Bishop, R~Middendorf, R~Babin, and W~Tilson.
+\newblock Childhood obesity.
+\newblock \emph{ASPE Research Brief}, page~1, 2005.
+\newblock URL \url{http://aspe.hhs.gov/health/reports/child_obesity/index.cfm}.
+
+\bibitem[201(2013)]{2013}
+Childhood obesity: socioeconomic inequalities and consequences for later
+  cardiovascular health.
+\newblock \emph{Longitudinal and Life Course Studies}, jan 2013.
+\newblock \doi{10.14301/llcs.v4i1.217}.
+\newblock URL \url{http://dx.doi.org/10.14301/llcs.v4i1.217}.
+
+\bibitem[Drewnowski(2009)]{Drewnowski2009}
+A~Drewnowski.
+\newblock Obesity, diets, and social inequalities.
+\newblock \emph{Nutrition Reviews}, 67:\penalty0 S36--S39, may 2009.
+\newblock \doi{10.1111/j.1753-4887.2009.00157.x}.
+\newblock URL \url{http://dx.doi.org/10.1111/j.1753-4887.2009.00157.x}.
+
+\bibitem[Kristensen et~al.(2014)Kristensen, Flottemesch, Maciosek, JJ, Barclay,
+  Ashe, Sanchez, Story, Teutsch, and Brownson]{Kristensen2014}
+AH~Kristensen, TJ~Flottemesch, MV~Maciosek, JJ, G~Barclay, M~Ashe, EJ~Sanchez,
+  M~Story, SM~Teutsch, and RC~Brownson.
+\newblock Reducing childhood obesity through u.s. federal policy.
+\newblock \emph{American Journal of Preventive Medicine}, 47\penalty0
+  (5):\penalty0 604--612, nov 2014.
+\newblock \doi{10.1016/j.amepre.2014.07.011}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.amepre.2014.07.011}.
+
+\bibitem[Kulldorff(1997)]{Kulldorff1997}
+M~Kulldorff.
+\newblock A spatial scan statistic.
+\newblock \emph{Commun. Statist. - Theory Meth}, June 1997.
 
 \bibitem[on~Future Research Directions~in Childhood Obesity~Prevention and
   Treatment(2007)]{NIH}
@@ -28,5 +78,11 @@ Working~Group on~Future Research Directions~in Childhood Obesity~Prevention and
 \newblock \emph{NIH}, aug 2007.
 \newblock URL
   \url{http://www.nhlbi.nih.gov/research/reports/2007-child-obesity/index.htm#postmodel}.
+
+\bibitem[Becker et~al.(2014)Becker, Wilks, Brown, and Minka]{maps}
+RA~Becker, AR~Wilks, R~Brown, and TP~Minka.
+\newblock \emph{Maps package: Draw Geographical Maps}, 2014.
+\newblock URL \url{http://CRAN.R-project.org/package=maps}.
+\newblock R package version 2.3-9.
 
 \end{thebibliography}

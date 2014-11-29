@@ -154,6 +154,7 @@ my_data <- nmapss[,c("gamble_internet",
                      "marijuana_ever",
                      "grades")]
 fit <- glm(gamble_internet ~ 
+<<<<<<< HEAD
              alcohol_ever + 
              gender + 
              age + 
@@ -163,6 +164,10 @@ fit <- glm(gamble_internet ~
              grades +
              marijuana_ever, 
            data = na.omit(my_data),
+=======
+             alcohol_ever + gender + age_group, #factor(age),
+           data = nmapss,
+>>>>>>> 38a153db4d0f2647c555e86f31ff28d9d434ecc9
            family = binomial("logit"))
 summary(fit)
 
@@ -189,9 +194,11 @@ x <- exp(cbind(OR = coef(fit_final), confint(fit_final)))
 x
 x <- data.frame(x[-1,])
 my_barplot <- barplot(x$OR,
-        names.arg = row.names(x),
+        #names.arg = row.names(x),
+        names.arg = c("Ever alcohol", "Male", "14-16 y.o.", "17-18 y.o."),
         col = "darkorange",
         ylim = c(0,max(x$OR)*1.2),
+        ylab = "Odds ratios for online gambling",
         border = NA)
 box("plot")
 abline(h = 1, col = adjustcolor("black", alpha.f = 0.7))
@@ -203,6 +210,132 @@ errbar(x = my_barplot[,1],
        pch = NA,
        add = TRUE,
        errbar.col = adjustcolor("darkblue", alpha.f = 0.8))
+
+
+########
+# 2. ADD ALL VARIABLES
+########
+nmapss$health <- factor(nmapss$health,
+                        levels = c("Excellent", "Good", "Fair", "Poor"))
+nmapss$location <- factor(nmapss$location,
+                          levels = c("urban", "suburban", "rural"))
+nmapss$family_dinner_week <- factor(ifelse(nmapss$family_dinner_week <=3,"<=3 weekly family meals",
+                                           ifelse(nmapss$family_dinner_week >=4, ">= 4 weekly family meals",
+                                                  NA)))
+fit <- glm(gamble_internet ~ 
+             alcohol_ever + gender + age_group + location +
+             family_dinner_week + marijuana_ever + health +
+             close_friends, 
+           data = nmapss,
+           family = binomial("logit"))
+summary(fit)
+
+# Odds ratios
+exp(coef(fit))
+
+## odds ratios and 95% CI
+x <- exp(cbind(OR = coef(fit), confint(fit)))
+x
+x <- data.frame(x[-1,])
+x
+my_barplot <- barplot(x$OR,
+                      #names.arg = row.names(x),
+                      names.arg = c("alcohol\never",
+                                    "male",
+                                    "14-16 y.o.",
+                                    "17-18 y.o.",
+                                    "suburban",
+                                    "rural",
+                                    ">=4 weekly\nfamily meals",
+                                    "marijuana\never",
+                                    "good health",
+                                    "fair health",
+                                    "poor health",
+                                    "close friends"),
+                      col = "darkorange",
+                      ylim = c(0,max(x$OR)*1.2),
+                      ylab = "Odds ratios for online gambling",
+                      border = NA,
+                      cex.names = 0.6,
+                      las = 3)
+box("plot")
+abline(h = 1, col = adjustcolor("black", alpha.f = 0.7))
+library(Hmisc)
+errbar(x = my_barplot[,1],
+       y = x$OR,
+       yminus = x$X2.5..,
+       yplus = x$X97.5..,
+       pch = NA,
+       add = TRUE,
+       errbar.col = adjustcolor("darkblue", alpha.f = 0.8))
+
+# Is that model any good?
+small_nmapss <- nmapss[,c("gamble_internet",
+                          "alcohol_ever",
+                          "gender",
+                          "age_group",
+                          "location",
+                          "family_dinner_week",
+                          "marijuana_ever",
+                          "health",
+                          "close_friends")]
+no_na_data <- na.omit(small_nmapss)
+fit <- glm(gamble_internet ~ 
+             alcohol_ever + gender + age_group + location +
+             family_dinner_week + marijuana_ever + health +
+             close_friends, 
+           data = no_na_data,
+           family = binomial("logit"))
+library(MASS)
+step <- stepAIC(fit, direction="both")
+step$anova # display results
+
+# FINAL MODEL
+fit <- glm(gamble_internet ~ 
+             alcohol_ever + gender + age_group +
+             family_dinner_week + health +
+             close_friends, 
+           data = no_na_data,
+           family = binomial("logit"))
+
+
+## odds ratios and 95% CI
+x <- exp(cbind(OR = coef(fit), confint(fit)))
+x
+x <- data.frame(x[-1,])
+x
+my_barplot <- barplot(x$OR,
+                      #names.arg = row.names(x),
+                      names.arg = c("alcohol\never",
+                                    "male",
+                                    "14-16 y.o.",
+                                    "17-18 y.o.",
+                                    ">=4 weekly\nfamily meals",
+                                    "good health",
+                                    "fair health",
+                                    "poor health",
+                                    "close friends"),
+                      col = "darkorange",
+                      ylim = c(0,max(x$OR)*1.2),
+                      ylab = "Odds ratios for online gambling",
+                      border = NA,
+                      cex.names = 0.6,
+                      las = 3)
+box("plot")
+abline(h = 1, col = adjustcolor("black", alpha.f = 0.7))
+library(Hmisc)
+errbar(x = my_barplot[,1],
+       y = x$OR,
+       yminus = x$X2.5..,
+       yplus = x$X97.5..,
+       pch = NA,
+       add = TRUE,
+       errbar.col = adjustcolor("darkblue", alpha.f = 0.8))
+
+
+
+
+
 
 ########
 # AGE OF ALCOHOL INITIATION AND GAMBLING LIKELIHOOD
@@ -262,7 +395,7 @@ girls <- by(nmapss[which(nmapss$gender == "female"),],
              nrow(x[which(x[,"gamble_internet"]),]) / 
                nrow(x) * 100
            })
-girls <- girls[-1]
+#girls <- girls[-1]
 age_df$prob_gamble_girls <- girls
 
 points(age_df$age, age_df$prob_gamble_girls,
@@ -293,7 +426,7 @@ abline(girls_line,
 over7 <- nmapss[which(nmapss$alcohol_age_first >= 8),]
 
 fit <- glm(gamble_internet ~ 
-             alcohol_age_first + gender + age,
+             alcohol_age_first + gender*age,
            data = over7,
            family = binomial("logit"))
 summary(fit)
@@ -327,7 +460,7 @@ vis.gam(my_gam,
         n.grid=100,
         #color = "gray",
         #too.far = 0.02,
-        contour.col = adjustcolor("black", alpha.f=0.7))
+        contour.col = "black")#adjustcolor("black", alpha.f=0.9))
 axis(side = 1, at = 1:2,
      labels = c("Female", "Male"))
 
