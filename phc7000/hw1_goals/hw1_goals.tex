@@ -1,0 +1,135 @@
+\documentclass[11pt]{article}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[center]{titlesec}
+\usepackage{geometry}
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+
+%\usepackage{mathtools}
+
+\usepackage[sort, numbers]{natbib}
+
+
+%
+%\setlength{\columnseprule}{0.4pt}
+%\setlength{\footskip}{20pt}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[C]{PHC 7000 $\bullet$ Joe Brew $\bullet$ Homework 1}
+\fancyfoot[C]{  $\bullet$ joebrew@gmail.com \bullet$  }
+\renewcommand\headrulewidth{1pt}
+\renewcommand\footrulewidth{1pt}
+\pagestyle{fancy}
+
+%
+
+\setlength{\columnsep}{1.5cm}
+%\setlength{\columnseprule}{0.4pt}
+
+%\MakeOuterQuote{"}
+
+
+
+\graphicspath{ {/home/joebrew/Documents/uf/phc7000/hw1_goals/} }
+
+%the next two lines adjust the third, centered section of the exec sum
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\usepackage{Sweave}
+\begin{document}
+\input{hw1_goals-concordance}
+
+\title{\textbf{Homework 1}}
+\author{Joe Brew}
+
+
+\maketitle
+
+% \emph{
+% \blindtext
+% }
+% \tableofcontents
+
+%\vspace{20mm}
+
+\begin{center}
+\includegraphics[width=2cm]{uf}
+\end{center}
+
+
+%\newgeometry{margin=2.5cm}
+\fancyhfoffset[E,O]{0pt}
+
+
+% %------------------------------------------
+% \section*{xxx}
+% \addcontentsline{toc}{section}{xxx}
+% %------------------------------------------
+\hrulefill
+
+% \begin{multicols}{2} 
+% \setkeys{Gin}{width=0.45\textwidth}
+
+%------------------------------------------
+\section{3-5 years from now}
+\addcontentsline{toc}{section}{Three to five years from now}
+%------------------------------------------
+
+\lettrine[nindent=0em,lines=3]{B}{y} 2018, I would like to be be assisting small health-related organizations (NGOs as well as government agencies) in the collection, analysis and understanding of their data.  My aim is to do this in the context of a small consultancy.  Our niche will be (a) small organizations, (b) short-term goals/projects, and (c) data.   
+
+%------------------------------------------
+\section{3 training goals}
+\addcontentsline{toc}{section}{Three training goals}
+%------------------------------------------
+In order to be prepared to run a data-oriented consultancy, I would like to acquire the following three skills while at UF:
+\begin{itemize}
+\itemsep1pt \parskip0pt \parsep0pt 
+\item Principles of data management and \emph{open-source} software and code.
+\item Data visualization, presentation and speaking skills
+\item Rigorous \emph{observational} study design, and analysis of imperfect/flawed/biased data
+\end{itemize}
+
+%------------------------------------------
+\section{Courses, applied experiences and training}
+\addcontentsline{toc}{section}{Courses, applied experiences and training}
+%------------------------------------------
+In addition to the courses I've already taken, I believe that the following will be of value: \begin{itemize}
+\itemsep1pt \parskip0pt \parsep0pt 
+\item Measuring & analyzing health outcomes (GMS 6822)
+\item Field epidemiology (PHC 7916)
+\item Public health surveillance (PHC 6937)
+
+
+% \begin{center}
+% <<fig = TRUE, results=hide>>=
+% my_number <- 100
+% x <- 1:my_number
+% my_colors <- colorRampPalette(c("green", "blue"))(my_number)
+% barplot(x, col = my_colors, border = NA, space = 0)
+% box("plot")
+% title(main = "main title", sub = "subtitle", line = 0.5,
+%       font.main = 1, font.sub = 1)
+% @
+% \end{center}
+
+
+
+
+
+
+% \end{multicols}
+% \setkeys{Gin}{width=1\textwidth}
+%----------------------------------------------------------------------------------------
+%  REFERENCE LIST
+%----------------------------------------------------------------------------------------
+% \newpage
+\bibliographystyle{unsrtnat}
+\bibliography{bibliography}
+
+
+\end{document}
