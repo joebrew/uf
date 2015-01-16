@@ -23,10 +23,10 @@ activities$Activity <- gsub(" |-", "_", activities$Activity)
 activities$Activity[which(activities$Activity == "Cheerleading_and_Gymnastics")] <- "Gymnastics"
 
 ## Prints out everything I need for the really long ui.R
-## Had to eliminate a few, since so many inputs were causing json errors in the app
+# # Had to eliminate a few, since so many inputs were causing json errors in the app
 # paste_text <- function(activity){
 #   cat(paste0("textInput(inputId = '", activity,"',
-#             label = '", activity, "',
+#             label = '", activity, " (how many times?)',
 #             value = '0'),\n
 #   checkboxInput('", activity,"_vig', label = 'Vigorous', value = FALSE),
 #   sliderInput('", activity,"_dur', label = 'Duration (in hours)', 
