@@ -514,7 +514,7 @@ shinyServer(function(input, output) {
     }
 
     
-  }, height = 400, width = 600)
+  })
   
   
   output$my_table <- renderDataTable({
