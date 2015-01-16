@@ -1,0 +1,49 @@
+Code,Activity,moderate,vigorous
+10,Aerobics,5,7
+11,Baseball,5,6
+12,Basketball,6,8
+13,Bicycling,4,8
+14,Bowling,3,3
+15,Dance,4.5,6
+16,Fishing,3.5,6
+17,Football,5,8
+18,Gardening,4,5
+19,Golf,3.5,4.5
+20,Hiking,6,7
+21,Hockey,6,8
+22,Hunting,5,6
+23,Jogging,6,7
+24,Kayaking,3.5,7
+25,Push-ups,3.5,8
+26,Racquetball,7,10
+27,Rollerblading,6,7
+28,Rowing,3.5,7
+29,Running,7,10
+30,Sit-ups,3.5,8
+31,Skating,5,7
+32,Skiing – cross country,7,9
+33,Skiing – downhill,6,8
+34,Soccer,6,10
+35,Softball,5,6
+36,Stair Climbing,6,8
+37,Stretching,2.5,2.5
+38,Swimming,6,8
+39,Tennis,5,7
+40,Treadmill,4.5,7
+41,Volleyball,4,8
+42,Walking,3.5,5
+43,Weight Lifting,3,6
+44,Yard Work,4,6
+50,Boxing,6,9
+51,Frisbee,3,8
+52,Horseback Riding,4,6.5
+53,Martial Arts,4,10
+54,Wrestling,6,8
+55,Yoga,2.5,4
+56,Cheerleading and Gymnastics,4,6
+57,"Children’s Games - Dodgeball, Kickball, etc.",5,6
+58,Rope Jumping,8,10
+59,Skateboarding,5,6
+60,Surfing,3,5
+61,Trampoline Jumping,3.5,4.5
+71,Other,4.5,7
