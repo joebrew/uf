@@ -26,7 +26,9 @@ shinyUI(fluidPage(
                       " duration for following activities")),
       br(),
       helpText(paste0("If you did the activity 'vigorously' mark it as such.",
-                      " If you did the activety only 'moderately,' leave the checkbox unmarked.")),
+                      " If you did the activety only 'moderately,' leave the checkbox unmarked.",
+                      " For duration, simply slide to the AVERAGE number of hours you ",
+                      "spend doing the activity each session.")),
       
       
 
