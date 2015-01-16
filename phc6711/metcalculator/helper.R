@@ -1,6 +1,7 @@
 
 # Read in activities data
-activities <- read.csv("activities.csv")
+activities <- read.csv("activities.csv",
+                       stringsAsFactors = FALSE)
 
 # Clean up activities data
 activities <- activities[c(1,2,3,4,6,8,
@@ -18,6 +19,9 @@ activities$calculated_met <- NA
 # Clean up spaces
 activities$Activity <- gsub(" |-", "_", activities$Activity)
 
+# Clean up cheerleading
+activities$Activity[which(activities$Activity == "Cheerleading_and_Gymnastics")] <- "Gymnastics"
+
 ## Prints out everything I need for the really long ui.R
 ## Had to eliminate a few, since so many inputs were causing json errors in the app
 # paste_text <- function(activity){
@@ -28,7 +32,7 @@ activities$Activity <- gsub(" |-", "_", activities$Activity)
 #   sliderInput('", activity,"_dur', label = 'Duration (in hours)', 
 #               min=0, max=5, value=0, step=0.25),
 # 
-# br(),
+# br(), hr(),
 #              "))
 # }
 # 
@@ -75,28 +79,58 @@ activities$Activity <- gsub(" |-", "_", activities$Activity)
 #     
 # }
 
-# Function for plotting
+# Function for plotting METS
 bar_fun <- function(data = activities3, var = "calculated_met"){
-
-  my_cols <- colorRampPalette(c("blue", "lightblue", "white", "yellow", "orange", "red"))(nrow(data))
+  
+  my_cols <- colorRampPalette(c("blue", "lightblue", "yellow", "orange", "red"))(nrow(data))
   my_cols <- adjustcolor(my_cols, alpha.f = 0.4)
   data <- data[rev(order(data[,var])),]
-  vec <- data[,var]
+  vec <- data[,var] 
   vec_names <- data[,"Activity"]
-      bp <- barplot(vec, names.arg = vec_names, las = 3,
-                    ylim = c(0, max(vec, na.rm = TRUE) * 1.1),
-                    cex.names = 0.75,
-                    col = my_cols,
-                    border = NA)
-      text(x = bp[,1],
-           y = vec,
-           labels = round(vec),
-           pos = 3)
+  bp <- barplot(vec, names.arg = vec_names, las = 3,
+                ylim = c(0, max(vec, na.rm = TRUE) * 1.1),
+                cex.names = 0.85,
+                col = my_cols,
+                border = NA)
+  text(x = bp[,1],
+       y = vec,
+       labels = round(vec, digits = 2),
+       pos = 3)
   
   text(x = bp[27,1],
        y = max(vec, na.rm = T) * 0.8,
-       labels = paste0("Total monthly MET's: ", sum(vec, na.rm = T)))
-      box("plot")
-  title(main = "Distribution of your monthly metabolic equivalent tasks")
+       labels = paste0("Total monthly MET's: ", round(sum(vec, na.rm = T))))
+  box("plot")
+  title(main = "Where you expend MET's (monthly)")
 }
+
+
+# Function for plotting CALORIES
+calorie_plot <- function(data = activities3, var = "calories_burned"){
+  
+  my_cols <- colorRampPalette(c("blue", "lightblue", "yellow", "orange", "red"))(nrow(data))
+  my_cols <- adjustcolor(my_cols, alpha.f = 0.4)
+  data <- data[rev(order(data[,var])),]
+  vec <- data[,var] 
+  vec_names <- data[,"Activity"]
+  bp <- barplot(vec, names.arg = vec_names, las = 3,
+                ylim = c(0, max(vec, na.rm = TRUE) * 1.1),
+                cex.names = 0.85,
+                col = my_cols,
+                border = NA)
+  text(x = bp[,1],
+       y = vec,
+       labels = round(vec, digits = 0),
+       pos = 3)
+  
+  text(x = bp[27,1],
+       y = max(vec, na.rm = T) * 0.8,
+       labels = paste0("Total monthly calories: ", round(sum(vec, na.rm = T))))
+  box("plot")
+  title(main = "Where you burn calories (monthly)")
+}
+
+# Function for plotting bmi
+#bmi_plot <- function(data = )
+bmi <- rnorm(n = 10000, m = 28.6, sd = 2.2)
 

@@ -12,6 +12,24 @@ source("helper.R")
 
 shinyServer(function(input, output) {
   
+  person_data <- reactive({
+    x <- data.frame(height = as.numeric(input[['height']]),
+               weight = as.numeric(input[['weight']]),
+               bmi = as.numeric(NA))
+    
+    x$bmi <- (as.numeric(input$weight) * 703) /
+      (as.numeric(input$height)^2)
+    
+    x$double_bmi <- x$bmi * 2
+    
+    kg <- 0.453592 * x$weight
+    
+    #x$calories_per_met <- 
+    
+    x
+
+    })
+  
   activities3 <- reactive({
     activities2 <- data.frame(activities)
 
@@ -437,18 +455,18 @@ shinyServer(function(input, output) {
     
     
     
-    activities2$number_of_times[which(activities2$Activity == 'Cheerleading_and_Gymnastics')] <-
-      as.numeric(input[['Cheerleading_and_Gymnastics']]) 
+    activities2$number_of_times[which(activities2$Activity == 'Gymnastics')] <-
+      as.numeric(input[['Gymnastics']]) 
     
     
-    activities2$avg_duration[which(activities2$Activity == 'Cheerleading_and_Gymnastics')] <-
-      as.numeric(input[['Cheerleading_and_Gymnastics_dur']])
+    activities2$avg_duration[which(activities2$Activity == 'Gymnastics')] <-
+      as.numeric(input[['Gymnastics_dur']])
     
     
     
-    activities2$met[which(activities2$Activity == 'Cheerleading_and_Gymnastics')] <-
-      as.numeric(ifelse(input[['Cheerleading_and_Gymnastics_vig']],activities2$vigorous[which(activities2$Activity == 'Cheerleading_and_Gymnastics')],
-                        activities2$moderate[which(activities2$Activity == 'Cheerleading_and_Gymnastics')]))
+    activities2$met[which(activities2$Activity == 'Gymnastics')] <-
+      as.numeric(ifelse(input[['Gymnastics_vig']],activities2$vigorous[which(activities2$Activity == 'Gymnastics')],
+                        activities2$moderate[which(activities2$Activity == 'Gymnastics')]))
     
     
     
@@ -479,11 +497,18 @@ shinyServer(function(input, output) {
     activities2$met[which(activities2$Activity == 'Other')] <-
       as.numeric(ifelse(input[['Other_vig']],activities2$vigorous[which(activities2$Activity == 'Other')],
                         activities2$moderate[which(activities2$Activity == 'Other')]))
+    
     # CALCULATE MET
     activities2$calculated_met <-
       activities2$number_of_times *
       activities2$avg_duration *
       activities2$met
+    
+    # CALCULATE CALORIES BURNED
+    activities2$calories_burned <- 
+      activities2$calculated_met * #duration * met
+      (as.numeric(input[['weight']]) * 0.453592)   # weight
+      
     
 
     activities2 <- activities2[order(rev(activities2$calculated_met)),]
@@ -496,9 +521,28 @@ shinyServer(function(input, output) {
   
   # CLEAN UP THE ACTIVITIES DATA FRAME
   
-  output$my_plot <- renderPlot({
+  # CALORIE PLOT
+  output$calorie_plot <- renderPlot({
+    par(mar = c(6, 4, 1, 1))
+    par(oma = c(4, 0, 0, 0))
+    if(sum(activities3()$calories_burned, na.rm = TRUE) == 0){
+      
+      plot(1:10, 1:10, col = "white", pch = NA,
+           xlab = NA,
+           ylab = NA)
+      title(main = "Provide your activity information to make a plot here")
+      
+    } else{
+      calorie_plot(data = activities3())
+      
+    }
+    
+  })
+  
+  # MET PLOT
+  output$met_plot <- renderPlot({
     # Barplot
-    par(mar = c(8, 4, 3, 1))
+    par(mar = c(6, 4, 1, 1))
     par(oma = c(4, 0, 0, 0))
 
     if(sum(activities3()$calculated_met, na.rm = TRUE) == 0){
@@ -515,6 +559,48 @@ shinyServer(function(input, output) {
 
     
   })
+  
+  
+  output$bmi_table <- renderTable({
+    
+    data.frame(person_data())
+
+  },
+  options = list(
+    paging = FALSE))
+  
+  output$bmi_plot <- renderPlot({
+    
+    my_hist <- hist(bmi, breaks = 50, freq = FALSE,
+         border = NA, col = "grey",
+         main = "Your BMI relative to other American adults",
+         xlim = c(15, 40))
+    draw_bmi <- (as.numeric(input$weight) * 703) /
+      (as.numeric(input$height)^2)
+    abline(v = draw_bmi,
+           col = adjustcolor("blue", alpha.f = 0.7),
+           lwd = 2)
+    
+    text(x = draw_bmi,
+         y = max(my_hist$density) * 0.9,
+         pos = 2,
+         labels = paste0("Your BMI: ", round(draw_bmi, digits = 2)),
+         col = adjustcolor("darkblue", alpha.f = 0.6))
+    
+    abline(v = c(18.5, 25, 30),
+           col = adjustcolor("darkred", alpha.f = 0.6))
+    
+    text(x = c(21.75, 27.5, 33),
+         y = max(my_hist$density) * 0.2,
+         pos = 3,
+         labels = c("Normal", "Overweight", "Obese"),
+         col = adjustcolor("black", alpha.f = 0.6))
+    
+    box("plot")
+
+  })
+  
+  
   
   
   output$my_table <- renderDataTable({
