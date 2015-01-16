@@ -79,6 +79,7 @@ activities$Activity <- gsub(" |-", "_", activities$Activity)
 bar_fun <- function(data = activities3, var = "calculated_met"){
 
   my_cols <- colorRampPalette(c("blue", "lightblue", "white", "yellow", "orange", "red"))(nrow(data))
+  my_cols <- adjustcolor(my_cols, alpha.f = 0.4)
   data <- data[rev(order(data[,var])),]
   vec <- data[,var]
   vec_names <- data[,"Activity"]

@@ -12,6 +12,12 @@ shinyUI(fluidPage(
   # Application title
   titlePanel("Xu and Brew's MET Calculator"),
   h5("Where do you get most of your exercise?"),
+  tags$div(
+    HTML("<a href='https://github.com/joebrew/uf/tree/master/phc6711/metcalculator'>Code for this app</a>")
+  ),
+  tags$div(
+    HTML("<a href='mailto:joebrew@gmail.com'>Email</a>")
+  ),
   
   # Sidebar with a slider input for number of bins
   sidebarLayout(

@@ -503,7 +503,9 @@ shinyServer(function(input, output) {
 
     if(sum(activities3()$calculated_met, na.rm = TRUE) == 0){
       
-      plot(1:10, 1:10, col = "white", pch = NA)
+      plot(1:10, 1:10, col = "white", pch = NA,
+           xlab = NA,
+           ylab = NA)
       title(main = "Provide your activity information to make a plot here")
       
     } else{
@@ -519,6 +521,8 @@ shinyServer(function(input, output) {
 
     #calculate_met("Aerobics")
     data.frame(activities3())
-    })
+    },
+    options = list(
+      paging = FALSE))
 
 })
