@@ -85,7 +85,7 @@ bar_fun <- function(data = activities3, var = "calculated_met"){
   my_cols <- colorRampPalette(c("blue", "lightblue", "yellow", "orange", "red"))(nrow(data))
   my_cols <- adjustcolor(my_cols, alpha.f = 0.4)
   data <- data[rev(order(data[,var])),]
-  vec <- data[,var] 
+  vec <- data[,var] * 60
   vec_names <- data[,"Activity"]
   bp <- barplot(vec, names.arg = vec_names, las = 3,
                 ylim = c(0, max(vec, na.rm = TRUE) * 1.1),
@@ -99,9 +99,9 @@ bar_fun <- function(data = activities3, var = "calculated_met"){
   
   text(x = bp[27,1],
        y = max(vec, na.rm = T) * 0.8,
-       labels = paste0("Total monthly MET's: ", round(sum(vec, na.rm = T))))
+       labels = paste0("Total monthly MET minutes:\n", round(sum(vec, na.rm = T))))
   box("plot")
-  title(main = "Where you expend MET's (monthly)")
+  title(main = "Where you expend MET minutes (monthly)")
 }
 
 
@@ -125,7 +125,7 @@ calorie_plot <- function(data = activities3, var = "calories_burned"){
   
   text(x = bp[27,1],
        y = max(vec, na.rm = T) * 0.8,
-       labels = paste0("Total monthly calories: ", round(sum(vec, na.rm = T))))
+       labels = paste0("Total monthly calories:\n", round(sum(vec, na.rm = T))))
   box("plot")
   title(main = "Where you burn calories (monthly)")
 }
