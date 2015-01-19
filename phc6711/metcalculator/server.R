@@ -501,7 +501,7 @@ shinyServer(function(input, output) {
     # CALCULATE MET
     activities2$calculated_met <-
       activities2$number_of_times *
-      activities2$avg_duration *
+      (activities2$avg_duration/60) *
       activities2$met
     
     # CALCULATE CALORIES BURNED

@@ -35,7 +35,7 @@ shinyUI(fluidPage(
                 value = 66),
       
       textInput(inputId = 'weight',
-                label = 'Weight (pounds',
+                label = 'Weight (pounds)',
                 value = 150), 
       
       
@@ -56,7 +56,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Aerobics_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Aerobics_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Baseball',
@@ -65,7 +65,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Baseball_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Baseball_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Basketball',
@@ -74,7 +74,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Basketball_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Basketball_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Bicycling',
@@ -83,7 +83,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Bicycling_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Bicycling_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Dance',
@@ -92,7 +92,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Dance_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Dance_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Football',
@@ -101,7 +101,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Football_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Football_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Golf',
@@ -110,7 +110,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Golf_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Golf_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Hiking',
@@ -119,7 +119,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Hiking_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Hiking_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Jogging',
@@ -128,7 +128,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Jogging_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Jogging_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Kayaking',
@@ -137,7 +137,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Kayaking_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Kayaking_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Push_ups',
@@ -146,7 +146,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Push_ups_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Push_ups_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Racquetball',
@@ -155,7 +155,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Racquetball_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Racquetball_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Rowing',
@@ -164,7 +164,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Rowing_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Rowing_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Running',
@@ -173,7 +173,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Running_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Running_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Sit_ups',
@@ -182,7 +182,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Sit_ups_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Sit_ups_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Skating',
@@ -191,7 +191,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Skating_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Skating_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Soccer',
@@ -200,7 +200,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Soccer_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Soccer_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Stair_Climbing',
@@ -209,7 +209,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Stair_Climbing_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Stair_Climbing_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Stretching',
@@ -218,7 +218,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Stretching_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Stretching_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Swimming',
@@ -227,7 +227,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Swimming_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Swimming_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Tennis',
@@ -236,7 +236,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Tennis_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Tennis_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Volleyball',
@@ -245,7 +245,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Volleyball_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Volleyball_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Walking',
@@ -254,7 +254,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Walking_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Walking_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Weight_Lifting',
@@ -263,7 +263,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Weight_Lifting_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Weight_Lifting_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Yard_Work',
@@ -272,7 +272,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Yard_Work_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Yard_Work_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Frisbee',
@@ -281,7 +281,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Frisbee_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Frisbee_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Martial_Arts',
@@ -290,7 +290,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Martial_Arts_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Martial_Arts_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Yoga',
@@ -299,7 +299,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Yoga_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Yoga_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Gymnastics',
@@ -308,7 +308,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Gymnastics_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Gymnastics_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Skateboarding',
@@ -317,7 +317,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Skateboarding_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Skateboarding_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br(), hr(),
       textInput(inputId = 'Other',
@@ -326,7 +326,7 @@ shinyUI(fluidPage(
       
       checkboxInput('Other_vig', label = 'Vigorous', value = FALSE),
       sliderInput('Other_dur', label = 'Duration (in hours)', 
-                  min=0, max=5, value=0, step=0.25),
+                  min=0, max=120, value=0, step=5),
       
       br()
       
