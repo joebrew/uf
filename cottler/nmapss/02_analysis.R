@@ -30,6 +30,7 @@ load(paste0(private, "/nmapss_geocoded.RData"))
 # Here are the variables related to alcohol
 names(nmapss[which(grepl("alcoho", names(nmapss)))])
 
+
 ########
 # 1. Cottler: are those who gamble also those who drink?
 ########
