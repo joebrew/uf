@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[center]{titlesec}
+\usepackage{geometry}
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+
+%\usepackage{mathtools}
+
+\usepackage[sort, numbers]{natbib}
+
+
+%
+%\setlength{\columnseprule}{0.4pt}
+%\setlength{\footskip}{20pt}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[C]{Joe Brew $\bullet$ Travis Gerke}
+\fancyfoot[C]{  $\bullet$ Indepenent study \bullet$  }
+\renewcommand\headrulewidth{1pt}
+\renewcommand\footrulewidth{1pt}
+\pagestyle{fancy}
+
+%
+
+\setlength{\columnsep}{1.5cm}
+%\setlength{\columnseprule}{0.4pt}
+
+%\MakeOuterQuote{"}
+
+
+
+\graphicspath{ {/home/joebrew/Documents/uf/gerke_independent_study_lit_review} }
+
+%the next two lines adjust the third, centered section of the exec sum
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\begin{document}
+\SweaveOpts{concordance=TRUE, echo=FALSE, results = hide}
+
+\title{\textbf{LAIV vs IIV literature review}}
+\author{Joe Brew}
+
+
+\maketitle
+
+\emph{What follows is a "first pass" of the literature regarding live attenuated influenza vaccine (LAIV) and influenza, inactivated vaccine (IIV).  The next iteration of this document will hopefully contain more information on young adults (most research I've found so far groups ages 18-49 or 18-64 all together), strain mismatch, and waning protection over time.}
+\tableofcontents
+
+\vspace{20mm}
+
+\begin{center}
+\includegraphics[width=2cm]{uf}
+\end{center}
+
+
+\newgeometry{margin=2.5cm}
+%\fancyhfoffset[E,O]{0pt}
+
+
+% %------------------------------------------
+% \section*{Final project: research proposal}
+% \addcontentsline{toc}{section}{Final project: research proposal}
+% %------------------------------------------
+% \hrulefill
+\newgeometry{margin = 2cm}
+\begin{multicols}{2} 
+\setkeys{Gin}{width=0.45\textwidth}
+
+%------------------------------------------
+\subsection*{Recommendations}
+\addcontentsline{toc}{subsection}{Recommendations}
+%------------------------------------------
+\textbf{For young children}:
+\begin{itemize}
+\item As of November, 2014, the American Academy of Pediatrics' Committee on Infectious Diseases recommends that children ages 2 through 8 with "no contraindications or precautions to the intranasal vaccine" should recieve LAIV; IIV should be administered "if LAIV is not readily available". \cite{peds2014}
+\item Though not recommended for children with high-risk conditions, a Canadian study examined admistration of "FluMist" to children with asthma, CF and chronic conditions.  No atypical adverse events were encountered.  The only counterindications they suggest are if the child is "on systemic corticosteroids... medically-attended wheezing episode in the 7 days prior to vaccination... aged 2... nasal polyps or rhinorrhoea considered too sginficiant... to allow LAIV to reach the nasal mucosa and ... immunosuppressed." \cite{Quach2014} 
+\end{itemize}
+
+
+\textbf{For adults}:
+\begin{itemize}
+\item Influenza immunization is recommended for all age groups greater than 6 months of age. \cite{cdcrec2014}
+\item There is lots of evidence suggesting that LAIV is more effective at younger ages, but "there are insufficeint data to determine at what age or with how many successive seasons of vaccination the relatively greater efficacy of LAIV diminishes in children aged 6 through 18 years." \cite{cdcrec2014}
+\item LAIV is contraindicated for pregnant women, but is still delivered at a rate of 0.3 per 1000 \cite{Naleway2014}
+\end{itemize}
+
+
+
+%------------------------------------------
+\subsection*{Social}
+\addcontentsline{toc}{subsection}{Social}
+%------------------------------------------
+
+%\lettrine[nindent=0em,lines=3]{B}{la} bla bla bla.
+\textbf{Acceptability / feasability}:
+\begin{itemize}
+\item In a randomized trial in Canadian elementary schools, schools assigned to get LAIV instead of IIV had higher uptake (19.3\% to 12.2\%). However, cost per vaccine was slightly higher for LAIV (\$43.50 vs. \$38.67). \cite{Kwong2015}
+\item Due to its short shelf-life (18 weeks, relative to IIV's year), the likelihood of LAIV being administered \emph{after} expiration is higher, which may bias the results of some studies. \cite{cdc2014}  
+\item Adult self-examination has been examined in detail and appears to be an effective option. \cite{Ambrose2013} (Medimmune-funded and non-randomized)
+\end{itemize}
+
+%------------------------------------------
+\subsection*{Effectiveness}
+\addcontentsline{toc}{subsection}{Effectiveness}
+%-----
+
+\textbf{Relative to IIV}
+\begin{itemize}
+\item In a very large study of US military adults (41,670 vaccination administered over the course of multiple flu seasons), there was no difference in the effectiveness of LAIV versus IIV. However, multiple potential sources of bias (LAIV vs. TIV administered based on supply, etc.). \cite{Phillips2012} 
+\item Among 3 to 8 year-olds, LAIV was 95.4\% and 88.5\% effective against moderate/severe influenza (relative to placebo).  Relative to IIV, LAIV was 52.2\% and 45.0\% effective against moderate/severe influenza. \cite{Ambrose2014}
+\item Biologically, LAIV priming appears to inhibit virus recovery (among young children) more effectively than IIV. \cite{Ilyushina2014}
+\end{itemize}
+
+\textbf{Cross-protection}
+\begin{itemize}
+\item A study of mice suggests that LAIV-delivered influenza B vaccine is effective, but that in a mixed delivery model timing is important. \cite{Huber2008}
+\item A meta-analysis of IIV and LAIV in both matched suggests that LAIV might be slightly more effective during mismatched years. \cite{Tricco2013}
+\end{itemize}
+
+\textbf{Over time}
+\begin{itemize}
+\item It appears that vaccine protection wanes more rapidly in elederly populations, but cannot find evidence to suggest differential waning between LAIV and IIV. \cite{cdcrec2014}  
+\end{itemize}
+
+
+
+
+\end{multicols}
+\setkeys{Gin}{width=1\textwidth}
+%----------------------------------------------------------------------------------------
+%  REFERENCE LIST
+%----------------------------------------------------------------------------------------
+\newpage
+\bibliographystyle{unsrtnat}
+\bibliography{bibliography}
+
+\newpage
+%------------------------------------------
+\section*{Details}
+\addcontentsline{toc}{section}{Details}
+%------------------------------------------
+\hrulefill
+Full code at \href{https://github.com/joebrew/weather/tree/master/uganda}{https://g}
+This report was generated on \today.  The author used \Sexpr{paste0(version$version.string, " (", version$nickname, ")")} on a \Sexpr{print(version$os)} OS.  \\
+
+The analysis in this report was written in the R programming language, and the report production was programmed in \LaTeX{} using Sweave.\\
+
+
+\end{document}

@@ -1,0 +1,180 @@
+@article{Ambrose2013,
+  doi = {10.1016/j.vaccine.2012.12.028},
+  url = {http://dx.doi.org/10.1016/j.vaccine.2012.12.028},
+  year  = {2013},
+  month = {jan},
+  publisher = {Elsevier {BV}},
+  volume = {31},
+  number = {6},
+  pages = {857--860},
+  author = {Christopher S. Ambrose and Xionghua Wu},
+  title = {The safety and effectiveness of self-administration of intranasal live attenuated influenza vaccine in adults},
+  journal = {Vaccine}
+}
+
+
+@article{Ambrose2014,
+  doi = {10.1016/j.vaccine.2014.07.097},
+  url = {http://dx.doi.org/10.1016/j.vaccine.2014.07.097},
+  year  = {2014},
+  month = {sep},
+  publisher = {Elsevier {BV}},
+  volume = {32},
+  number = {43},
+  pages = {5546--5548},
+  author = {Christopher S. Ambrose and Xionghua Wu and Herve Caspard and Robert B. Belshe},
+  title = {Efficacy of live attenuated influenza vaccine against influenza illness in children as a function of illness severity},
+  journal = {Vaccine}
+}
+
+@article{cdc2014,
+  url = {http://www.cdc.gov/mmwr/preview/mmwrhtml/mm6335a3.htm},
+  year  = {2014},
+  month = {sep},
+  publisher = {Centers for Disease Control and Prevention {CDC}},
+  volume = {63},
+  number = {35},
+  pages = {773--773},
+  author = {Penina Haber and Christopher P. Schembri and Paige Lewis and Beth Hibbs and Tom Shimabukuro},
+  title = {Notes from the Field: Reports of Expired Live Attenuated Influenza Vaccine Being Administered — United States, 2007–2014},
+  journal = {Morbidity and Mortality Weekly Report (MMWR)}
+}
+
+@article{cdcrec2013,
+  url = {http://www.cdc.gov/mmwr/preview/mmwrhtml/rr6207a1.htm},
+  year  = {2013},
+  month = {sep},
+  publisher = {Centers for Disease Control and Prevention {CDC}},
+  volume = {62},
+  pages = {1-43},
+  author = {Lisa S. Grohskopf and David K. Shay and Tom T. Shimabukuro and Leslie Z. Sokolow and Wendy A. Keitel and Joseph S. Bresee and Nancy J. Cox},
+  title = {Prevention and Control of Seasonal Influenza with Vaccines: Recommendations of the Advisory Committee on Immunization Practices — United States, 2013–2014},
+  journal = {Morbidity and Mortality Weekly Report (MMWR)}
+}
+
+@article{cdcrec2014,
+  url = {http://www.cdc.gov/mmwr/preview/mmwrhtml/mm6332a3.htm},
+  year  = {2014},
+  month = {sep},
+  publisher = {Centers for Disease Control and Prevention {CDC}},
+  volume = {63},
+  number = {32},
+  pages = {691-697},
+  author = {Lisa A. Grohskopf and Sonja J. Olsen and Leslie Z. Sokolow and Joseph S. Bresee and Nancy J. Cox and Karen R. Broder and Ruth A. Karron and Emmanuel B. Walter},
+  title = {Prevention and Control of Seasonal Influenza with Vaccines: Recommendations of the Advisory Committee on Immunization Practices — United States, 2014-2015},
+  journal = {Morbidity and Mortality Weekly Report (MMWR)}
+}
+
+@article{Huber2008,
+  doi = {10.1016/j.vaccine.2008.07.086},
+  url = {http://dx.doi.org/10.1016/j.vaccine.2008.07.086},
+  year  = {2008},
+  month = {oct},
+  publisher = {Elsevier {BV}},
+  volume = {26},
+  number = {42},
+  pages = {5381--5388},
+  author = {Victor C. Huber and Loren H. Kleimeyer and Jonathan A. McCullers},
+  title = {Live,  attenuated influenza virus ({LAIV}) vehicles are strong inducers of immunity toward influenza B virus},
+  journal = {Vaccine}
+}
+
+
+@article{Ilyushina2014,
+  doi = {10.1093/infdis/jiu458},
+  url = {http://dx.doi.org/10.1093/infdis/jiu458},
+  year  = {2014},
+  month = {aug},
+  publisher = {Oxford University Press ({OUP})},
+  volume = {211},
+  number = {3},
+  pages = {352--360},
+  author = {N. A. Ilyushina and B. C. Haynes and A. G. Hoen and A. M. Khalenkov and M. L. Housman and E. P. Brown and M. E. Ackerman and J. J. Treanor and C. J. Luke and K. Subbarao and P. F. Wright},
+  title = {Live Attenuated and Inactivated Influenza Vaccines in Children},
+  journal = {Journal of Infectious Diseases}
+}
+
+@article{Kwong2015,
+  doi = {10.1016/j.vaccine.2014.11.044},
+  url = {http://dx.doi.org/10.1016/j.vaccine.2014.11.044},
+  year  = {2015},
+  month = {jan},
+  publisher = {Elsevier {BV}},
+  volume = {33},
+  number = {4},
+  pages = {535--541},
+  author = {Jeffrey C. Kwong and Jennifer A. Pereira and Susan Quach and Rosana Pellizzari and Edwina Dusome and Margaret L. Russell and Jemila S. Hamid and Yael Feinberg and Anne-Luise Winter and Jonathan B. Gubbay and Brittany Sirtonski and Deanna Moher and Doug Sider and Michael Finkelstein and Mark Loeb},
+  title = {Randomized evaluation of live attenuated vs. inactivated influenza vaccines in schools ({RELATIVES}) pilot study: A cluster randomized trial},
+  journal = {Vaccine}
+}
+
+@article{Naleway2014,
+  doi = {10.1016/j.amepre.2013.10.010},
+  url = {http://dx.doi.org/10.1016/j.amepre.2013.10.010},
+  year  = {2014},
+  month = {feb},
+  publisher = {Elsevier {BV}},
+  volume = {46},
+  number = {2},
+  pages = {150--157},
+  author = {Allison L. Naleway and Samantha Kurosky and Michelle L. Henninger and Rachel Gold and James D. Nordin and Elyse O. Kharbanda and Stephanie Irving and T. Craig Cheetham and Cynthia Nakasato and Jason M. Glanz and Simon J. Hambidge and Robert L. Davis and Nicola P. Klein and Natalie L. McCarthy and Eric Weintraub},
+  title = {Vaccinations Given During Pregnancy,  2002{\textendash}2009},
+  journal = {American Journal of Preventive Medicine}
+}
+
+@article{peds2014,
+  doi = {10.1542/peds.2014-2413},
+  url = {http://dx.doi.org/10.1542/peds.2014-2413},
+  year  = {2014},
+  month = {sep},
+  publisher = {American Academy of Pediatrics ({AAP})},
+  volume = {134},
+  number = {5},
+  pages = {e1503--e1519},
+  title = {Recommendations for Prevention and Control of Influenza in Children,  2014-2015},
+  journal = {{PEDIATRICS}}
+}
+
+@article{Phillips2012,
+  doi = {10.1093/cid/cis860},
+  url = {http://dx.doi.org/10.1093/cid/cis860},
+  year  = {2012},
+  month = {nov},
+  publisher = {Oxford University Press ({OUP})},
+  volume = {56},
+  number = {1},
+  pages = {11--19},
+  author = {C. J. Phillips and T. Woolpert and C. Sevick and D. Faix and P. J. Blair and N. F. Crum-Cianflone},
+  title = {Comparison of the Effectiveness of Trivalent Inactivated Influenza Vaccine and Live,  Attenuated Influenza Vaccine in Preventing Influenza-Like Illness Among {US} Military Service Members,  2006-2009},
+  journal = {Clinical Infectious Diseases}
+}
+
+@article{Quach2014,
+  doi = {10.1016/j.prrv.2014.06.002},
+  url = {http://dx.doi.org/10.1016/j.prrv.2014.06.002},
+  year  = {2014},
+  month = {dec},
+  publisher = {Elsevier {BV}},
+  volume = {15},
+  number = {4},
+  pages = {340--347},
+  author = {Caroline Quach},
+  title = {Vaccinating High-Risk Children with the Intranasal Live-Attenuated Influenza Vaccine: the Quebec Experience},
+  journal = {Paediatric Respiratory Reviews}
+}
+
+@article{Tricco2013,
+  doi = {10.1186/1741-7015-11-153},
+  url = {http://dx.doi.org/10.1186/1741-7015-11-153},
+  year  = {2013},
+  publisher = {Springer Science $\mathplus$ Business Media},
+  volume = {11},
+  number = {1},
+  pages = {153},
+  author = {Andrea C Tricco and Ayman Chit and Charlene Soobiah and David Hallett and Genevieve Meier and Maggie H Chen and Mariam Tashkandi and Chris T Bauch and Mark Loeb},
+  title = {Comparing influenza vaccine efficacy against mismatched and matched strains: a systematic review and meta-analysis},
+  journal = {{BMC} Medicine}
+}
+
+
+

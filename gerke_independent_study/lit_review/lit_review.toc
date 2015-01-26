@@ -1,0 +1,4 @@
+\select@language {english}
+\contentsline {subsection}{Recommendations}{2}{Doc-Start}
+\contentsline {subsection}{Social}{2}{Doc-Start}
+\contentsline {subsection}{Effectiveness}{2}{Doc-Start}
