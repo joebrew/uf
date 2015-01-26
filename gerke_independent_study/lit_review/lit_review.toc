@@ -1,4 +1,7 @@
 \select@language {english}
-\contentsline {subsection}{Recommendations}{2}{Doc-Start}
-\contentsline {subsection}{Social}{2}{Doc-Start}
-\contentsline {subsection}{Effectiveness}{2}{Doc-Start}
+\contentsline {section}{Literature review}{2}{Doc-Start}
+\contentsline {subsection}{Recommendations}{2}{section*.1}
+\contentsline {subsection}{Social}{2}{section*.1}
+\contentsline {subsection}{Effectiveness}{2}{section*.1}
+\contentsline {section}{References}{3}{section*.1}
+\contentsline {section}{Details}{4}{section*.1}

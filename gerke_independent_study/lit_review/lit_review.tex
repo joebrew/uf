@@ -64,12 +64,12 @@
 %\fancyhfoffset[E,O]{0pt}
 
 
-% %------------------------------------------
-% \section*{Final project: research proposal}
-% \addcontentsline{toc}{section}{Final project: research proposal}
-% %------------------------------------------
-% \hrulefill
-\newgeometry{margin = 2cm}
+%------------------------------------------
+\section*{Literature review}
+\addcontentsline{toc}{section}{Literature review}
+%------------------------------------------
+\hrulefill
+
 \begin{multicols}{2} 
 \setkeys{Gin}{width=0.45\textwidth}
 
@@ -118,6 +118,7 @@
 \item Biologically, LAIV priming appears to inhibit virus recovery (among young children) more effectively than IIV. \cite{Ilyushina2014}
 \end{itemize}
 
+\newpage
 \textbf{Cross-protection}
 \begin{itemize}
 \item A study of mice suggests that LAIV-delivered influenza B vaccine is effective, but that in a mixed delivery model timing is important. \cite{Huber2008}
@@ -137,11 +138,21 @@
 %----------------------------------------------------------------------------------------
 %  REFERENCE LIST
 %----------------------------------------------------------------------------------------
-\newpage
+%\newpage
+\addcontentsline{toc}{section}{References}
 \bibliographystyle{unsrtnat}
 \bibliography{bibliography}
 
-\newpage
+%\newpage
+%------------------------------------------
+\section*{Details}
+\addcontentsline{toc}{section}{Details}
+%------------------------------------------
+\hrulefill
+
+\vspace{10mm}
+Full code at \href{https://github.com/joebrew/uf/tree/master/gerke\_independent\_study/lit\_review}{https://github.com/joebrew/uf/tree/master/gerke\_independent\_study/lit\_review}. \\
+
 This report was generated on \today.  The author used R version 3.1.2 (2014-10-31) (Pumpkin Helmet) on a linux-gnu OS.  \\
 
 The analysis in this report was written in the R programming language, and the report production was programmed in \LaTeX{} using Sweave.\\
