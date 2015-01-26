@@ -1,0 +1,143 @@
+\documentclass[11pt]{article}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[center]{titlesec}
+\usepackage{geometry}
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+
+%\usepackage{mathtools}
+
+\usepackage[sort, numbers]{natbib}
+
+
+%
+%\setlength{\columnseprule}{0.4pt}
+%\setlength{\footskip}{20pt}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[C]{PHC 7000 $\bullet$ Joe Brew $\bullet$ HW 3}
+\fancyfoot[C]{  $\bullet$ P-values \bullet$  }
+\renewcommand\headrulewidth{1pt}
+\renewcommand\footrulewidth{1pt}
+\pagestyle{fancy}
+
+%
+
+\setlength{\columnsep}{1.5cm}
+%\setlength{\columnseprule}{0.4pt}
+
+%\MakeOuterQuote{"}
+
+
+
+\graphicspath{ {"C:/Users/BrewJR/Documents/uf/phc7000/hw3_pvalues} }
+
+%the next two lines adjust the third, centered section of the exec sum
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\begin{document}
+\SweaveOpts{concordance=TRUE, echo=FALSE, results = hide}
+
+\title{\textbf{Homework 3: P-values}}
+\author{Joe Brew}
+
+
+\maketitle
+
+\emph{bla bla bla bla}
+
+\tableofcontents
+
+\vspace{20mm}
+
+\begin{center}
+\includegraphics[width=2cm]{uf}
+\end{center}
+
+
+\newgeometry{margin=2.5cm}
+%\fancyhfoffset[E,O]{0pt}
+
+
+%------------------------------------------
+\section*{Homework 3: P-values}
+\addcontentsline{toc}{section}{Homework 3: P-values}
+%------------------------------------------
+\hrulefill
+
+\begin{multicols}{2} 
+\setkeys{Gin}{width=0.45\textwidth}
+
+%------------------------------------------
+\subsection*{1. Rothman's six misconceptions}
+\addcontentsline{toc}{subsection}{1. Rothman's six misconceptions}
+%------------------------------------------
+
+\lettrine[nindent=0em,lines=3]{I}{n} his "Six Persistent Research Misconceptions", Kenneth Rothman outlines six beliefs that persist \emph{despite} substantial evidence that these ways of thinking are flawed.\cite{Rothman2014} I outline these six misconceptions, with both a definition and personal reflection.
+
+\begin{enumerate}
+\item \textbf{There is a hierarchy of study designs}: Rothman claims that "absolute proof" can never be demonstrated, and backs this up with the assertion that variability in the results of randomized trials is evidence \emph{against} perfection.  He goes on to explain systematic error, non-adherence, and measurement error.  Even among non-RCTs, the supposed hierarchy cohort > case-control) is a myth, as both have strengths and weaknesses. My personal opinion is that Rothman is correct, but fails to acknowledge that RCTs \emph{do} have many advantages which observational studies can never achieve.
+\item \textbf{Representativeness is required for generalization}: Rothman distinguishes "statistical" and "scientific" generalizability. For the latter, we simply need to make a case, acknowledging the population from which we are generalizing.  I agree with his argument, especially in light of his qualification that "representativeness" should be required as a function of the plausability of differential effects. 
+\item \textbf{If an interaction term isn't 'significant' in a regression output then biological interaction doesn't exist}: In statistical outputs, the interpretability can be rendered nearly useless by the units used (a hodge-podge of time, quantity, quality, mass, etc.).  I agree with Rothman that how we measure and categorize can radically affect whether a truly biologic interaction is detected statistically.
+\item \textbf{Percentile boundaries are appropriate for binning}: Rothman points out two shortcomings in the use of percentiles: (1) that these may or may not correspond to biologically important cut-offs and (2) that study-specific quantiles make cross-study interpretability impossible. I agree with Rothman, and think that his suggestion to use progressively larger binning algorithms is helpful to both making results interpretable and biologically sound.
+\item \textbf{One should always quantify uncertainty in multiple regression}: Rothman highlights the fact that multiple regression increases the likelihood of the detection of a spurious result. According to Rothman, we should worry less about type 1 error. I appreciate Rothman's suggestion that we instead use a more Bayesian approach, but would have appreciated slightly more detail on \emph{why} this is a superior method. 
+\item \textbf{Significance testing is important for interpretation of data}: To Rothman, significance tests are simply a "degraded" mirror of p-values.  We should instead be estimating effects, and not performing so much "statistical testing." Rothman is correct to point out that a confidence interval contains \emph{all} of the information needed to understand the result: P-values and significance delimitations are entirely unnecessary. 
+\end{enumerate}
+
+\noindent I appreciated Rothman's article, particularly the succinctness with which he lays out (and provides examples for) his 6 criticisms of the field.
+
+\newpage
+%------------------------------------------
+\subsection*{2. Three definitions of P-values and 95\% confidence intervals}
+\addcontentsline{toc}{subsection}{2. Three definitions of P-values and 95\% confidence intervals}
+%------------------------------------------
+In Andrew Gelman's "P Values and Statistical Practice", the author describes the P-value as "a measure of discrepancy of the fit of a model or 'null hypothesis' H to data y." \cite{Gelman2013} \\
+
+In a 2013 article, Schuemie et al make the case that the typically-held definition that "p < 0.5" means "there is only a 5\% probability that the observed effect would be seen by chance when in reality there is no effect" is entirely incorrect, particularly in the case of observational studies. \cite{Schuemie2013} They propose a "calibrated p-value" which is a p-value calculated as such: "the error distribution resulting from this bias (which does not depend on sample size) can be added to the random error distribution (which is based on sample size)." \\
+
+In a paper on Bayesian statistics, Sander Greenland describes how P-values differ in regression outputs as a function of the type of statistical thinking employed (frequentist vs. Bayesian). \cite{Greenland2007} Though (s)he does not provide a direct definition, Greenland describes the interpretation of P-values as such: "A small P-value indicates incompatibility of the prior with the likelihood, which could arise from faulty prior information, faulty actual data, a faulty likelihood model, or some combination.  A large P-value, however, does not mean the prior and likelihood are compatible, let alone correct; at best one can only say that the diagnostic detected no problem."
+
+\vfill
+\columnbreak
+
+
+%------------------------------------------
+\subsection*{3. Goodman's P-value fallacy}
+\addcontentsline{toc}{subsection}{Goodman's P-value fallacy}
+%------------------------------------------
+\textbf{Two sentence summary}: The "fallacy" is the "idea that a single number can capture both the long-run outcomes of an experiment and the evidential meaning of a single result." \cite{Goodman1999} In other words, Goodman posits that trying to combine both a statistical and scientific indicator (as well as "long run" and "short run" indicator) of quality/significance/remarkability is both impractical and inaccurate, echoing Rothman's sentiments.\cite{Rothman2014} \\
+
+\noindent \textbf{Do confidence itnervals solve the fallacy?} No - though "they push us away from the automaticity of P-values and hypothesis tests by promoting a consideration of the size of the observed effect", they also "embody, albeit in a subtler form, many of the same problems that afflict current methods, the most important being that they offer no mechanism to unite external evidence with that provided by an experiment" (I would say more, but we're limited to one sentence!)
+
+
+
+
+
+\end{multicols}
+\setkeys{Gin}{width=1\textwidth}
+%----------------------------------------------------------------------------------------
+%  REFERENCE LIST
+%----------------------------------------------------------------------------------------
+\newpage
+\bibliographystyle{unsrtnat}
+\bibliography{bibliography}
+
+%------------------------------------------
+\section*{Details}
+\addcontentsline{toc}{section}{Details}
+%------------------------------------------
+\hrulefill
+
+\vspace{10mm}
+Full code at \href{https://github.com/joebrew/uf/tree/master/gerke\_independent\_study/lit\_review}{https://github.com/joebrew/uf/tree/master/gerke\_independent\_study/lit\_review}. \\
+
+This report was generated on \today.  The author used \Sexpr{paste0(version$version.string, " (", version$nickname, ")")} on a \Sexpr{print(version$os)} OS.  \\
+
+The analysis in this report was written in the R programming language, and the report production was programmed in \LaTeX{} using Sweave.\\
+
+\end{document}

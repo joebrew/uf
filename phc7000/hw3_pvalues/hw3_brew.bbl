@@ -1,0 +1,50 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Rothman(2014)]{Rothman2014}
+Kenneth~J. Rothman.
+\newblock Six persistent research misconceptions.
+\newblock \emph{J {GEN} {INTERN} {MED}}, 29\penalty0 (7):\penalty0 1060--1064,
+  jan 2014.
+\newblock \doi{10.1007/s11606-013-2755-z}.
+\newblock URL \url{http://dx.doi.org/10.1007/s11606-013-2755-z}.
+
+\bibitem[Gelman(2013)]{Gelman2013}
+Andrew Gelman.
+\newblock P values and statistical practice.
+\newblock \emph{Epidemiology}, 24\penalty0 (1):\penalty0 69--72, jan 2013.
+\newblock \doi{10.1097/ede.0b013e31827886f7}.
+\newblock URL \url{http://dx.doi.org/10.1097/EDE.0b013e31827886f7}.
+
+\bibitem[Schuemie et~al.(2013)Schuemie, Ryan, DuMouchel, Suchard, and
+  Madigan]{Schuemie2013}
+Martijn~J. Schuemie, Patrick~B. Ryan, William DuMouchel, Marc~A. Suchard, and
+  David Madigan.
+\newblock Interpreting observational studies: why empirical calibration is
+  needed to correct p -values.
+\newblock \emph{Statist. Med.}, 33\penalty0 (2):\penalty0 209--218, jul 2013.
+\newblock \doi{10.1002/sim.5925}.
+\newblock URL \url{http://dx.doi.org/10.1002/sim.5925}.
+
+\bibitem[Greenland(2007)]{Greenland2007}
+S.~Greenland.
+\newblock Bayesian perspectives for epidemiological research. {II}. regression
+  analysis.
+\newblock \emph{International Journal of Epidemiology}, 36\penalty0
+  (1):\penalty0 195--202, feb 2007.
+\newblock \doi{10.1093/ije/dyl289}.
+\newblock URL \url{http://dx.doi.org/10.1093/ije/dyl289}.
+
+\bibitem[Goodman(1999)]{Goodman1999}
+Steven~N. Goodman.
+\newblock Toward evidence-based medical statistics. 1: The p value fallacy.
+\newblock \emph{Annals of Internal Medicine}, 130\penalty0 (12):\penalty0 995,
+  jun 1999.
+\newblock \doi{10.7326/0003-4819-130-12-199906150-00008}.
+\newblock URL \url{http://dx.doi.org/10.7326/0003-4819-130-12-199906150-00008}.
+
+\end{thebibliography}

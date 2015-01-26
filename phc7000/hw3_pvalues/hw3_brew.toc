@@ -1,0 +1,6 @@
+\select@language {english}
+\contentsline {section}{Homework 3: P-values}{2}{Doc-Start}
+\contentsline {subsection}{1. Rothman's six misconceptions}{2}{section*.1}
+\contentsline {subsection}{2. Three definitions of P-values and 95\% confidence intervals}{3}{Item.6}
+\contentsline {subsection}{Goodman's P-value fallacy}{3}{Item.6}
+\contentsline {section}{Details}{4}{Item.6}
