@@ -3,15 +3,16 @@ library(car)
 library(dplyr)
 library(ggmap)
 library(geocodeHERE)
+library(Hmisc)
 
 ########
 # ESTABLISH WD FOR PRIVATE DATA
 ########
 if ( Sys.info()["sysname"] == "Linux" ){
-  public <- "/home/joebrew/Documents/uf/cottler"
+  public <- "/home/joebrew/Documents/uf/cottler/nmapss"
   private <- "/media/joebrew/JB/uf/cottler/nmapss"
 } else if(Sys.info()["user"] == "BrewJR" ){
-  public <- "C:/Users/BrewJR/Documents/uf/cottler"
+  public <- "C:/Users/BrewJR/Documents/uf/cottler/nmapss"
   private <- "E:/uf/cottler/nmapss"
 } else {
   return("Use other system.")
@@ -23,14 +24,126 @@ setwd(public)
 ########
 load(paste0(private, "/nmapss_geocoded.RData"))
 
+#####
+# SOURCE HELPER FUNCTIONS
+#####
+source("00_helpers.R")
+
+#####
+# ADD MORE VARIABLES
+#####
+nmapss$health <- factor(nmapss$health,
+                        levels = c("Excellent", "Good", "Fair", "Poor"))
+nmapss$location <- factor(nmapss$location,
+                          levels = c("urban", "suburban", "rural"))
+nmapss$family_dinner_week <- factor(ifelse(nmapss$family_dinner_week <=3,"<=3 weekly family meals",
+                                           ifelse(nmapss$family_dinner_week >=4, ">= 4 weekly family meals",
+                                                  NA)))
+
+#####
+# GET EVER CONSUMED ALCOHOL BY AGE AND SEX
+#####
+basic <- nmapss %>%
+  group_by(gender, age) %>%
+  summarise(alcohol = length(alcohol_ever[which(alcohol_ever)]),
+            no_alcohol = length(alcohol_ever[which(!alcohol_ever)]),
+            gamble = length(gamble_internet[which(gamble_internet)]),
+            no_gamble = length(gamble_internet[which(!gamble_internet)]),
+            total = n())
+for (i in 3:6){
+  new_name <- paste0("p_", colnames(basic)[i])
+  basic[,new_name] <- basic[,i] / basic$total
+}
+
+#
+age_plot <- function(gender = "female",
+                    var = "p_alcohol",
+                    add = FALSE,
+                    col = "red",
+                    ylim = c(0, 0.8),
+                    ylab = "Probability of having consumed alcohol"){
+  
+  # Subset df
+  df <- basic[which(basic$gender == gender),]
+  
+  # Get just values
+  vals <- as.numeric(unlist(df[,var]))
+  
+  # Get just ages
+  ages <- as.numeric(unlist(df[,"age"]))
+  
+  # Define offset
+  h_offset <-  (as.numeric(gender == "female")* 0.2)
+  
+  # Get confidence interval on proportion
+  ci <- simpasym(n = as.numeric(unlist(df$total)),
+           p = vals)
+
+  # Plot
+  if(!add){
+    plot(ages -0.1 + h_offset, vals, col = adjustcolor(col, alpha.f = 0.5),
+         ylim = ylim,
+         xlab = "Age",
+         ylab = ylab,
+         pch = 16,
+         xaxt = "n")
+  } else{
+    points(ages -0.1 + h_offset, vals, col = adjustcolor(col, alpha.f = 0.5),
+         ylim = c(0, 0.8),
+         pch = 16)
+  }
+  lines(ages -0.1 + h_offset, vals, col = adjustcolor(col, alpha.f = 0.3), lty = 2)
+  
+  # add axis
+  axis(side = 1, at = seq(1,20,1), labels = seq(1,20,1), tick = FALSE)
+
+  errbar(x = ages -0.1 + h_offset,
+         y = vals,
+         yminus = ci$lb,
+         yplus = ci$ub,
+         pch = NA,
+         add = TRUE,
+         errbar.col = adjustcolor(col, alpha.f = 0.8))
+
+  # Add a box around the plot
+  box("plot")
+}
+
+# PLOT ALCOHOL
+age_plot()
+age_plot(gender = "male", add = TRUE, col = "blue")
+abline(v = seq(0,20,1),
+       col = adjustcolor("grey", alpha.f = 0.3),
+       lwd = 35)
+
+# PLOT GAMBLING
+age_plot(var = "p_gamble", ylim = c(0, 0.17), ylab = "Probability of having ever gambled online")
+age_plot(var = "p_gamble", add = TRUE, gender = "male", col = "blue")
+abline(v = seq(0,20,1),
+       col = adjustcolor("grey", alpha.f = 0.3),
+       lwd = 35)
+abline(h = seq(0,1, 0.05),
+       col = adjustcolor("grey", alpha.f = 0.2))
+
+# legend
+legend(x = "topleft",
+       lty = 2,
+       pch = 16,
+       col = adjustcolor(c("blue", "red"), alpha.f = 0.3),
+       legend = c("Males", "Females"))
+
 ########
 # EXPLORE RELATIONSHIP BETWEEN ALCOHOL AND GAMBLING
 ########
 
+train_data <- nmapss[which(nmapss$alcohol_age_first >=
+                             mean(nmapss$alcohol_age_first, na.rm = TRUE) - 
+                             (2 * sd(nmapss$alcohol_age_first, na.rm = T))),]
+
 # Model
 fit <- glm(gamble_internet ~ 
-             age_group + alcohol_age_first + gender,
-           data = nmapss,
+              alcohol_age_first, #* gender,
+           data = train_data,
            family = binomial("logit"))
 summary(fit)
 
@@ -41,10 +154,10 @@ exp(coef(fit))
 exp(cbind(OR = coef(fit), confint(fit)))
 
 # Get all possible prediction categories
-test <- expand.grid(age_group = levels(factor(nmapss$age_group)),
-                    alcohol_age_first = unique(nmapss$alcohol_age_first),
-                    gender = unique(nmapss$gender))
-test <- test[complete.cases(test),]
+test <- expand.grid(#age_group = levels(factor(train_data$age_group)),
+                    alcohol_age_first = unique(train_data$alcohol_age_first))#,
+                    #gender = unique(train_data$gender))
+#test <- test[complete.cases(test),]
 
 # Get predicted 
 prediction <- predict(fit, test, type = "response", na.action = na.pass, se.fit = TRUE)
@@ -53,9 +166,228 @@ test$lwr <- prediction$fit - (1.96 * prediction$se.fit)
 test$upr <- prediction$fit + (1.96 * prediction$se.fit)
 
 # Order test by age_group
-test <- test[order(test$age_group),]
+test <- test[order(test$alcohol_age_first),]
+
+reg_fun <- function(gender = "female",
+                    col = "red",
+                    var = "alcohol_age",
+                    ylab = "Probability of having gambled on internet",
+                    xlab = "Age",
+                    ylim = c(0, 0.4),
+                    add = FALSE){
+  #Subset and order
+  #df <- test[which(test$gender == gender),]
+  df <- test
+  df <- df[order(df$alcohol_age_first),]
+  # Get ages
+  ages <- df$alcohol_age
+  
+
+  
+  # Define offset
+  h_offset <-  (as.numeric(gender == "female")* 0.2)
+
+ if(!add){
+    plot(ages -0.1 + h_offset, df$predicted,
+         pch = 16, 
+         col = adjustcolor(col, alpha.f = 0.4),
+         ylim = ylim,
+         xlab = "Age",
+         ylab = ylab,
+         xaxt = "n")
+  } else{
+    points(ages -0.1 + h_offset, df$predicted,
+         pch = 16, 
+         col = adjustcolor(col, alpha.f = 0.4))
+  }
+  lines(ages -0.1 + h_offset, df$predicted,
+        lty = 2,
+        col = adjustcolor(col, alpha.f = 0.2))
+  
+  # add axis
+  axis(side = 1, at = seq(0,20, 1),
+       labels = seq(0, 20, 1),
+       tick = FALSE)
+
+  errbar(x = ages -0.1 + h_offset,
+         y = df$predicted,
+         yminus = df$lwr,
+         yplus = df$upr,
+         add = TRUE,
+         errbar.col = adjustcolor(col, alpha.f = 0.8),
+         pch = NA)
+  
+  # Add a box around the plot
+  box("plot")
+  
+  print(df)
+}
+reg_fun(ylim = c(0, 0.23), col = "darkgreen")
+#reg_fun(gender = "male", col = "blue", add = TRUE)
+abline(v = seq(0,20,1),
+       col = adjustcolor("grey", alpha.f = 0.3),
+       lwd = 35)
 
 
+abline(h = seq(0,1, 0.05),
+       col = adjustcolor("grey", alpha.f = 0.2))
+
+# legend
+legend(x = "topright",
+       lty = 2,
+       pch = 16,
+       col = adjustcolor(c("blue", "red"), alpha.f = 0.3),
+       legend = c("Males", "Females"))
+
+
+###################
+# ADD MORE VARIABLES TO MODEL
+###################
+train_data <- nmapss[which(nmapss$alcohol_age_first >=
+                             mean(nmapss$alcohol_age_first, na.rm = TRUE) - 
+                             (2 * sd(nmapss$alcohol_age_first, na.rm = T))),]
+train_data <-train_data[,c("gamble_internet",
+                                       "alcohol_age_first",
+                                       "gender",
+                                       "location", 
+                                       "health",
+                                       "family_dinner_week",
+                                       "lived_with_mom_and_dad",
+                                      "race")]
+train_data <- na.omit(train_data)
+
+# Model
+fit <- glm(gamble_internet ~ 
+             alcohol_age_first * gender + location + health + family_dinner_week + lived_with_mom_and_dad + race,
+           data = train_data,
+           family = binomial("logit"))
+summary(fit)
+
+# Odds ratios
+exp(coef(fit))
+
+## odds ratios and 95% CI
+exp(cbind(OR = coef(fit), confint(fit)))
+
+library(MASS)
+step <- stepAIC(fit, direction = "both")
+step$anova
+
+# Fit final
+fit_final <- glm(gamble_internet ~ alcohol_age_first + gender + family_dinner_week + 
+                   alcohol_age_first:gender,
+                 data = na.omit(train_data),
+                 family = binomial("logit"))
+
+# Odds ratios
+exp(coef(fit_final))
+
+## odds ratios and 95% CI
+exp(cbind(OR = coef(fit_final), confint(fit_final)))
+
+
+# Get all possible prediction categories
+test <- expand.grid(#age_group = levels(factor(train_data$age_group)),
+  alcohol_age_first = unique(train_data$alcohol_age_first),
+  gender = unique(train_data$gender),
+  family_dinner_week = unique(train_data$family_dinner_week))
+test <- test[complete.cases(test),]
+
+# Get predicted 
+prediction <- predict(fit_final, test, type = "response", na.action = na.pass, se.fit = TRUE)
+test$predicted <- as.numeric(prediction$fit)
+test$lwr <- prediction$fit - (1.96 * prediction$se.fit)
+test$upr <- prediction$fit + (1.96 * prediction$se.fit)
+
+# Order test by age_group
+test <- test[order(test$alcohol_age_first),]
+
+reg_fun <- function(gender = "female",
+                    col = "red",
+                    family_dinner_week = "<=3 weekly family meals",
+                    var = "alcohol_age",
+                    ylab = "Probability of having gambled on internet",
+                    xlab = "Age",
+                    ylim = c(0, 0.4),
+                    add = FALSE,
+                    lty = 1,
+                    pch = 16){
+  
+  #Subset and order
+  df <- test[which(test$gender == gender &
+                     test$family_dinner_week == family_dinner_week),]
+  df <- df[order(df$alcohol_age_first),]
+  # Get ages
+  ages <- df$alcohol_age
+  
+  
+  
+  # Define offset
+  h_offset <-  (as.numeric(gender == "female")* 0.2) +
+    (as.numeric(family_dinner_week == ">= 4 weekly family meals")* 0.1)
+  
+  if(!add){
+    plot(ages -0.1 + h_offset, df$predicted,
+         pch = pch, 
+         col = adjustcolor(col, alpha.f = 0.4),
+         ylim = ylim,
+         xlab = "Age",
+         ylab = ylab,
+         xaxt = "n")
+  } else{
+    points(ages -0.1 + h_offset, df$predicted,
+           pch = pch, 
+           col = adjustcolor(col, alpha.f = 0.4))
+  }
+  lines(ages -0.1 + h_offset, df$predicted,
+        lty = lty,
+        col = adjustcolor(col, alpha.f = 0.2))
+  
+  # add axis
+  axis(side = 1, at = seq(0,20, 1),
+       labels = seq(0, 20, 1),
+       tick = FALSE)
+  
+  errbar(x = ages -0.1 + h_offset,
+         y = df$predicted,
+         yminus = df$lwr,
+         yplus = df$upr,
+         add = TRUE,
+         errbar.col = adjustcolor(col, alpha.f = 0.8),
+         pch = NA, 
+         lty = lty)
+  
+  # Add a box around the plot
+  box("plot")
+  
+  print(df)
+}
+reg_fun(ylim = c(0, 0.23), lty = 1)
+reg_fun(gender = "male", col = "blue", add = TRUE, lty = 1)
+reg_fun(family_dinner_week = ">= 4 weekly family meals", add = TRUE, pch = 17, lty = 3)
+reg_fun(gender = "male", col = "blue", family_dinner_week = ">= 4 weekly family meals", 
+        add = TRUE, pch = 17, lty =3)
+
+abline(v = seq(0,20,1),
+       col = adjustcolor("grey", alpha.f = 0.3),
+       lwd = 55)
+abline(h = seq(0,1, 0.05),
+       col = adjustcolor("grey", alpha.f = 0.2))
+
+# legend
+legend(x = "topright",
+       lty = c(1, 3, 1 ,3),
+       pch = c(16, 17, 16, 17),
+       col = adjustcolor(c("blue", "blue", "red", "red"), alpha.f = 0.3),
+       legend = c("Males (regular family meals)",
+                  "Males (other)",
+                  "Females (regular family meals)",
+                  "Females (other"))
+
+
+
+
+######################
 
 # Here are the variables related to alcohol
 names(nmapss[which(grepl("alcoho", names(nmapss)))])
