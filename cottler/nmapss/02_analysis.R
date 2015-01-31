@@ -27,6 +27,36 @@ load(paste0(private, "/nmapss_geocoded.RData"))
 # EXPLORE RELATIONSHIP BETWEEN ALCOHOL AND GAMBLING
 ########
 
+# Model
+fit <- glm(gamble_internet ~ 
+             age_group + alcohol_age_first + gender,
+           data = nmapss,
+           family = binomial("logit"))
+summary(fit)
+
+# Odds ratios
+exp(coef(fit))
+
+## odds ratios and 95% CI
+exp(cbind(OR = coef(fit), confint(fit)))
+
+# Get all possible prediction categories
+test <- expand.grid(age_group = levels(factor(nmapss$age_group)),
+                    alcohol_age_first = unique(nmapss$alcohol_age_first),
+                    gender = unique(nmapss$gender))
+test <- test[complete.cases(test),]
+
+# Get predicted 
+prediction <- predict(fit, test, type = "response", na.action = na.pass, se.fit = TRUE)
+test$predicted <- as.numeric(prediction$fit)
+test$lwr <- prediction$fit - (1.96 * prediction$se.fit)
+test$upr <- prediction$fit + (1.96 * prediction$se.fit)
+
+# Order test by age_group
+test <- test[order(test$age_group),]
+
+
+
 # Here are the variables related to alcohol
 names(nmapss[which(grepl("alcoho", names(nmapss)))])
 
@@ -97,19 +127,6 @@ text(x = my_barplot,
      labels = paste0(round(my_prop_table, digits = 2), "%"),
      pos = 1,
      cex = 0.6)
-
-# Is this significant?
-fit <- glm(gamble_internet ~ 
-             alcohol_ever,
-           data = nmapss,
-           family = binomial("logit"))
-summary(fit)
-
-# Odds ratios
-exp(coef(fit))
-
-## odds ratios and 95% CI
-exp(cbind(OR = coef(fit), confint(fit)))
 
 ########
 # BUT ISN'T GENDER AN ISSUE?
