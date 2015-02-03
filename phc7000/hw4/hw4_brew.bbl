@@ -1,0 +1,15 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{Hulley} et~al.(2013){Hulley}, {Cummings}, {Browner}, {Grady}, and
+  {Hearst}]{dcr}
+Stephen {Hulley}, Steven {Cummings}, Warren {Browner}, Deborah {Grady}, and
+  Norman {Hearst}.
+\newblock \emph{Designing Clinical Research}.
+\newblock Lippincott Williams and Wilkins, 2013.
+
+\end{thebibliography}

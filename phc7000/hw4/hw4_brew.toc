@@ -1,0 +1,6 @@
+\select@language {english}
+\contentsline {section}{Homework 4: Sample Size}{2}{Doc-Start}
+\contentsline {subsection}{1. Effect size}{2}{section*.1}
+\contentsline {subsection}{2. Magnitude of association and sample size}{2}{section*.1}
+\contentsline {subsection}{3. Effect size for own project}{2}{section*.1}
+\contentsline {section}{Details}{3}{section*.1}
