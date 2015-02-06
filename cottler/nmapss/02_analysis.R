@@ -41,6 +41,131 @@ nmapss$family_dinner_week <- factor(ifelse(nmapss$family_dinner_week <=3,"<=3 we
                                                   NA)))
 
 #####
+# CROSS TABS OF ALC AND GAM
+#####
+
+nmapss$alc_gam <- ifelse(nmapss$alcohol_ever & nmapss$gamble_internet,
+                         "both",
+                         ifelse(nmapss$alcohol_ever,
+                                "alc_only",
+                                ifelse(nmapss$gamble_internet,
+                                       "gamble_only",
+                                       "neither")))
+
+cross <- nmapss %>%
+  group_by(gender, age) %>%
+  summarise(alc_only = length(alc_gam[which(alc_gam == "alc_only")]),
+            gamble_only = length(alc_gam[which(alc_gam == "gamble_only")]),
+            both = length(alc_gam[which(alc_gam == "both")]),
+            neither = length(alc_gam[which(alc_gam == "neither")]),
+            total = length(alc_gam))
+
+for (i in 3:6){
+  new_name <- paste0("p_", colnames(cross)[i])
+  cross[,new_name] <- cross[,i] / cross$total
+}
+
+head(cross)
+
+cols <- adjustcolor(colorRampPalette(c("darkred","darkorange", "lightblue", "darkgreen"))(4), alpha.f = 0.6)
+
+dat <- cross[which(cross$gender == "male"),]
+
+vars <- as.matrix(dat[,c("p_both","p_gamble_only", "p_alc_only",  "p_neither")])
+vars <- t(vars)
+barplot(vars, col = cols, 
+        beside = TRUE, #legend = TRUE,
+        names.arg = 10:18,
+        #space = 0, 
+        border = NA,
+        xlab = "Age",
+        ylab = "Proportion",
+        ylim = c(0,1))
+legend("topright",
+       fill = cols,
+       legend = c("Both", "Only gambling", "Only alcohol", "Neither"),
+       border = FALSE)
+box("plot")
+title(main = "Males")
+
+dat <- cross[which(cross$gender == "female"),]
+
+vars <- as.matrix(dat[,c("p_both","p_gamble_only", "p_alc_only",  "p_neither")])
+vars <- t(vars)
+barplot(vars, col = cols, 
+        beside = TRUE, #legend = TRUE,
+        names.arg = 10:18,
+        #space = 0, 
+        border = NA,
+        xlab = "Age",
+        ylab = "Proportion",
+        ylim = c(0,1))
+legend("topright",
+       fill = cols,
+       legend = c("Both", "Only gambling", "Only alcohol", "Neither"),
+       border = FALSE)
+box("plot")
+title(main = "Females")
+
+
+####
+# JUST CATS NO YEARS
+#####
+
+simp <- nmapss %>%
+  group_by(gender) %>%
+  summarise(alc_only = length(alc_gam[which(alc_gam == "alc_only")]),
+            gamble_only = length(alc_gam[which(alc_gam == "gamble_only")]),
+            both = length(alc_gam[which(alc_gam == "both")]),
+            neither = length(alc_gam[which(alc_gam == "neither")]),
+            total = length(alc_gam))
+
+for (i in 2:5){
+  new_name <- paste0("p_", colnames(simp)[i])
+  simp[,new_name] <- simp[,i] / simp$total
+}
+
+head(simp)
+dat <- simp
+#dat <- simp[which(simp$gender == "male"),]
+vars <- as.matrix(dat[,c("p_both","p_gamble_only", "p_alc_only",  "p_neither")])
+vars <- t(vars)
+bp <- barplot(vars,
+        beside = TRUE, 
+        col = cols,
+        #legend = TRUE,
+        border = NA,
+        names.arg = c("Female", "Male"),
+        ylim = c(0, 0.6),
+        xlab = "Sex",
+        ylab = "Proportion")
+text(x = as.numeric(bp),
+     y = as.numeric(vars) + 0.02,
+     labels = paste0(round(100 *as.numeric(vars), digits = 2), "%"),
+     pos = 3)
+
+girl_ci <- simpasym(n = 5765,
+                    p = vars[,1])
+boy_ci <- simpasym(n = 5283,
+                    p = vars[,2])
+cilb <- as.numeric(c(girl_ci$lb, boy_ci$lb))
+ciub <- as.numeric(c(girl_ci$ub, boy_ci$ub))
+
+
+errbar(x = as.numeric(bp),
+       y = as.numeric(vars),
+       yminus = cilb,
+       yplus = ciub,
+       pch = NA,
+       add = TRUE,
+       errbar.col = adjustcolor("darkred", alpha.f = 0.8))
+
+legend("topleft",
+       fill = cols,
+       legend = c("Both", "Only gambling", "Only alcohol", "Neither"),
+       border = FALSE)
+box("plot")
+#####
 # GET EVER CONSUMED ALCOHOL BY AGE AND SEX
 #####
 basic <- nmapss %>%
