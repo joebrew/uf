@@ -1,0 +1,28 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[of~Health et~al.(2011)of~Health, for Disease~Control, and
+  Prevention]{cdc}
+U.S.~Department of~Health, Human Services~Centers for Disease~Control, and
+  Prevention.
+\newblock \emph{Introduction to program evaluation for public health programs:
+  A self-study guide}.
+\newblock Office of the Director, Office of Strategy and Innovation, 2011.
+
+\bibitem[Cotes-Cantillo et~al.(2014)Cotes-Cantillo, Paternina-Caicedo,
+  Coronell-Rodr{\'{\i}}guez, Alvis-Guzm{\'{a}}n, Parashar, Patel, and
+  la~Hoz-Restrepo]{CotesCantillo2014}
+Karol Cotes-Cantillo, Angel Paternina-Caicedo, Wilfrido
+  Coronell-Rodr{\'{\i}}guez, Nelson Alvis-Guzm{\'{a}}n, Umesh~D. Parashar,
+  Manish Patel, and Fernando~De la~Hoz-Restrepo.
+\newblock Effectiveness of the monovalent rotavirus vaccine in colombia: A
+  case-control study.
+\newblock \emph{Vaccine}, 32\penalty0 (25):\penalty0 3035--3040, may 2014.
+\newblock \doi{10.1016/j.vaccine.2014.03.064}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.vaccine.2014.03.064}.
+
+\end{thebibliography}

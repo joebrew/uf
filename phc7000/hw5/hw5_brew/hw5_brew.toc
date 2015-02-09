@@ -1,0 +1,8 @@
+\select@language {english}
+\contentsline {section}{Homework 5: Program evaluation}{2}{Doc-Start}
+\contentsline {subsection}{0. My chapter: Justify Conclusions}{2}{section*.1}
+\contentsline {subsection}{1. Definition}{2}{section*.1}
+\contentsline {subsection}{2. Difference between program evaluation and epidemiological research}{2}{section*.1}
+\contentsline {subsection}{3. Rotavirus paper}{3}{section*.1}
+\contentsline {subsection}{4. Additional assignment}{3}{section*.1}
+\contentsline {section}{Details}{4}{section*.1}

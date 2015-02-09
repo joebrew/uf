@@ -1,0 +1,6 @@
+@Book{cdc,
+ author    = "U.S. Department of Health and Human Services Centers for Disease Control and Prevention",
+ title     = "Introduction to program evaluation for public health programs: A self-study guide",
+ publisher = "Office of the Director, Office of Strategy and Innovation",
+ year      =  2011
+}

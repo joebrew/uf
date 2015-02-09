@@ -144,6 +144,23 @@ text(x = as.numeric(bp),
      labels = paste0(round(100 *as.numeric(vars), digits = 2), "%"),
      pos = 3)
 
+par(mfrow = c(1,2))
+par(mar = c(1,1,1,1,))
+pie(vars[,1],
+    col = cols,
+    labels = paste0(100*round(vars[,1], digits = 4), "%"),#c("Both", "Only gambling", "Only alcohol", "Neither"),
+    main = "Female", border = FALSE)
+pie(vars[,2],
+    col = cols,
+    labels = paste0(100*round(vars[,2], digits = 4), "%"),#c("Both", "Only gambling", "Only alcohol", "Neither"),
+    main = "Male",
+    border = FALSE)
+par(mfrow = c(1,1))
+legend("bottom",
+       fill = cols,
+       legend = c("Both", "Only gambling", "Only alcohol", "Neither"),
+       border = FALSE)
+
 girl_ci <- simpasym(n = 5765,
                     p = vars[,1])
 boy_ci <- simpasym(n = 5283,
@@ -165,6 +182,7 @@ legend("topleft",
        legend = c("Both", "Only gambling", "Only alcohol", "Neither"),
        border = FALSE)
 box("plot")
+
 #####
 # GET EVER CONSUMED ALCOHOL BY AGE AND SEX
 #####
@@ -206,18 +224,22 @@ age_plot <- function(gender = "female",
 
   # Plot
   if(!add){
-    plot(ages -0.1 + h_offset, vals, col = adjustcolor(col, alpha.f = 0.5),
+    plot(ages -0.1 + h_offset, vals, col = adjustcolor(col, alpha.f = 0.6),
          ylim = ylim,
          xlab = "Age",
          ylab = ylab,
+         cex = 1.5,
          pch = 16,
          xaxt = "n")
   } else{
-    points(ages -0.1 + h_offset, vals, col = adjustcolor(col, alpha.f = 0.5),
+    points(ages -0.1 + h_offset, vals, col = adjustcolor(col, alpha.f = 0.6),
          ylim = c(0, 0.8),
-         pch = 16)
+         pch = 16,
+         cex = 1.5)
   }
-  lines(ages -0.1 + h_offset, vals, col = adjustcolor(col, alpha.f = 0.3), lty = 2)
+  lines(ages -0.1 + h_offset, vals, col = adjustcolor(col, alpha.f = 0.4), 
+        lty = 2,
+        lwd = 2)
   
   # add axis
   axis(side = 1, at = seq(1,20,1), labels = seq(1,20,1), tick = FALSE)
@@ -240,6 +262,7 @@ age_plot(gender = "male", add = TRUE, col = "blue")
 abline(v = seq(0,20,1),
        col = adjustcolor("grey", alpha.f = 0.3),
        lwd = 35)
+abline(h = seq(0,1, 0.2), col = adjustcolor("black", alpha.f = 0.2))
 
 # PLOT GAMBLING
 age_plot(var = "p_gamble", ylim = c(0, 0.17), ylab = "Probability of having ever gambled online")
@@ -249,6 +272,7 @@ abline(v = seq(0,20,1),
        lwd = 35)
 abline(h = seq(0,1, 0.05),
        col = adjustcolor("grey", alpha.f = 0.2))
+abline(h = seq(0,1, 0.05), col = adjustcolor("black", alpha.f = 0.2))
 
 # legend
 legend(x = "topleft",
@@ -315,19 +339,22 @@ reg_fun <- function(gender = "female",
  if(!add){
     plot(ages -0.1 + h_offset, df$predicted,
          pch = 16, 
-         col = adjustcolor(col, alpha.f = 0.4),
+         cex = 1.5,
+         col = adjustcolor(col, alpha.f = 0.6),
          ylim = ylim,
-         xlab = "Age",
+         xlab = "Age of onset of alcohol consumption",
          ylab = ylab,
          xaxt = "n")
   } else{
     points(ages -0.1 + h_offset, df$predicted,
          pch = 16, 
-         col = adjustcolor(col, alpha.f = 0.4))
+         cex = 1.5,
+         col = adjustcolor(col, alpha.f = 0.6))
   }
   lines(ages -0.1 + h_offset, df$predicted,
         lty = 2,
-        col = adjustcolor(col, alpha.f = 0.2))
+        col = adjustcolor(col, alpha.f = 0.4),
+        lwd = 2)
   
   # add axis
   axis(side = 1, at = seq(0,20, 1),
@@ -454,19 +481,22 @@ reg_fun <- function(gender = "female",
   if(!add){
     plot(ages -0.1 + h_offset, df$predicted,
          pch = pch, 
-         col = adjustcolor(col, alpha.f = 0.4),
+         cex = 1.5,
+         col = adjustcolor(col, alpha.f = 0.6),
          ylim = ylim,
-         xlab = "Age",
+         xlab = "Age at onset of alcohol consumption",
          ylab = ylab,
          xaxt = "n")
   } else{
     points(ages -0.1 + h_offset, df$predicted,
            pch = pch, 
-           col = adjustcolor(col, alpha.f = 0.4))
+           cex = 1.5,
+           col = adjustcolor(col, alpha.f = 0.6))
   }
   lines(ages -0.1 + h_offset, df$predicted,
         lty = lty,
-        col = adjustcolor(col, alpha.f = 0.2))
+        lwd = 2,
+        col = adjustcolor(col, alpha.f = 0.4))
   
   # add axis
   axis(side = 1, at = seq(0,20, 1),
@@ -507,7 +537,7 @@ legend(x = "topright",
        legend = c("Males (regular family meals)",
                   "Males (other)",
                   "Females (regular family meals)",
-                  "Females (other"))
+                  "Females (other)"))
 
 
 
