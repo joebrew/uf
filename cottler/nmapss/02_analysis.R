@@ -145,14 +145,14 @@ text(x = as.numeric(bp),
      pos = 3)
 
 par(mfrow = c(1,2))
-par(mar = c(1,1,1,1,))
+par(mar = c(1,1,1,1))
 pie(vars[,1],
     col = cols,
-    labels = paste0(100*round(vars[,1], digits = 4), "%"),#c("Both", "Only gambling", "Only alcohol", "Neither"),
+    labels = paste0(100*round(vars[,1], digits = 3), "%"),#c("Both", "Only gambling", "Only alcohol", "Neither"),
     main = "Female", border = FALSE)
 pie(vars[,2],
     col = cols,
-    labels = paste0(100*round(vars[,2], digits = 4), "%"),#c("Both", "Only gambling", "Only alcohol", "Neither"),
+    labels = paste0(100*round(vars[,2], digits = 3), "%"),#c("Both", "Only gambling", "Only alcohol", "Neither"),
     main = "Male",
     border = FALSE)
 par(mfrow = c(1,1))
