@@ -1,9 +1,7 @@
-get_weather <- function(station = "KGNV", # IWESTERN307
+get_airport_weather <- function(station = "KGNV", # IWESTERN307
                         start_date = Sys.Date() - 365,
-                        end_date = Sys.Date(),
-                        airport = TRUE){
-  
-  
+                        end_date = Sys.Date()){
+
   # Format station name
   station <- toupper(gsub(" ", "%20", station))
   
@@ -18,32 +16,7 @@ get_weather <- function(station = "KGNV", # IWESTERN307
   end_month <- as.numeric(format(end_date, "%m"))
   end_year <- as.numeric(format(end_date, "%Y"))
   
-  # Define link format for weather stations
-  if(!airport){
-    link <- paste0( "http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=", 
-                    station,
-                    "&day=", start_day,
-                    "&month=", start_month, 
-                    "&year=", start_year, 
-                    "&dayend=", end_day, 
-                    "&monthend=", end_month, 
-                    "&yearend=", end_year, 
-                    "&graphspan=custom&format=1")  
-    
-    # Read in data from link
-    df <- read.csv(link)
-
-    return(df)
-#     #Clean up some html formatting issues
-#     df <- df[which(df$Date != "<br>"),]
-#     
-#     # Clean up names (to be compatible with airports)
-#     df$PrecipitationIn <- df$PrecipitationSumIn.br.
-#     df$CloudCover <- NA
-#     df$PrecipitationSumIn.br. <- NULL
-#     df <- df[,which(!grepl("WindSpeed|Gust", names(df)))]
-#     
-  } else {
+  
     # Define link format for airports
     link <- paste0("http://www.wunderground.com/history/airport/",
                    station,
@@ -56,43 +29,74 @@ get_weather <- function(station = "KGNV", # IWESTERN307
                    "&req_city=NA&req_state=NA&req_statename=NA&format=1")
     
 #     # Read in data from link
-#     df <- read.csv(link)
+     df <- read.csv(link)
 #     
 #     # Clean up some column names (to be compatible with weather stations)
-#     Date <- df$EAT ; df$EAT <- NULL
-#     df$MeanSeaLevelPressureIn <- NULL
-#     df <- cbind(Date, df)
-#     names(df) <- gsub("[.]", "", names(df))
-#     df <- df[,which(!grepl("Visibility|Wind|Gust|MeanSeaLevelPressureIn|Events", names(df)))]
-   }
+    Date <- df$EST ; df$EST <- NULL
+    df$Mean.Sea.Level.PressureIn <- NULL
+    df <- cbind(Date, df)
+    names(df) <- gsub("[.]", "", names(df))
+    df <- df[,which(!grepl("Visibility|Wind|Gust|MeanSeaLevelPressureIn|Events", names(df)))]
 #   
 #   # Format date to date object
-#   #df$Date <- as.Date(df$Date, format = "%Y-%m-%d")
+    df$Date <- as.Date(df$Date, format = "%Y-%m-%d")
 #   
 #   # Standardize names
-#   names(df) <- c("date",
-#                  "temp_max",
-#                  "temp_mean",
-#                  "temp_min",
-#                  "dewpoint_max",
-#                  "dewpoint_mean",
-#                  "dewpoint_min",
-#                  "humidity_max",
-#                  "humidity_mean",
-#                  "humidity_min",
-#                  "pressure_max",
-#                  "pressure_min",
-#                  "precipitation",
-#                  "cloud_cover")
+  names(df) <- c("date",
+                 "temp_max",
+                 "temp_mean",
+                 "temp_min",
+                 "dewpoint_max",
+                 "dewpoint_mean",
+                 "dewpoint_min",
+                 "humidity_max",
+                 "humidity_mean",
+                 "humidity_min",
+                 "pressure_max",
+                 "pressure_min",
+                 "precipitation",
+                 "cloud_cover")
 #   
-#   # Add a location column
-#   df$loc <- toupper(as.character(station))
-#   
+  # Add a location column
+  df$loc <- toupper(as.character(station))
+  
   # print url source
   print(link)
   
   return(df)
 }
 
-# # Airport example:
- airport <- get_weather("KGNV", airport = TRUE)
+# Get five years of data
+for (i in 2010:2015){
+  assign(paste0("weather", i), 
+         get_airport_weather("KGNV",
+                             start_date = paste0(i, "-01-01"),
+                             end_date = paste0(i, "-12-31")))
+}
+
+# Bind together
+weather <- rbind(weather2010,
+                 weather2011,
+                 weather2012,
+                 weather2013,
+                 weather2014,
+                 weather2015)
+
+# Plot for fun
+# max
+plot(weather$date, weather$temp_max, xlab = "Date", ylab = "Temperature",
+     col = adjustcolor("black", alpha.f = 0.3),
+     ylim = c(0, 105))
+
+# Another axis for precipitation
+axis(side = 4,
+     at = seq(0, 100, 20),
+     labels = seq(0, 10, 2))
+
+# min
+points(weather$date, weather$temp_min,
+     col = adjustcolor("blue", alpha.f = 0.3))
+
+# Add precipitation line
+lines(weather$date, as.numeric(as.character(weather$precipitation)) * 10,
+      col = adjustcolor("darkgreen", alpha.f = 0.3))
