@@ -1,4 +1,4 @@
-get_airport_weather <- function(station = "KGNV", # CDG, BGT, ATL, JFK
+get_airport_weather <- function(station = "BGT", # CDG, BGT, ATL, JFK
                         start_date = Sys.Date() - 365,
                         end_date = Sys.Date()){
 

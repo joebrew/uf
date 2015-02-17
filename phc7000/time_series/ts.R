@@ -119,11 +119,11 @@ for (i in 1:nrow(df)){
 # 5. DO THE SAME BUT USING POISSON
 ###
 # (the logarithm of ili_cases is a function of...)
-fit <- glm(ili_cases ~ temp_min,
+fit <- glm(ili_cases ~ temp_min +day_of_week,
            data = df,
            family = poisson(link = 'log'))
 exp(coef(fit))
-
+summary(fit)
 # Quasipoisson
 fit_qpois <- glm(ili_cases ~ temp_min, 
                  data = df,
@@ -163,7 +163,7 @@ for(j in 0:30){
   for (i in 1:nrow(df)){
     df$humidity_rolling_average[i] <- 
       mean(df$humidity_mean[which(df$date >= (df$date[i] - j) &
-                                    df$date <= df$date[i])], na.rm= TRUE)
+                                    df$date <= df$date[i] - 5)], na.rm= TRUE)
   }
   plot(df$date, df$humidity_rolling_average, main = paste0("Rolling average of ", j+1, " days"))
   Sys.sleep(1)
