@@ -84,3 +84,7 @@ weather <- rbind(weather2010,
 
 # Write csv
 write.csv(weather, 'gainesville_weather.csv')
+
+# Plot
+plot(weather$date, weather$temp_max)
+points(weather$date, weather$temp_min, col = "blue")

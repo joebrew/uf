@@ -3,7 +3,7 @@ options(stringsAsFactors = FALSE)
 #####
 # LOAD NICE PACKAGES
 #####
-library(dplyr)
+library(plyr)
 
 #####
 # SET WORKING DIRECTORY TO WHEREVER 
@@ -26,13 +26,13 @@ weather <- read.csv('gainesville_weather.csv')
 #####
 # MERGE ALL TOGETHER
 #####
-temp <- left_join(x = ed, 
+temp <- join(x = ed, type = "left", 
                   y = ili,
                   by = "date")
-df <- left_join(x = temp,
+df <- join(x = temp, type = "left",
                 y = weather,
                 by = "date")
-rm(temp)
+rm(temp, ed, ili, weather)
 
 ####
 # CLEAN UP A FEW COLUMNS
