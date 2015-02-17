@@ -1,4 +1,4 @@
-get_airport_weather <- function(station = "KGNV", # IWESTERN307
+get_airport_weather <- function(station = "KGNV", # CDG, BGT, ATL, JFK
                         start_date = Sys.Date() - 365,
                         end_date = Sys.Date()){
 
@@ -82,21 +82,5 @@ weather <- rbind(weather2010,
                  weather2014,
                  weather2015)
 
-# Plot for fun
-# max
-plot(weather$date, weather$temp_max, xlab = "Date", ylab = "Temperature",
-     col = adjustcolor("black", alpha.f = 0.3),
-     ylim = c(0, 105))
-
-# Another axis for precipitation
-axis(side = 4,
-     at = seq(0, 100, 20),
-     labels = seq(0, 10, 2))
-
-# min
-points(weather$date, weather$temp_min,
-     col = adjustcolor("blue", alpha.f = 0.3))
-
-# Add precipitation line
-lines(weather$date, as.numeric(as.character(weather$precipitation)) * 10,
-      col = adjustcolor("darkgreen", alpha.f = 0.3))
+# Write csv
+write.csv(weather, 'gainesville_weather.csv')
