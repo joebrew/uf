@@ -148,6 +148,8 @@ lines(df$date, df$predicted_nbi, col = "blue", type = "l")
 # 6. WHICH DID BETTER / POISSON OR GAUSSIAN?
 ### 
 
+
+
 #############################
 # TRICKS
 #############################
@@ -190,4 +192,38 @@ for(j in seq(5,365,5)){
   #text(main = paste0("Rolling average of ", j+1, " days"))
   Sys.sleep(0.2)
 }
+
+#####
+# ARIMA
+#####
+# Create time series object
+ts2 <- ts(df$ili_cases,#[which(df$date <= "2014-01-01")],
+          start = c(2012, 1),
+          end = c(2015,12),
+          frequency = 365)
+
+# Seasonal decomposition
+fit <- stl(ts2, s.window = "period")
+plot(fit)
+
+# additional plots
+monthplot(ts2)
+library(forecast)
+seasonplot(ts2)
+
+# fit an ARIMA model of order P, D, Q
+fit <- arima(ts2, order=c(1, 0, 0))
+             
+# predictive accuracy
+accuracy(fit)
+
+# predict next 5 observations
+forecast(fit, 5)
+plot(forecast(fit, 5))
+
+# Automated forecasting using an exponential model
+fit <- ets(ts2)
+
+# Automated forecasting using an ARIMA model
+fit <- auto.arima(ts2)
 
