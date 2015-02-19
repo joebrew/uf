@@ -1,0 +1,1 @@
+A potentially unsafe attachment has been removed from this message.  If you were expecting an attachment from this sender, please ask the sender to rename the file to a .txt before resending (i.e., rename a .document.doc. file to .document.txt.).  When you receive it, you will have to rename it back to its original form before you can open it.
