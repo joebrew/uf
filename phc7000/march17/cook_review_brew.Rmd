@@ -1,0 +1,38 @@
+---
+title: "Review of 'Risk Factors for Oral HPV in Young Women'"
+author: "Joe Brew"
+output: rmarkdown::tufte_handout
+---
+
+# Article details
+
+Robert L. Cook, MD MPH, Erika L. Thompson, MPH CPH, Natalie E. Kelso, John Friary, MS MPH, Jennifer Hosford, MPH, Phillip Barkley, MD, Virginia J. Dodd, PhD, MPH, Martha Abrahamsen, MPH, Shaun Ajinkya, MPH, P. Daniel Obesso, MD, Mohammed H Rashid, PhD and Anna R. Giuliano, PhD. Sexual behaviors and other risk factors for oral Human Papillomavirus (HPV) infections in young women
+
+# Summary
+
+## Strengths 
+
+This is a strong paper.  Its scope is narrow enough to make the topic fully approachable, it is brief enough to keep the reader's attention, jargon is limited and used only when necessary, and the writing is clear and concise.  The authors make a strong case for the topic's public health relevance, and provide a clear justification for the posing of the hypothesis.  Importantly, the topic is novel - "self-inoculation" and other variants of sexual transmission are rarely discussed (and poorly understood) facets of communicable disease control.
+
+## Weaknesses
+
+The authors over-emphasize generalizability - though their population was diverse by race, they don't give evidence to support that the population was "demographically diverse."  On the contrary, there needs to be further discussion of how selecting from a pool of only college-enrolled women may have biased the study.
+
+
+# Specific suggestions
+
+In the abstract, if you give p-values, please also provide some measure of the strength of the association, such as an odds ratio.\marginnote{A p-value tells me that it matters, but not how much.} In your discussion, you're appropriately modest about the study's limitations (lack of temporality, ie causation), but you disregard this in your conclusion in stating that "this information shoudl be included in public health messages." 
+
+## Minor details 
+
+* Double-comma on page 2, line 30.  
+* Repetition of word "relatively" on page 4, lines 11-13.
+* Does the phrase "nontraditional oral sex" really make sense to use?  It implies the existence of "traditional" oral sex.\marginnote{"Standard" seems to make more sense here.}  
+* "Similar to" not "similar as" on page 5, line 21.  
+* A bit of word mix-up on page 8, line 14 ("51% of participants non-Hispanic were white?")  
+* Why is the sharing of cups containing alcohol a risk factor, but not those containing non-alcoholic beverages?  
+* In the discussion, stating that "sexual behavior" is "independently associated with risk" is too general.\marginnote{Abstinence is a kind of "sexual behavior," right?}  
+* The concept of "deep kissing" seems to have been introduced in the discussion.  What about "open mouth" kissing, as discussed in the results?  Are these two the same?  
+* The assertion that "the low number of HPV positives in the study limited the ability to conduct multivariable analyses using more than 3 variables" needs a bit more explanation.\marginnote{Why 3?}  
+* There is inconsistency between HPV's grammatical usage.  Is it singular (as in page 13, line 4)\marginnote{"HPV is latent"} or is it plural (as in page 13, line 11)\marginnote{"HPV are relatively uncommon"}?  
+
