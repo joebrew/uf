@@ -1,0 +1,6 @@
+,address,confidence,fields_used,lat,lng,ok,quality
+0,"10 SE 2nd Avenue, Gainesville, FL, 32601, USA",0,5,29.650273,-82.324559,,POINT
+1,"2004 Mowry Road, Gainesville, FL 32610, USA",0,4,29.635304,-82.358857,,STREET
+2,"224 SE 24th Street, Gainesville, FL, 32641, USA",0,5,29.647521,-82.293341,,ADDRESS
+3,"318 NW 13th Street, Gainesville, FL",0,3,29.654611,-82.339224,,POINT
+4,"530 NW 2nd Street, Gainesville, FL, 32601, USA",0,5,29.656342,-82.326629,,ADDRESS
