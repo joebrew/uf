@@ -63,6 +63,9 @@ hist(gnv$date, breaks = 100)
 gnv <- gnv[which(gnv$date > "2013-01-01"),]
 hist(gnv$date, breaks = 100)
 
+# Order dataframe by dates
+gnv <- gnv[rev(order(gnv$date)),]
+
 #####
 # GROUP BY DATES
 #####
@@ -159,7 +162,7 @@ runaway <- crime(narrative = 'RUNAWAY')
 party <- crime(narrative = 'PARTY', ts = TRUE)
 party <- crime(narrative = 'PARTY')
 
-term_of_interest <- assault
+term_of_interest <- gnv
 
 ######### 
 # ADVANCED LEAFLET MAPS
@@ -182,7 +185,10 @@ mymap$enablePopover(TRUE)
 
 mymap$fullScreen(TRUE)
 
-for (i in 1:nrow(term_of_interest)){
+maxi <- ifelse(nrow(term_of_interest) > 500,
+              500,
+              nrow(term_of_interest))
+for (i in 1:maxi){
   mymap$marker(c(term_of_interest$lat[i], term_of_interest$lon[i]),
                bindPopup = paste(term_of_interest$narrative[i],
                                  term_of_interest$offense_date[i]))
@@ -284,8 +290,8 @@ title(main = "Crime rate by zip code")
 # PLOT WITH GOOGLE
 library(googleVis)
 n_rows <- 100
-goo_loc <- paste(gnv$lat[1:n_rows], gnv$lon[1:n_rows], sep = ":")
-goo_gnv <- data.frame(gnv[1:n_rows,], goo_loc)
+goo_loc <- paste(term_of_interest$lat[1:n_rows], term_of_interest$lon[1:n_rows], sep = ":")
+goo_gnv <- data.frame(term_of_interest[1:n_rows,], goo_loc)
 g.inter.map <- gvisMap(data = goo_gnv, 
                        locationvar = "goo_loc",
                        options=list(showTip=TRUE, 
@@ -467,6 +473,7 @@ abline(v = Sys.Date() - c(0, 365, 730),
 ####################
 # Merge crime time series with weather
 #gnv$Date <- NULL
+library(dplyr)
 ts <- gnv %>%
   group_by(date, zip) %>%
   summarise(n = n())
@@ -503,3 +510,22 @@ preds <- predict(fit, tomorrow, interval = 'prediction')
 tomorrow$lwr <- preds[,2]
 tomorrow$upr <- preds[,3]
 tomorrow
+
+# PLOT FORECAST
+zip$forecast <- NA
+for (i in 1:nrow(tomorrow)){
+  zip$forecast[which(as.numeric(as.character(zip$ZIP)) ==
+                       tomorrow$zip[i])] <-
+    tomorrow$prediction[i]
+}
+
+# source choro
+source('/home/joebrew/Documents/uf/phc7065/big_data/functions.R')
+zip_border <- collapse_map(zip)
+par(mar = c(5,5,5,2))
+choro(shape = zip,
+      boundary = zip_border,
+      main = 'Crime forecast for tomorrow',
+      var = zip$forecast,
+      legend_round = 0)
+
