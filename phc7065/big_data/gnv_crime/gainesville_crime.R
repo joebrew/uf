@@ -159,7 +159,10 @@ runaway <- crime(narrative = 'RUNAWAY')
 party <- crime(narrative = 'PARTY', ts = TRUE)
 party <- crime(narrative = 'PARTY')
 
-term_of_interest <- assault
+# THEFT
+theft <- crime(narrative = 'THEFT', ts = FALSE)
+
+term_of_interest <- gnv
 
 ######### 
 # ADVANCED LEAFLET MAPS
@@ -181,6 +184,8 @@ mymap$setView(c(29.65, -82.3), zoom = 10)
 mymap$enablePopover(TRUE)
 
 mymap$fullScreen(TRUE)
+
+
 
 for (i in 1:nrow(term_of_interest)){
   mymap$marker(c(term_of_interest$lat[i], term_of_interest$lon[i]),
