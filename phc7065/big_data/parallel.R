@@ -3,7 +3,7 @@
 #####
 library(foreach)
 library(doMC)
-registerDoMC(5)
+registerDoMC()
 
 # Using Multiple cores
 nr <- 1000
