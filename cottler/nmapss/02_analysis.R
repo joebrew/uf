@@ -431,12 +431,15 @@ fit_final <- glm(gamble_internet ~ alcohol_age_first + gender + family_dinner_we
                  data = na.omit(train_data),
                  family = binomial("logit"))
 
+print(xtable(summary(fit_final)))
+
 # Odds ratios
 exp(coef(fit_final))
 
 ## odds ratios and 95% CI
-exp(cbind(OR = coef(fit_final), confint(fit_final)))
-
+x <- exp(cbind(OR = coef(fit_final), confint(fit_final)))
+library(xtable)
+print(xtable(x))
 
 # Get all possible prediction categories
 test <- expand.grid(#age_group = levels(factor(train_data$age_group)),
