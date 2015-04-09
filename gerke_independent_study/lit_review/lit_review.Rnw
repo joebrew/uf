@@ -154,7 +154,7 @@ Full code at \href{https://github.com/joebrew/uf/tree/master/gerke\_independent\
 
 This report was generated on \today.  The author used \Sexpr{paste0(version$version.string, " (", version$nickname, ")")} on a \Sexpr{print(version$os)} OS.  \\
 
-The analysis in this report was written in the R programming language, and the report production was programmed in \LaTeX{} using Sweave.\\
+Any analysis in this report was written in the R programming language, and the report production was programmed in \LaTeX{} using Sweave.\\
 
 
 \end{document}

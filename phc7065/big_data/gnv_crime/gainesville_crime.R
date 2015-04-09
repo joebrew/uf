@@ -162,6 +162,12 @@ runaway <- crime(narrative = 'RUNAWAY')
 party <- crime(narrative = 'PARTY', ts = TRUE)
 party <- crime(narrative = 'PARTY')
 
+<<<<<<< HEAD
+# THEFT
+theft <- crime(narrative = 'THEFT', ts = FALSE)
+
+=======
+>>>>>>> 4d452ead1de4405b0656bd34f7a71ea12c95760f
 term_of_interest <- gnv
 
 ######### 
@@ -185,10 +191,16 @@ mymap$enablePopover(TRUE)
 
 mymap$fullScreen(TRUE)
 
+<<<<<<< HEAD
+
+
+for (i in 1:nrow(term_of_interest)){
+=======
 maxi <- ifelse(nrow(term_of_interest) > 500,
               500,
               nrow(term_of_interest))
 for (i in 1:maxi){
+>>>>>>> 4d452ead1de4405b0656bd34f7a71ea12c95760f
   mymap$marker(c(term_of_interest$lat[i], term_of_interest$lon[i]),
                bindPopup = paste(term_of_interest$narrative[i],
                                  term_of_interest$offense_date[i]))
