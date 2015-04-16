@@ -125,6 +125,7 @@ for (i in 2:5){
   simp[,new_name] <- simp[,i] / simp$total
 }
 
+par(mar = c(5,4,4,2))
 head(simp)
 dat <- simp
 #dat <- simp[which(simp$gender == "male"),]
@@ -182,7 +183,7 @@ legend("topleft",
        legend = c("Both", "Only gambling", "Only alcohol", "Neither"),
        border = FALSE)
 box("plot")
-
+box('outer', lwd = 4)
 #####
 # GET EVER CONSUMED ALCOHOL BY AGE AND SEX
 #####
@@ -204,7 +205,7 @@ age_plot <- function(gender = "female",
                     add = FALSE,
                     col = "red",
                     ylim = c(0, 0.8),
-                    ylab = "Probability of having consumed alcohol"){
+                    ylab = "Proportion having ever consumed alcohol"){
   
   # Subset df
   df <- basic[which(basic$gender == gender),]
@@ -257,15 +258,28 @@ age_plot <- function(gender = "female",
 }
 
 # PLOT ALCOHOL
+dev.off()
+par(mfrow = c(1,2))
+par(mar = c(5,4,4,2))
 age_plot()
 age_plot(gender = "male", add = TRUE, col = "blue")
 abline(v = seq(0,20,1),
        col = adjustcolor("grey", alpha.f = 0.3),
        lwd = 35)
 abline(h = seq(0,1, 0.2), col = adjustcolor("black", alpha.f = 0.2))
+title(main = 'Alcohol consumption by age')
+# legend
+legend(x = "topleft",
+       lty = 2,
+       pch = 16,
+       col = adjustcolor(c("blue", "red"), alpha.f = 0.3),
+       legend = c("Males", "Females"))
+
+
 
 # PLOT GAMBLING
-age_plot(var = "p_gamble", ylim = c(0, 0.17), ylab = "Probability of having ever gambled online")
+age_plot(var = "p_gamble", ylim = c(0, 0.17), 
+         ylab = "Probability of having ever gambled online")
 age_plot(var = "p_gamble", add = TRUE, gender = "male", col = "blue")
 abline(v = seq(0,20,1),
        col = adjustcolor("grey", alpha.f = 0.3),
@@ -273,6 +287,7 @@ abline(v = seq(0,20,1),
 abline(h = seq(0,1, 0.05),
        col = adjustcolor("grey", alpha.f = 0.2))
 abline(h = seq(0,1, 0.05), col = adjustcolor("black", alpha.f = 0.2))
+title(main = 'Gambling by age')
 
 # legend
 legend(x = "topleft",
@@ -1078,3 +1093,8 @@ x2 <- jitter(x[which(nmapss$gamble_internet)])
 y2 <- jitter(y[which(nmapss$gamble_internet)])
 
 points(x2, y2, pch = 3, col = "red")
+
+
+####
+head(my_data)
+table(my_data$age)
