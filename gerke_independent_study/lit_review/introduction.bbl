@@ -1,0 +1,138 @@
+\begin{thebibliography}{12}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Reed et~al.(2015)Reed, Chaves, Kirley, Emerson, Aragon, Hancock,
+  Butler, Baumbach, Hollick, Bennett, Laidler, Thomas, Meltzer, and
+  Finelli]{Reed2015}
+Carrie Reed, Sandra~S. Chaves, Pam~Daily Kirley, Ruth Emerson, Deborah Aragon,
+  Emily~B. Hancock, Lisa Butler, Joan Baumbach, Gary Hollick, Nancy~M. Bennett,
+  Matthew~R. Laidler, Ann Thomas, Martin~I. Meltzer, and Lyn Finelli.
+\newblock Estimating influenza disease burden from population-based
+  surveillance data in the united states.
+\newblock \emph{{PLoS} {ONE}}, 10\penalty0 (3):\penalty0 e0118369, mar 2015.
+\newblock \doi{10.1371/journal.pone.0118369}.
+\newblock URL \url{http://dx.doi.org/10.1371/journal.pone.0118369}.
+
+\bibitem[Tran et~al.(2014)Tran, Sugimoto, Pulliam, Ryan, Myers, Castleman,
+  Doty, Johnson, Stringfellow, Kovacevich, Brew, Cheung, Caron, Lipori, Harle,
+  Alexander, Yang, Longini, Halloran, Morris, and Small]{Tran2014}
+Cuc~H. Tran, Jonathan~D. Sugimoto, Juliet R.~C. Pulliam, Kathleen~A. Ryan,
+  Paul~D. Myers, Joan~B. Castleman, Randell Doty, Jackie Johnson, Jim
+  Stringfellow, Nadia Kovacevich, Joe Brew, Lai~Ling Cheung, Brad Caron, Gloria
+  Lipori, Christopher~A. Harle, Charles Alexander, Yang Yang, Ira~M. Longini,
+  M.~Elizabeth Halloran, J.~Glenn Morris, and Parker~A. Small.
+\newblock School-located influenza vaccination reduces community risk for
+  influenza and influenza-like illness emergency care visits.
+\newblock \emph{{PLoS} {ONE}}, 9\penalty0 (12):\penalty0 e114479, dec 2014.
+\newblock \doi{10.1371/journal.pone.0114479}.
+\newblock URL \url{http://dx.doi.org/10.1371/journal.pone.0114479}.
+
+\bibitem[Kwong et~al.(2015)Kwong, Pereira, Quach, Pellizzari, Dusome, Russell,
+  Hamid, Feinberg, Winter, Gubbay, Sirtonski, Moher, Sider, Finkelstein, and
+  Loeb]{Kwong2015}
+Jeffrey~C. Kwong, Jennifer~A. Pereira, Susan Quach, Rosana Pellizzari, Edwina
+  Dusome, Margaret~L. Russell, Jemila~S. Hamid, Yael Feinberg, Anne-Luise
+  Winter, Jonathan~B. Gubbay, Brittany Sirtonski, Deanna Moher, Doug Sider,
+  Michael Finkelstein, and Mark Loeb.
+\newblock Randomized evaluation of live attenuated vs. inactivated influenza
+  vaccines in schools ({RELATIVES}) pilot study: A cluster randomized trial.
+\newblock \emph{Vaccine}, 33\penalty0 (4):\penalty0 535--541, jan 2015.
+\newblock \doi{10.1016/j.vaccine.2014.11.044}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.vaccine.2014.11.044}.
+
+\bibitem[ped(2014)]{peds2014}
+Recommendations for prevention and control of influenza in children, 2014-2015.
+\newblock \emph{{PEDIATRICS}}, 134\penalty0 (5):\penalty0 e1503--e1519, sep
+  2014.
+\newblock \doi{10.1542/peds.2014-2413}.
+\newblock URL \url{http://dx.doi.org/10.1542/peds.2014-2413}.
+
+\bibitem[Quach(2014)]{Quach2014}
+Caroline Quach.
+\newblock Vaccinating high-risk children with the intranasal live-attenuated
+  influenza vaccine: the quebec experience.
+\newblock \emph{Paediatric Respiratory Reviews}, 15\penalty0 (4):\penalty0
+  340--347, dec 2014.
+\newblock \doi{10.1016/j.prrv.2014.06.002}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.prrv.2014.06.002}.
+
+\bibitem[Ambrose et~al.(2014)Ambrose, Wu, Caspard, and Belshe]{Ambrose2014}
+Christopher~S. Ambrose, Xionghua Wu, Herve Caspard, and Robert~B. Belshe.
+\newblock Efficacy of live attenuated influenza vaccine against influenza
+  illness in children as a function of illness severity.
+\newblock \emph{Vaccine}, 32\penalty0 (43):\penalty0 5546--5548, sep 2014.
+\newblock \doi{10.1016/j.vaccine.2014.07.097}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.vaccine.2014.07.097}.
+
+\bibitem[Ilyushina et~al.(2014)Ilyushina, Haynes, Hoen, Khalenkov, Housman,
+  Brown, Ackerman, Treanor, Luke, Subbarao, and Wright]{Ilyushina2014}
+N.~A. Ilyushina, B.~C. Haynes, A.~G. Hoen, A.~M. Khalenkov, M.~L. Housman,
+  E.~P. Brown, M.~E. Ackerman, J.~J. Treanor, C.~J. Luke, K.~Subbarao, and
+  P.~F. Wright.
+\newblock Live attenuated and inactivated influenza vaccines in children.
+\newblock \emph{Journal of Infectious Diseases}, 211\penalty0 (3):\penalty0
+  352--360, aug 2014.
+\newblock \doi{10.1093/infdis/jiu458}.
+\newblock URL \url{http://dx.doi.org/10.1093/infdis/jiu458}.
+
+\bibitem[Grohskopf et~al.(2014)Grohskopf, Olsen, Sokolow, Bresee, Cox, Broder,
+  Karron, and Walter]{cdcrec2014}
+Lisa~A. Grohskopf, Sonja~J. Olsen, Leslie~Z. Sokolow, Joseph~S. Bresee,
+  Nancy~J. Cox, Karen~R. Broder, Ruth~A. Karron, and Emmanuel~B. Walter.
+\newblock Prevention and control of seasonal influenza with vaccines:
+  Recommendations of the advisory committee on immunization practices —
+  united states, 2014-2015.
+\newblock \emph{Morbidity and Mortality Weekly Report (MMWR)}, 63\penalty0
+  (32):\penalty0 691--697, sep 2014.
+\newblock URL \url{http://www.cdc.gov/mmwr/preview/mmwrhtml/mm6332a3.htm}.
+
+\bibitem[Phillips et~al.(2012)Phillips, Woolpert, Sevick, Faix, Blair, and
+  Crum-Cianflone]{Phillips2012}
+C.~J. Phillips, T.~Woolpert, C.~Sevick, D.~Faix, P.~J. Blair, and N.~F.
+  Crum-Cianflone.
+\newblock Comparison of the effectiveness of trivalent inactivated influenza
+  vaccine and live, attenuated influenza vaccine in preventing influenza-like
+  illness among {US} military service members, 2006-2009.
+\newblock \emph{Clinical Infectious Diseases}, 56\penalty0 (1):\penalty0
+  11--19, nov 2012.
+\newblock \doi{10.1093/cid/cis860}.
+\newblock URL \url{http://dx.doi.org/10.1093/cid/cis860}.
+
+\bibitem[Forrest et~al.(2011)Forrest, Steele, Hiemstra, Rappaport, Ambrose, and
+  Gruber]{Forrest2011}
+Bruce~D. Forrest, A.~Duncan Steele, Louis Hiemstra, Ruth Rappaport,
+  Christopher~S. Ambrose, and William~C. Gruber.
+\newblock A prospective, randomized, open-label trial comparing the safety and
+  efficacy of trivalent live attenuated and inactivated influenza vaccines in
+  adults 60 years of age and older.
+\newblock \emph{Vaccine}, 29\penalty0 (20):\penalty0 3633--3639, may 2011.
+\newblock \doi{10.1016/j.vaccine.2011.03.029}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.vaccine.2011.03.029}.
+
+\bibitem[Ohmit et~al.(2008)Ohmit, Victor, Teich, Truscon, Rotthoff, Newton,
+  Campbell, Boulton, and Monto]{Ohmit2008}
+Suzanne~E. Ohmit, John~C. Victor, Esther~R. Teich, Rachel~K. Truscon, Judy~R.
+  Rotthoff, Duane~W. Newton, Sarah~A. Campbell, Matthew~L. Boulton, and
+  Arnold~S. Monto.
+\newblock Prevention of symptomatic seasonal influenza in 2005{\textendash}2006
+  by inactivated and live attenuated vaccines.
+\newblock \emph{The Journal of Infectious Diseases}, 198\penalty0 (3):\penalty0
+  312--317, aug 2008.
+\newblock \doi{10.1086/589885}.
+\newblock URL \url{http://dx.doi.org/10.1086/589885}.
+
+\bibitem[Tricco et~al.(2013)Tricco, Chit, Soobiah, Hallett, Meier, Chen,
+  Tashkandi, Bauch, and Loeb]{Tricco2013}
+Andrea~C Tricco, Ayman Chit, Charlene Soobiah, David Hallett, Genevieve Meier,
+  Maggie~H Chen, Mariam Tashkandi, Chris~T Bauch, and Mark Loeb.
+\newblock Comparing influenza vaccine efficacy against mismatched and matched
+  strains: a systematic review and meta-analysis.
+\newblock \emph{{BMC} Medicine}, 11\penalty0 (1):\penalty0 153, 2013.
+\newblock \doi{10.1186/1741-7015-11-153}.
+\newblock URL \url{http://dx.doi.org/10.1186/1741-7015-11-153}.
+
+\end{thebibliography}

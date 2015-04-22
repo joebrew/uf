@@ -1,0 +1,127 @@
+\documentclass[11pt]{article}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[center]{titlesec}
+\usepackage{geometry}
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+
+%\usepackage{mathtools}
+
+\usepackage[sort, numbers]{natbib}
+
+
+%
+%\setlength{\columnseprule}{0.4pt}
+%\setlength{\footskip}{20pt}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[C]{Joe Brew (student) $\bullet$ Travis Gerke (Professor)}
+\fancyfoot[C]{  $\bullet$ Indepenent study \bullet$  }
+\renewcommand\headrulewidth{1pt}
+\renewcommand\footrulewidth{1pt}
+\pagestyle{fancy}
+
+%
+
+\setlength{\columnsep}{1.5cm}
+%\setlength{\columnseprule}{0.4pt}
+
+%\MakeOuterQuote{"}
+
+
+
+\graphicspath{ {/home/joebrew/Documents/uf/gerke_independent_study_lit_review} }
+
+%the next two lines adjust the third, centered section of the exec sum
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\begin{document}
+\SweaveOpts{concordance=TRUE, echo=FALSE, results = hide}
+
+\title{\textbf{LAIV vs IIV protection against ILI in a mismatched vaccine season }}
+\author{Joe Brew}
+
+
+\maketitle
+
+\emph{What follows is the first draft of the introduction for our upcoming paper on the effectiveness of IIV (iinactivated influenza vaccine), LAIV (live attenuated influenza vaccine) and no vaccine amoung a young adult population (students at the University of Florida).  This document, in conjunction with the "first pass" literature review (submitted earlier this semester) and the IRB protocol (submitted earlier this semester, to be resubmitted upon completion of this semester) can be considered the "deliverables" for our 1 credit hour independent study. Note that this is very much intended as a "draft" - both the tone and content of our paper's actual introduction will have to be modified following an analysis of the data.}
+\tableofcontents
+
+\vspace{20mm}
+
+\begin{center}
+\includegraphics[width=2cm]{uf}
+\end{center}
+
+
+\newgeometry{margin=2.5cm}
+%\fancyhfoffset[E,O]{0pt}
+
+
+%------------------------------------------
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
+%------------------------------------------
+\hrulefill
+
+\begin{multicols}{2} 
+\setkeys{Gin}{width=0.45\textwidth}
+
+Though vaccine-preventable, the burden of influenza in the United States remains extremely high, causing between 5,000 and 27,000 deaths annually \cite{Reed2015}.  Targeted influenza immunization campaigns have been shown to be effective at reducing this burden, but protection of adults remains sub-optimal. In their efforts to combat influenza, public health practitioners face difficult decisions regarding not only the logistics and public relations facets of mass immunization campaigns, but also confusion regarding different immunization delivery methods and their relative effectiveness across age groups, influenza strains, and flu season severity.  This study aims to answer the following question: which influenza delivery method (IIV: inactivated influenza vaccine vs. LAIV: live attenuated influenza vaccine) is more effective at protecting college-aged (18-24 years-old) adults from influenza-like illness (ILI) in a flu season with a poorly matched vaccine (2014-15)?
+
+
+College students are a unique population in regards to influenza transmission since their migratory behavior may both (a) expose them to more influenza than their more stationary counterparts and (b) increase the possibility of contagion following periods of migration (winter holidays, for example). Additionally, college-aged adults typically have lower immunization rates than their older and younger counterparts.  It has been suggested that the presence of college students may partially offset the indirect protection provided by mass immunization programs \cite{Tran2014}.
+
+College students are also an important population for study because of the possibility of effective intervention.  The combination of close geographical proximity to one another, clear and established means of mass communication, and low vaccine coverage suggest the need for targeted immunization campaigns on college campuses. Since vaccine receptivity appears to be low in this age group, LAIV may be a prefential option, since it is easier and quicker to administer.  Additionally, it may result in lower vaccine hesitance: in a randomized trial in Canadian elementary schools, schools assigned to get LAIV instead of IIV had higher uptake (19.3\% to 12.2\%). Increased uptake may come at a cost, however -  cost per vaccine was slightly higher for LAIV (\$43.50 vs. \$38.67). \cite{Kwong2015}
+
+Uptake aside, the relative effectiveness of IIV and LAIV is not clearly established.  In recent months, LAIV has been given preference over IIV in young children.  Not only is LAIV more easy to deliver, it appears to be more effective at reducing the risk of laboratory-confirmed influenza among the very young.  Accordingly, n November of 2014, the American Academy of Pediatrics' Committee on Infectious Diseases recommended that children ages 2 through 8 with "no contraindications or precautions to the intranasal vaccine" should recieve LAIV; IIV should be administered "if LAIV is not readily available" \cite{peds2014}.  Though not recommended for children with high-risk conditions, a Canadian study examined admistration of "FluMist" to children with asthma, CF and chronic conditions.  No atypical adverse events were encountered.  The only counterindications they suggest are if the child is "on systemic corticosteroids... medically-attended wheezing episode in the 7 days prior to vaccination... aged 2... nasal polyps or rhinorrhoea considered too sginficiant... to allow LAIV to reach the nasal mucosa and ... immunosuppressed." \cite{Quach2014} 
+
+Among 3 to 8 year-olds, LAIV has been found to be 95.4\% and 88.5\% effective against moderate/severe influenza (relative to placebo).  Relative to IIV, LAIV was 52.2\% and 45.0\% effective against moderate/severe influenza. \cite{Ambrose2014} LAIV's apparent advantage amount younger people may have to do more with biology than behavior: LAIV priming appears to inhibit virus recovery (among young children) more effectively than IIV. \cite{Ilyushina2014}
+
+Among adults, the preferential order of vaccines is less clear.  Though influenza immunization is recommended for all age groups greater than 6 months of age, "there are insufficient data to determine at what age or with how many successive seasons of vaccination the relatively greater efficacy of LAIV diminishes in children aged 6 through 18 years." \cite{cdcrec2014}  In a very large study of US military adults (41,670 vaccination administered over the course of multiple flu seasons), there was no difference in the effectiveness of LAIV versus IIV. However, multiple potential sources of bias (LAIV vs. TIV administered based on supply, etc.). \cite{Phillips2012} In adults, the CDC has recommended IIV over LAIV based on the results of randomized controlled trials, but these trials were not specific to young adults (ie, those of college age) \cite{Forrest2011, Ohmit2008}.
+
+Since college-aged adults are different both socially and immunologically from their younger and older counterparts, and since college campuses offer one of the best mediums for carrying out mass immunization campaigns, an examination of the relative effectiveness of IIV and LAIV among this population is called for, and (to the authors' knowledge) has never been carried out.  
+
+A meta-analysis of IIV and LAIV in both matched and mismatched vaccine years suggests that LAIV might be slightly more effective during mismatched years. \cite{Tricco2013} The 2014-15 had the lowest vaccine effectiveness in the last decade offering the possibility to better understand differences in potential cross-protection between IIV and LAIV.  [Could use a bit more info here, I think]  
+
+Our aim is to examine potential differences in effectiveness of LAIV and IIV in a colege-aged adult population in the context of mismatched year for the purpose of guiding public health interventions, particularly mass influenza immunization on college campuses.
+
+
+
+
+
+
+
+
+
+\end{multicols}
+\setkeys{Gin}{width=1\textwidth}
+%----------------------------------------------------------------------------------------
+%  REFERENCE LIST
+%----------------------------------------------------------------------------------------
+\newpage
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{unsrtnat}
+\bibliography{bibliography}
+
+\newpage
+%------------------------------------------
+\section*{Details}
+\addcontentsline{toc}{section}{Details}
+%------------------------------------------
+\hrulefill
+
+\vspace{10mm}
+Full code at \href{https://github.com/joebrew/uf/tree/master/gerke\_independent\_study/lit\_review}{https://github.com/joebrew/uf/tree/master/gerke\_independent\_study/lit\_review}. \\
+
+This report was generated on \today.  The author used \Sexpr{paste0(version$version.string, " (", version$nickname, ")")} on a \Sexpr{print(version$os)} OS.  \\
+
+Any analysis in this report was written in the R programming language, and the report production was programmed in \LaTeX{} using Sweave.\\
+
+
+\end{document}

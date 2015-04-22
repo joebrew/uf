@@ -1,0 +1,4 @@
+\select@language {english}
+\contentsline {section}{Introduction}{2}{Doc-Start}
+\contentsline {section}{References}{4}{Doc-Start}
+\contentsline {section}{Details}{6}{Doc-Start}
