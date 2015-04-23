@@ -1,0 +1,283 @@
+---
+title: "Free text analysis for epidemiologic surveillance and early anomaly detection"
+author: "Joe Brew (UF-ID: 0402-8902)"
+date: ""
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+    fig_caption: true
+  pdf_document:
+    toc: true
+    highlight: zenburn
+---
+
+# Background  
+
+This document serves as the "final project" for PHC 7065 ("Data Management"), taught by Dr. Arbi Ben Abdallah.  
+
+## Data source
+
+I use data from the Florida Department of Health's Electronic Surveillance System for the Early Notification of Community-based Epidemics (ESSENCE).  I am authorized to use these data as surveillance epidemiologist for the Florida Department of Health in Alachua County.^[As you can imagine, I'm not authorized to share the raw or identifiable data.]
+
+## Problem
+
+Florida's Electronic Surveillance System for the Early Notification of Community-based Epidemics (ESSENCE) classifies chief complaint data on a daily basis for all participating EC facilities within Florida (approximately 79% of all facilities).  County and State epidemiologists rely on these classifications to detect abnormalities (outbreaks, accidents, exposures, etc.).  However, the ESSENCE’s classification algorithms fail to classify approximately half of all cases into any category at all.  Here’s are some examples (using hypothetical data):
+
+```{r, echo=FALSE, results='asis'}
+fake <- data.frame(a = c('Cough congestion fever',
+                         'Vomiting abdominal pain',
+                         'Lethargic swollen feet',
+                         'Mouth pain',
+                         'Ate at Domino\'s pizza'),
+                   b = c('Influenza like illness',
+                         'Gastrointestinal',
+                         rep('None', 3)))
+names(fake) <- c('Chief complaint / discharge diagnosis',
+                'ESSENCE classification')
+knitr::kable(head(fake, 10))
+```
+
+By not classifying many observations, the ESSENCE system allows health threats to go undetected.  This is a problem from a surveillance perspective because it means that epidemiologists lose the opportunity to intervene early and effectively. The current algorithms use fixed disease-related terms, meaning that even in the event of 10 patients presenting at the same time with “pizza” as the chief complaint, no alarm would be set off.  Misclassification (or in this case, non-classification) means that Florida epidemiologists may detect a new or unusual health event late (or not at all), leaving Floridians vulnerable to emerging health threats. 
+
+
+## Solution
+
+I have assembled the chief complaints and discharge diagnoses of all ED visits among Alachua County residents since January 2012 (data ~ 75 mb).  My code "product" is a program which takes raw chief complaints and discharge diagnoses from any day, and spits back a list of terms that appeared in reverse order of “likelihood” to appear (ie, need to investigate).  In other words, it gives the surveillance epidemiologist needed information about what happened yesterday, and how unusual it was.
+
+# Code
+
+## Data preparation
+
+First, I prepare the data, extracting only the date and chief complaint / discharge diagnosis for the 349,828 visits of interest. 
+
+```{r, echo = TRUE}
+
+#####
+# READ IN AND PREPARE RAW EMERGENCY ROOM SURVEILLANCE DATA
+#####
+if(file.exists('/media/joebrew/JB/fdoh/private/surv/historical/ccdd_only.csv')){
+  df <- read.csv('/media/joebrew/JB/fdoh/private/surv/historical/ccdd_only.csv',
+                 stringsAsFactors = FALSE)
+} else {
+  df <- read.csv('/media/joebrew/JB/fdoh/private/surv/historical/alless1213updated.csv',
+                 stringsAsFactors = FALSE)
+  # SUBSET TO INCLUDE ONLY DATE AND CHIEF COMPLAINT / DISCHARGE DIAGNOSIS (CCDD)
+df <- df[,c('Date', 'CCDD')]
+
+# SAVE A SMALLER SUBSET TO SAVE TIME
+write.csv(df, '/media/joebrew/JB/fdoh/private/surv/historical/ccdd_only.csv',
+          row.names = FALSE)
+}
+
+# FORMAT DATE
+df$Date <- as.Date(df$Date, format = '%Y-%m-%d')
+
+# ORDER BY DATE
+df <- df[rev(order(df$Date)),]
+
+```
+
+Here is what the raw data look like.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(df[30005:30010,])
+```
+
+Next, I strip the CCDD of characters of all non-alphanumeric characters, remove trailing or leading white space, and remove pipes.
+
+```{r}
+# REMOVE ALL NON ALPHANUMERICS
+df$CCDD <- gsub("[^a-zA-Z0-9]"," ",df$CCDD)
+
+# REMOVE PIPES
+df$CCDD <- gsub('[|]', '', df$CCDD)
+
+# DEFINE AND USE FUNCTION TO STRIP TRAILING OR LEADING WHITESPACE
+strip_white <- function(character_string){
+  gsub('^\\s+|\\s+$', '', character_string)
+}
+df$CCDD <- strip_white(df$CCDD)
+
+```
+
+Here is what the raw data look like after cleaning.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(df[30005:30010,])
+```
+
+## Data aggregation
+
+The next phase of the process consists of getting the words that appeared in yesterday's chief complaints and discharge diagnoses, as well as the words that appeared in ALL days prior to then.
+
+```{r}
+
+# DEFINE A DAY THAT WE'RE INVESTIGATING (CALLED YESTERDAY)
+yesterday <- max(df$Date)
+
+# GET A VECTOR OF ALL THE WORDS THAT APPEARED YESTERDAY
+words <- unlist(strsplit(as.character(
+                                             toupper(df$CCDD[which(df$Date == yesterday)])), " "))
+
+# How many words appeared yesterday in free text?
+length(words)
+
+
+# GET A CORRESPONDING VECTOR OF ALL WORDS THAT HAVE EVER APPEARED (EXCLUDING YESTERDAY)
+wordsBL <- unlist(strsplit(as.character(
+                                               toupper(df$CCDD[which(df$Date != yesterday)])), " "))
+
+# How many words appeared prior to yesterday in free text?
+length(wordsBL)
+
+# CONSTRUCT A DATAFRAME OF OUR WORD COUNTS (YESTERDAY ONLY)
+wordsDF <- as.data.frame(table(words))
+colnames(wordsDF) <- c("word","count")
+
+# CONSTRUCT A DATAFRAME OF BASELINE WORD COUNTS (PRIOR TO YESTERDAY)
+wordsBLDF <- as.data.frame(table(wordsBL))
+colnames(wordsBLDF) <- c("word","count")
+
+# CHANGE TO CHARACTERS
+wordsBLDF$word <- as.character(wordsBLDF$word)
+wordsDF$word <- as.character(wordsDF$word)
+
+# IN YESTERDAY'S DATA, GET THE EXPECTED ACCOUNT
+dividend <- length(unique(df$Date)) - 1
+
+wordsDF$expected <- NA
+for (i in 1:nrow(wordsDF)){
+  
+  the_word <- wordsDF$word[i]
+  
+  sub_data <- wordsBLDF[which(wordsBLDF$word == the_word),]
+  
+  if(nrow(sub_data) > 0){
+      replacement <- sub_data$count / dividend
+  } else{
+    replacement <- NA
+  }
+  wordsDF$expected[i] <- replacement  
+}
+```
+
+Our results look like this: 
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(tail(wordsDF))
+```
+
+## Prioritizing action
+Now that we have measures of observed vs. expected, we can calculate an "unlikelihood ratio" which is simply the observed number of times a word appears over the "expected"^["Expected" is understood here as the number of times the word previously appeared divided by the number of days.]
+
+```{r}
+# DEFINE AN "UNLIKELIHOOD RATIO" COLUMN
+wordsDF$likelihood <- wordsDF$count / wordsDF$expected
+
+# ORDER BY UNLIKELIHOOD
+wordsDF <- wordsDF[rev(order(wordsDF$likelihood)),]
+
+# Remove NA expected rows (this will need to be tweaked when this goes into production)
+wordsDF <- wordsDF[which(!is.na(wordsDF$expected)),]
+
+```
+
+We can make this a bit more elegant by running chi-squared tests.
+
+```{r}
+
+# DEFINE A FUNCTION TO GET THE P VALUE USING CHI-SQUARED OF EACH
+# WORD'S PROBABILITY
+chi_squared <- function(row = 1){
+  sub_data <- wordsDF[row,]
+  # success
+  x <- c(sub_data$count, sub_data$expected * dividend)
+  # trials
+  n <- c(sum(wordsDF$count), sum(wordsBLDF$count))
+
+  # test
+  suppressWarnings(
+    temp <- prop.test(x = x, n = n)
+    )
+  
+  # Extract p-value
+  temp$p.value
+}
+
+# LOOP OVER EACH ROW TO GET P VALUE
+wordsDF$p <- NA
+for (i in 1:nrow(wordsDF)){
+  wordsDF$p[i] <- chi_squared(i)
+}
+
+```
+
+Our results look like this: 
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(wordsDF))
+```
+
+Now, I can subset my data to only look at events with three or more occurrences yesterday, and prioritize action based on the p-values.
+
+```{r}
+# Subset
+action <- wordsDF[which(wordsDF$count >=3),]
+
+# Order
+action <- action[order(action$p),]
+```
+
+My final dataframe looks like this - it is a table of terms of concern, ranked by lowest p-value (ie, likelihood to occur).
+
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(action, 20))
+```
+
+## Data visualization
+
+Since the data are still somewhat difficult to manage, we can use visualization to get a better idea of what should be of concern. The below visualizatoin shows words in our dataset, with size a reflection of the inverse likelihood of occurrence (ie, the bigger the word, the more we should be concerned).
+
+```{r, fig = TRUE}
+library(wordcloud)
+
+suppressWarnings(
+wordcloud(words=wordsDF$word,
+          freq=1 - wordsDF$p,
+colors = adjustcolor('darkblue', alpha.f = 0.6)))
+
+```
+
+Also, we can plot the distribution of p-values (expecting, of course, that this should be uniform).
+
+```{r, fig = TRUE, fig.cap = 'Distribution of p-values in yesterday\'s ED visits'}
+hist(wordsDF$p, breaks = 30,
+     xlab = 'P-value', main = NA,
+     border = 'white', col = 'grey')
+```
+
+The non-uniform distribution is likely due to the prepondernce of 1-occurrence words which had never previously appeared.  This will be addressed in clustering (see "Next steps" section).
+
+Finally, we can examine any potential correlation between the p-value and actual count of occurrences yesterday.  We should be most concerned about words with a low p-value and high occurrence (upper left) and least concerned about words with a high p-value and low occurrence (bottom right).
+
+```{r, fig = TRUE}
+wordsDF <- wordsDF[which(wordsDF$word != ''),]
+plot(x = wordsDF$p,
+     y = wordsDF$count,
+     xlab = 'P-value',
+     ylab = 'Occurrences yesterday',
+     type = 'n')
+text(x = wordsDF$p,
+     y = wordsDF$count,
+     labels = wordsDF$word,
+     col = adjustcolor('black', alpha.f = 0.4),
+     cex = 0.4)
+```
+
+
+# Next steps
+
+This concludes my assignment.  Though outside the scope of this project, my hope is to improve this program by using "clustering" algorithms which will account for mispelling and variatoins on similar words.  I've devised a weighted “fuzzy” (approximate string) matching algorithm to cluster words based on similarity.  Once I've implemented it fully, I'll use random forest regression to quantify an “expected” value for any emergency department word (adjusted for seasonality, time of day and location).  This will improve on the current implementation in that random forest's bootstrap aggregation features will give a better estimate of "likelihood" for low incidence words than the somewhat rudimentary framework I've laid out here.
+
