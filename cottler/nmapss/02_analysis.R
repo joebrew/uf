@@ -287,7 +287,7 @@ abline(v = seq(0,20,1),
 abline(h = seq(0,1, 0.05),
        col = adjustcolor("grey", alpha.f = 0.2))
 abline(h = seq(0,1, 0.05), col = adjustcolor("black", alpha.f = 0.2))
-title(main = 'Gambling by age')
+title(main = 'Online gambling by age')
 
 # legend
 legend(x = "topleft",
