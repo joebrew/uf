@@ -83,7 +83,8 @@ boundary <- collapse_map(china)
 choro(shape = china, 
       var = china$fake_var,
       boundary = boundary,
-      legend_round = 0)
+      legend_round = 0,
+      border = FALSE)
 title(main = 'A fake map of China at the district/county level')
 
 #### If you like the ggplot2 framework, mapping is pretty simple in that as well
